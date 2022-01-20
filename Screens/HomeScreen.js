@@ -12,7 +12,7 @@ const HomeScreen=({navigation})=> {
         <SafeAreaView style={styles.container}>
             <Header navigation={navigation}/>
             <Search/>
-            <BottomTabs icons={bottomTabIcons}/>
+            
             <ScrollView>
             <TrashSpot/>
             <Events/>
@@ -22,7 +22,7 @@ const HomeScreen=({navigation})=> {
         
     )
 }
-
+/*<BottomTabs icons={bottomTabIcons}/>*/
 const styles=StyleSheet.create({
     container: {
         backgroundColor: '#BCC6CC', 

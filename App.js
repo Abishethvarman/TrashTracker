@@ -7,11 +7,13 @@ import WelcomeScreen from './Screens/WelcomeScreen';
 import MapScreen from './Screens/MapScreen';
 import SignedInStack from './navigation';
 import NewSpotScreen from './Screens/NewSpotScreen';
+import ForumScreen from './Screens/ForumScreen';
+import LeaderboardScreen from './Screens/LeaderboardScreen';
 
 
 export default function App() {
   return (
-    <MapScreen/>
+    <SignedInStack/>
   );
 }
 

@@ -67,7 +67,7 @@ const BottomTabs = ({icons}) => {
 
             <TouchableOpacity style={styles.iconWrapper}>
                 <Entypo name="chat" size={24} color="white" />
-                <Text style={styles.bottomText}>Post</Text>
+                <Text style={styles.bottomText}>Forum</Text>
             </TouchableOpacity>
 
             <TouchableOpacity style={styles.iconWrapper}>

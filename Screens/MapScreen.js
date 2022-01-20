@@ -1,33 +1,64 @@
 import * as React from 'react';
 import MapView from 'react-native-maps';
-import { StyleSheet, Text, View, Dimensions } from 'react-native';
+import { StyleSheet, Text, View, Dimensions, TouchableOpacity, SafeAreaView} from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 
 const MapScreen = ()=> {
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
+      <Header></Header>
       <MapView style={styles.map} 
       initialRegion={{
-      latitude: 37.78825,
-      longitude: -122.4324,
-      latitudeDelta: 0.0922,
-      longitudeDelta: 0.0421,
+        /*Kandy 7.2906° N, 80.6337° E - Dambulla 7.903092	80.670837*/
+      latitude: 7.95,
+      longitude: 80.670837,
+      latitudeDelta: 2,
+      longitudeDelta: 2.4,
     }}
   />
-    </View>
+    </SafeAreaView>
   );
 }
+
+const Header = ({navigation})=>(
+  <View style={styles.headerContainer}>
+          <TouchableOpacity onPress={()=> navigation.goBack()}>
+          <Ionicons name="chevron-back-outline" size={30} color="red" />
+          </TouchableOpacity>
+          
+          <Text style={styles.headerText}>Trash in map</Text>
+          <Text></Text>
+          
+      </View>
+)
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
     justifyContent: 'center',
+    flexDirection:'column',
+    marginHorizontal:10,
   },
   map: {
-    width: Dimensions.get('window').width,
-    height: Dimensions.get('window').height,
+    width: Dimensions.get('window').width-20,
+    height: Dimensions.get('window').height-50,
+    marginBottom:0,
+    marginTop:0
   },
+  headerContainer:{
+    flexDirection:'row',
+    alignItems:'center',
+    justifyContent:'space-between'
+
+},
+headerText:{
+    color:'black',
+    fontWeight:'700',
+    marginRight:20,
+    fontSize:20
+
+}
 });
 
 export default MapScreen
