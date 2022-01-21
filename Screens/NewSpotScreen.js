@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, SafeAreaView} from 'react-native'
+import { View, Text, SafeAreaView,StyleSheet} from 'react-native'
 import AddNewSpot from '../components/NewSpot/AddNewSpot'
 
 
@@ -7,11 +7,19 @@ import AddNewSpot from '../components/NewSpot/AddNewSpot'
 
 const NewSpotScreen = ({navigation}) => {
     return (
-        <SafeAreaView  style={{backgroundColor:'black', flex:1}}>
+        <SafeAreaView  style={styles.container}>
             <AddNewSpot navigation={navigation}/>
             <Text></Text>
         </SafeAreaView>
     )
 }
+
+const styles=StyleSheet.create({
+    container:{
+        backgroundColor:'pink', 
+        flex:1
+    }
+})
+
 
 export default NewSpotScreen

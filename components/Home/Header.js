@@ -10,7 +10,7 @@ const Header = ({navigation}) => {
     return (
        <SafeAreaView style={styles.container}>
                 <TouchableOpacity>
-                    <Image style={styles.logo} source={require('../../assets/trash-for-trade-logo-png.png')}/>
+                    <Image style={styles.logo} source={require('../../assets/TTlogo.png')}/>
                 </TouchableOpacity>
             <View style={styles.iconContainer}>
                <TouchableOpacity>

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import MapView from 'react-native-maps';
-import { StyleSheet, Text, View, Dimensions, TouchableOpacity, SafeAreaView} from 'react-native';
+import { StyleSheet, Text, View, Dimensions, TouchableOpacity, SafeAreaView, StatusBar} from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
 const MapScreen = ()=> {
@@ -39,6 +39,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     flexDirection:'column',
     marginHorizontal:10,
+    marginTop: StatusBar.currentHeight
   },
   map: {
     width: Dimensions.get('window').width-20,
@@ -47,6 +48,7 @@ const styles = StyleSheet.create({
     marginTop:0
   },
   headerContainer:{
+    marginTop:10,
     flexDirection:'row',
     alignItems:'center',
     justifyContent:'space-between'

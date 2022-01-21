@@ -16,7 +16,7 @@ const AddNewSpot = ({navigation}) => {
 const Header = ({navigation})=>(
     <View style={styles.headerContainer}>
             <TouchableOpacity onPress={()=> navigation.goBack()}>
-            <Ionicons name="chevron-back-outline" size={30} color="white" />
+            <Ionicons name="chevron-back-outline" size={30} color="green" />
             </TouchableOpacity>
             <Text style={styles.headerText}>Spot this trash</Text>
             <Text></Text>
@@ -36,7 +36,7 @@ const styles=StyleSheet.create({
 
     },
     headerText:{
-        color:'white',
+        color:'green',
         fontWeight:'700',
         marginRight:20,
         fontSize:20
