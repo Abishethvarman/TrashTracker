@@ -54,7 +54,7 @@ const FormikSpotUploader = () => {
         <TextInput
             onChange={(e)=>setThumbnail (e.nativeEvent.text)} 
             style={{color:'white', fontSize:18}}
-            placeholder="Enter the url of the video" 
+            placeholder="Enter the "/*url of the video*/
             placeholderTextColor='gray'
             multiline={true}
             onChangeText={handleChange('imageurl')}
