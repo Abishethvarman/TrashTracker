@@ -22,6 +22,7 @@ const SignedInStack = () => (
             <Stack.Screen name='SignupScreen' component={SignupScreen}/>
         </Stack.Navigator>
     </NavigationContainer>
+    
 )
 
 export default SignedInStack
