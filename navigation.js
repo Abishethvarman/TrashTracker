@@ -20,6 +20,7 @@ const SignedInStack = () => (
             <Stack.Screen name='HomeScreen' component={TabNavigator}/>
             <Stack.Screen name='LoginScreen' component={LoginScreen}/>
             <Stack.Screen name='SignupScreen' component={SignupScreen}/>
+            <Stack.Screen name='WelcomeScreen' component={WelcomeScreen}/>
         </Stack.Navigator>
     </NavigationContainer>
     
