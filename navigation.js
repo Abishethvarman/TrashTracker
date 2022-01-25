@@ -23,6 +23,8 @@ const SignedInStack = () => (
             <Stack.Screen name='WelcomeScreen' component={WelcomeScreen}/>
         </Stack.Navigator>
     </NavigationContainer>
+
+
     
 )
 
