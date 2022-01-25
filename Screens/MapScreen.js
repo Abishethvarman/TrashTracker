@@ -60,6 +60,9 @@ headerText:{
     marginRight:20,
     fontSize:20
 
+},
+mapMarker:{
+  flex:1
 }
 });
 
