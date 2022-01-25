@@ -7,10 +7,12 @@ import AddNewSpot from '../components/NewSpot/AddNewSpot'
 
 const NewSpotScreen = ({navigation}) => {
     return (
-        <SafeAreaView  style={styles.container}>
+        <View>
+            <SafeAreaView  style={styles.container}>
             <AddNewSpot navigation={navigation}/>
             <Text></Text>
         </SafeAreaView>
+        </View>
     )
 }
 
