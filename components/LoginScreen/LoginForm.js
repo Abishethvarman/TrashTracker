@@ -22,8 +22,8 @@ const LoginForm = ({navigation}) => {
            console.log(re.message + "hi");
            Alert.alert(
                "You entered the email or password wrongly",
-               "If you not registered click register",
-           [{ text: "Register", onPress: () => navigation.push("SignupScreen") },
+               "If you not registered, click SignUp",
+           [{ text: "SignUp", onPress: () => navigation.push("SignupScreen") },
                {text: "Try again" }
            ])
     })
