@@ -1,8 +1,7 @@
 import React from 'react'
 import { View, Text, SafeAreaView,StyleSheet} from 'react-native'
 import AddNewSpot from '../components/NewSpot/AddNewSpot'
-
-
+import SpotImage from '../components/NewSpot/SpotImage'
 
 
 const NewSpotScreen = ({navigation}) => {
@@ -10,7 +9,8 @@ const NewSpotScreen = ({navigation}) => {
         <View>
             <SafeAreaView  style={styles.container}>
             <AddNewSpot navigation={navigation}/>
-            <Text></Text>
+            <SpotImage/>
+            <Text>Hey</Text>
         </SafeAreaView>
         </View>
     )
@@ -18,8 +18,9 @@ const NewSpotScreen = ({navigation}) => {
 
 const styles=StyleSheet.create({
     container:{
-        backgroundColor:'pink', 
-        flex:1
+        backgroundColor:'black', 
+        flex:1,
+        
     }
 })
 

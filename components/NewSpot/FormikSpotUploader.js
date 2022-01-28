@@ -37,7 +37,7 @@ const FormikSpotUploader = () => {
             style={{width:100,height:100}}/>
             <View style={{flex:1, marginLeft:12}}>
                 <TextInput 
-                    style={{color:'white', fontSize:20}}
+                    style={{color:'black', fontSize:20}}
                     placeholder="Write a caption..." 
                     placeholderTextColor='gray'
                     multiline={true}
@@ -53,7 +53,7 @@ const FormikSpotUploader = () => {
 
         <TextInput
             onChange={(e)=>setThumbnail (e.nativeEvent.text)} 
-            style={{color:'white', fontSize:18}}
+            style={{color:'black', fontSize:18}}
             placeholder="Enter the "/*url of the video*/
             placeholderTextColor='gray'
             multiline={true}
