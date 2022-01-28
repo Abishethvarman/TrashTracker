@@ -27,4 +27,4 @@ export default function ImagePickerExample() {
       {image && <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}
     </View>
   );
-}
+  }
