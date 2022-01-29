@@ -19,8 +19,8 @@ export const SignedInStack = () => (
     <NavigationContainer>
         <Stack.Navigator initialRouteName='HomeScreen' screenOptions={screenOptions}>
             <Stack.Screen name='HomeScreen' component={TabNavigator}/>
-            {/*<Stack.Screen name='MapScreen' component={MapScreen}/>
-            <Stack.Screen name='ForumScreen' component={ForumScreen}/>*/}
+            <Stack.Screen name='MapScreen' component={MapScreen}/>
+            <Stack.Screen name='ForumScreen' component={ForumScreen}/>
             
         </Stack.Navigator>
     </NavigationContainer>
