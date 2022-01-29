@@ -3,13 +3,26 @@ import { View, Text,Image,StyleSheet,TouchableOpacity,TextInput, SafeAreaView } 
 import { FontAwesome,Ionicons } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
-
+import { auth, db } from '../../firebase'
+import { signOut } from '@firebase/auth'
+import { doc, updateDoc } from 'firebase/firestore'
 
 
 const Header = ({navigation}) => {
+
+    const SignOut = async () => {
+        await updateDoc(doc(db, 'users', auth.currentUser.uid), {
+            isOnline: false,
+        });
+
+        await signOut(auth);
+
+    }
+
+
     return (
        <SafeAreaView style={styles.container}>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={SignOut}>
                     <Image style={styles.logo} source={require('../../assets/TTlogo.png')}/>
                 </TouchableOpacity>
             <View style={styles.iconContainer}>
