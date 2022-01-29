@@ -1,3 +1,31 @@
+/*
+import { View, Text } from 'react-native';
+import React, { useState, useEffect }  from 'react';
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "./firebase"
+import { SignedInStack,SignedOutStack } from './navigation';
+
+const AuthNavigation = () => {
+    const [currentUser, setCurrentUser] = useState(null)
+
+    const userHandler = (users) => {
+        users ? setCurrentUser(users) : setCurrentUser(null);
+    }
+   
+    useEffect(() => 
+         onAuthStateChanged(auth, users => userHandler(users))
+      
+    , [])
+  return (
+    <>
+    {currentUser ? <SignedInStack /> : <SignedOutStack />}
+    </>
+  );
+};
+
+export default AuthNavigation;
+*/
+
 import { onAuthStateChanged } from '@firebase/auth';
 import React, { useState, useEffect } from 'react'
 import { View, Text } from 'react-native'

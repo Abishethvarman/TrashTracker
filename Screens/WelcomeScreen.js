@@ -3,14 +3,14 @@ import { View, Text, StyleSheet, Image} from 'react-native'
 import Welcome from '../components/Welcome/Welcome'
 
 
-const WelcomeScreen = () => {
+const WelcomeScreen = ({navigation}) => {
     return (
         <View style={styles.Container}>
             <View style={styles.LogoContainer}>
                 <Image style={styles.Logo}  source={require('../assets/logo.png')}/>
                 
             </View>
-            <Welcome/>
+            <Welcome navigation={navigation}/>
         </View>
     )
 }

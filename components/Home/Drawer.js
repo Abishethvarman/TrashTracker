@@ -1,3 +1,4 @@
+/*
 import { View, Text } from 'react-native';
 import React from 'react';
 import { createDrawerNavigator , DrawerContent, DrawerContentScrollView} from '@react-navigation/drawer';
@@ -17,3 +18,4 @@ function Drawer() {
 }
 
 export default Drawer;
+*/

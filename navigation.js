@@ -5,6 +5,7 @@ import { View, Text } from 'react-native'
 import ForumScreen from './Screens/ForumScreen'
 import HomeScreen from './Screens/HomeScreen'
 import LoginScreen from './Screens/LoginScreen'
+import MapScreen from './Screens/MapScreen'
 import SignupScreen from './Screens/SignupScreen'
 import WelcomeScreen from './Screens/WelcomeScreen'
 import TabNavigator from './TabNavigator'
@@ -16,11 +17,11 @@ const screenOptions={
 }
 export const SignedInStack = () => (
     <NavigationContainer>
-        <Stack.Navigator initialRouteName='LoginScreen' screenOptions={screenOptions}>
+        <Stack.Navigator initialRouteName='HomeScreen' screenOptions={screenOptions}>
             <Stack.Screen name='HomeScreen' component={TabNavigator}/>
-            <Stack.Screen name='LoginScreen' component={LoginScreen}/>
-            <Stack.Screen name='SignupScreen' component={SignupScreen}/>
-            <Stack.Screen name='WelcomeScreen' component={WelcomeScreen}/>
+            {/*<Stack.Screen name='MapScreen' component={MapScreen}/>
+            <Stack.Screen name='ForumScreen' component={ForumScreen}/>*/}
+            
         </Stack.Navigator>
     </NavigationContainer>
 
@@ -28,14 +29,14 @@ export const SignedInStack = () => (
     
 )
 
-export function SignOutStack() {
-    return (
+export const SignOutStack = () => (
         <NavigationContainer >
-            <Stack.Navigator initialRouteName="LoginScreen" screenOptions={{ headerShown: false }} >
-                <Stack.Screen name='LoginScreen' component={LoginScreen} />
-                <Stack.Screen name='SignupScreen' component={SignupScreen} />
+            <Stack.Navigator initialRouteName="WelcomeScreen" screenOptions={{ headerShown: false }} >
+            <Stack.Screen name="WelcomeScreen" component={WelcomeScreen} />
+            <Stack.Screen name="LoginScreen" component={LoginScreen} />
+            <Stack.Screen name="SignupScreen" component={SignupScreen} />
             </Stack.Navigator>
 
         </NavigationContainer>
     )
-}
+
