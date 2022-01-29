@@ -8,7 +8,7 @@ import { signOut } from '@firebase/auth'
 import { doc, updateDoc } from 'firebase/firestore'
 
 
-const Header = ({navigation}) => {
+const Header = () => {
 
     const SignOut = async () => {
         await updateDoc(doc(db, 'users', auth.currentUser.uid), {

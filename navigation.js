@@ -14,7 +14,7 @@ const Stack = createNativeStackNavigator()
 const screenOptions={
     headerShown: false
 }
-const SignedInStack = () => (
+export const SignedInStack = () => (
     <NavigationContainer>
         <Stack.Navigator initialRouteName='LoginScreen' screenOptions={screenOptions}>
             <Stack.Screen name='HomeScreen' component={TabNavigator}/>
@@ -28,4 +28,14 @@ const SignedInStack = () => (
     
 )
 
-export default SignedInStack
+export function SignOutStack() {
+    return (
+        <NavigationContainer >
+            <Stack.Navigator initialRouteName="LoginScreen" screenOptions={{ headerShown: false }} >
+                <Stack.Screen name='LoginScreen' component={LoginScreen} />
+                <Stack.Screen name='SignupScreen' component={SignupScreen} />
+            </Stack.Navigator>
+
+        </NavigationContainer>
+    )
+}
