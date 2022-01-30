@@ -8,14 +8,15 @@ import MapScreen from '../../Screens/MapScreen';
 const Drawer = createDrawerNavigator();
 
 
-function Drawer() {
+const Drawer=()=> (
   return (
     <Drawer.Navigator>
-      <Drawer.Screen name="Home" component={HomeScreen} />
-      <Drawer.Screen name="Map" component={MapScreen} />
+      <Drawer.Screen name="HomeScreen" component={HomeScreen} />
+      <Drawer.Screen name="MapScreen" component={MapScreen} />
     </Drawer.Navigator>
   );
 }
+)
 
 export default Drawer;
 */

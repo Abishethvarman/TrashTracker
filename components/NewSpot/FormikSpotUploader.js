@@ -66,6 +66,8 @@ const FormikSpotUploader = () => {
                 {errors.imageurl}
             </Text>
         )}
+        <Button color='blue' onPress={handleSubmit} title='Locate the place' disabled={!isValid}/>
+        <Text> </Text>
         <Button color='blue' onPress={handleSubmit} title='track' disabled={!isValid}/>
         </>
         )}

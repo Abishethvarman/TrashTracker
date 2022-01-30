@@ -16,7 +16,7 @@ const Events = () => {
 
             <View style={{marginLeft:20, marginBottom:10}}>
                 <ImageBackground style={Styles.suggestImg} 
-                    source={require("../../assets/globe-offline.png")}
+                    source={require("../../assets/trash2.jpg")}
                         imageStyle={{ borderRadius: 20 }} >
                         <View style={Styles.suggestTextWrapper}>
 
@@ -34,7 +34,7 @@ const Events = () => {
 
                 <View style={{ marginBottom:10}}>
                 <ImageBackground style={Styles.suggestImg} 
-                    source={require("../../assets/globe-offline.png")}
+                    source={require("../../assets/trash1.jpg")}
                         imageStyle={{ borderRadius: 20 }} >
                         <View style={Styles.suggestTextWrapper}>
 

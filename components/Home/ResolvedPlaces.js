@@ -2,13 +2,13 @@ import React from 'react'
 import { View, Text, StyleSheet, Image, ImageBackground, ScrollView } from 'react-native'
 import { Entypo } from '@expo/vector-icons';
 
-const TrashSpot = () => {
+const ResolvedPlaces = () => {
     return (
         <View style={Styles.container}>
             
             <View style={Styles.headerWrapper}>
-                <Text style={[Styles.header,{fontWeight:"bold"}]}>Trash</Text> 
-                <Text style={Styles.header}> hot spot</Text>
+                <Text style={[Styles.header,{fontWeight:"bold"}]}>Resolved </Text> 
+                <Text style={Styles.header}> places</Text>
             </View>
 
             <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
@@ -16,25 +16,7 @@ const TrashSpot = () => {
 
             <View style={{marginLeft:20, marginBottom:10}}>
                 <ImageBackground style={Styles.suggestImg} 
-                    source={require("../../assets/trash1.jpg")}
-                        imageStyle={{ borderRadius: 20 }} >
-                        <View style={Styles.suggestTextWrapper}>
-
-                            <Text></Text>
-
-                            <View style={[Styles.suggestplace, Styles.suggestBottom]}>
-                                <Entypo name="location-pin" size={24} color="#19B4BF" />
-                                <Text style={Styles.suggestplaceText}>Kallady</Text>
-                            </View>
-
-                        </View>
-                </ImageBackground> 
-                </View>
-                
-
-                <View style={{ marginBottom:10}}>
-                <ImageBackground style={Styles.suggestImg} 
-                    source={require("../../assets/trash2.jpg")}
+                    source={require("../../assets/Nocleanup.jpg")}
                         imageStyle={{ borderRadius: 20 }} >
                         <View style={Styles.suggestTextWrapper}>
 
@@ -44,6 +26,24 @@ const TrashSpot = () => {
                                 <Entypo name="location-pin" size={24} color="#19B4BF" />
                                 <Text style={Styles.suggestplaceText}>Batticaloa</Text>
                             </View>
+
+                        </View>
+                </ImageBackground> 
+                </View>
+                
+
+                <View style={{ marginBottom:10}}>
+                <ImageBackground style={Styles.suggestImg} 
+                    source={require("../../assets/Nocleanup.jpg")}
+                        imageStyle={{ borderRadius: 20 }} >
+                        <View style={Styles.suggestTextWrapper}>
+
+                            <Text></Text>
+
+                            <View style={[Styles.suggestplace, Styles.suggestBottom]}>
+                                <Entypo name="location-pin" size={24} color="#19B4BF" />
+                                <Text style={Styles.suggestplaceText}>Kallady</Text>
+                            </View>
                             
                         </View>
                 </ImageBackground> 
@@ -52,7 +52,7 @@ const TrashSpot = () => {
 
                 <View style={{ marginBottom:10}}>
                 <ImageBackground style={Styles.suggestImg} 
-                    source={require("../../assets/trash3.jpg")}
+                    source={require("../../assets/Nocleanup.jpg")}
                         imageStyle={{ borderRadius: 20 }} >
                         <View style={Styles.suggestTextWrapper}>
 
@@ -60,7 +60,7 @@ const TrashSpot = () => {
 
                             <View style={[Styles.suggestplace, Styles.suggestBottom]}>
                                 <Entypo name="location-pin" size={24} color="#19B4BF" />
-                                <Text style={Styles.suggestplaceText}>Polonaruwa</Text>
+                                <Text style={Styles.suggestplaceText}>Trincomalee</Text>
                             </View>
                             
                         </View>
@@ -130,4 +130,4 @@ const Styles = StyleSheet.create({
     }
 })
 
-export default TrashSpot
+export default ResolvedPlaces

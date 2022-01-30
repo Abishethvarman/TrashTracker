@@ -11,6 +11,7 @@ import ForumScreen from './Screens/ForumScreen';
 import LeaderboardScreen from './Screens/LeaderboardScreen';
 import 'react-native-gesture-handler';
 import AuthNavigation from './AuthNavigation';
+import Drawer from './components/Home/Drawer';
 
 
 export default function App() {
@@ -19,6 +20,7 @@ export default function App() {
     //<SignedInStack/>
    <AuthNavigation/>
   // <SignOutStack/>
+  //<Drawer/>
   );
 }
 

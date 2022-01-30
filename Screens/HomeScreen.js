@@ -5,8 +5,9 @@ import TrashSpot  from '../components/Home/TrashSpot'
 import BottomTabs,{bottomTabIcons} from '../components/ButtonTabs'
 import Events from '../components/Home/Events'
 import Search from '../components/Home/Search'
+import ResolvedPlaces from '../components/Home/ResolvedPlaces'
 
-Events
+
 const HomeScreen=({navigation})=> {
     return (
         <SafeAreaView style={styles.container}>
@@ -16,7 +17,7 @@ const HomeScreen=({navigation})=> {
             <ScrollView>
             <TrashSpot/>
             <Events/>
-            <Events/>
+            <ResolvedPlaces/>
             </ScrollView>
         </SafeAreaView>
         
