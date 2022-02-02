@@ -6,6 +6,9 @@ import { getStorage } from "firebase/storage";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
+//For fire group chat
+
+
 // Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyAD8Xvn3Lf3hsuOLe6sc8wSLw1STa16zsM",

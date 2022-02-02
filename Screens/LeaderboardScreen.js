@@ -1,18 +1,21 @@
 import { View, Text, StyleSheet, SafeAreaView, TouchableOpacity } from 'react-native';
 import React from 'react';
 import { Ionicons } from '@expo/vector-icons';
+import Leaderboard from 'react-native-leaderboard';
 
-const LeaderboardScreen = () => {
+
+const LeaderboardScreen = ({navigation}) => {
   return (
     <SafeAreaView style={styles.container}>
-        <Header/>
+        <Header navigation={navigation}/>
+        
     </SafeAreaView>
   );
 };
 
 const Header = ({navigation})=>(
     <View style={styles.headerContainer}>
-            <TouchableOpacity onPress={()=> navigation.goBack()}>
+            <TouchableOpacity onPress={()=> navigation.push('HomeScreen')}>
             <Ionicons name="chevron-back-outline" size={30} color="white" />
             </TouchableOpacity>
             <Text style={styles.headerText}>Leaderboard</Text>
@@ -20,10 +23,27 @@ const Header = ({navigation})=>(
         </View>
 )
 
+/*const LeaderBoard = () =>(
+    this.state = {
+    data: [
+        {userName: 'Joe', highScore: 52},
+        {userName: 'Jenny', highScore: 120},
+        //...
+    ] //can also be an object of objects!: data: {a:{}, b:{}}
+}
+
+render() {
+  return (
+      <Leaderboard 
+        data={this.state.data} 
+        sortBy='highScore' 
+        labelBy='userName'/>)
+}
+);*/
 
 const styles=StyleSheet.create({
     container:{
-        backgroundColor:'green',
+        backgroundColor:'#4CBB17',
         flex:1
     },
     headerContainer:{

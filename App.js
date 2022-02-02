@@ -12,9 +12,12 @@ import LeaderboardScreen from './Screens/LeaderboardScreen';
 import 'react-native-gesture-handler';
 import AuthNavigation from './AuthNavigation';
 import Drawer from './components/Home/Drawer';
+import { LogBox } from 'react-native';
 
+LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by messageLogBox.ignoreAllLogs();
 
 export default function App() {
+  console.disableYellowBox = true;
   return (
     //<HomeScreen/>
     //<SignedInStack/>

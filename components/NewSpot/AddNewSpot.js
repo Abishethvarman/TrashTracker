@@ -2,12 +2,18 @@ import React from 'react'
 import { View, Text, StyleSheet, TouchableOpacity, SafeAreaView } from 'react-native'
 import { Ionicons } from '@expo/vector-icons';
 import FormikSpotUploader from './FormikSpotUploader';
+import SpotImage from './SpotImage'
+import ImagePickerExample from './SpotImage';
+
 
 const AddNewSpot = ({navigation}) => {
     return (
         <SafeAreaView style={styles.container}>
             <Header navigation={navigation}/>
             <FormikSpotUploader/>
+            <ImagePickerExample/>
+            
+        
         </SafeAreaView>
         
     )
@@ -26,6 +32,7 @@ const Header = ({navigation})=>(
 const styles=StyleSheet.create({
     container:{
         marginHorizontal:10,
+        flexDirection:'column'
     },
     headerContainer:{
         flexDirection:'row',

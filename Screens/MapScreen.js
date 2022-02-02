@@ -2,11 +2,12 @@ import * as React from 'react';
 import MapView from 'react-native-maps';
 import { StyleSheet, Text, View, Dimensions, TouchableOpacity, SafeAreaView, StatusBar} from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { Marker } from "react-native-maps";
 
-const MapScreen = ()=> {
+const MapScreen = ({navigation})=> {
   return (
     <SafeAreaView style={styles.container}>
-      <Header></Header>
+      <Header navigation={navigation}></Header>
       <MapView style={styles.map} 
       initialRegion={{
         /*Kandy 7.2906° N, 80.6337° E - Dambulla 7.903092	80.670837*/
@@ -15,14 +16,32 @@ const MapScreen = ()=> {
       latitudeDelta: 2,
       longitudeDelta: 2.4,
     }}
+  >
+  
+  {/*marker to a nearby location */}
+  <Marker
+    coordinate={{
+      latitude: 7.7714827145542,
+      longitude: 81.6551462687416,
+    },
+    {
+      latitude: 7.914827145542,
+      longitude: 81.6551462687416,
+    },
+    {
+      latitude: 7.7714827145542,
+      longitude: 81.6551462687416,
+    }}
+    pinColor="green"
   />
+  </MapView>
     </SafeAreaView>
   );
 }
 
 const Header = ({navigation})=>(
   <View style={styles.headerContainer}>
-          <TouchableOpacity onPress={()=> navigation.goBack()}>
+          <TouchableOpacity onPress={()=> navigation.push('HomeScreen')}>
           <Ionicons name="chevron-back-outline" size={30} color="red" />
           </TouchableOpacity>
           

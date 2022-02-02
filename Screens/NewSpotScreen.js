@@ -9,8 +9,7 @@ const NewSpotScreen = ({navigation}) => {
         <View>
             <SafeAreaView  style={styles.container}>
             <AddNewSpot navigation={navigation}/>
-            <SpotImage/>
-            <Text>Hey</Text>
+            //<Text style={{color:black}}>Hey</Text>
         </SafeAreaView>
         </View>
     )

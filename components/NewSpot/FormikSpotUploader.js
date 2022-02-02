@@ -3,11 +3,13 @@ import { View, Text, Image, TextInput, Button} from 'react-native'
 import * as Yup from 'yup'
 import { Formik } from 'formik'
 import { Divider } from 'react-native-elements'
+import { render } from 'react-dom';
 
 
 const PLACEHOLDER='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHaAYTNs6WDJ81eDUsMXp6ODKv2s_mp7I14qlnYoej0WCYY5558l2GomfHIPs_perUZvI&usqp=CAU'
 const uploadPostSchema= Yup.object().shape({
-    imageurl: Yup.string().url().required('A url is required'),
+
+    imageurl: Yup.string().url().required('A photo is rquired'),
     caption: Yup.string().max(2200,'caption reached too much of charectrs')
 })
 
@@ -54,7 +56,7 @@ const FormikSpotUploader = () => {
         <TextInput
             onChange={(e)=>setThumbnail (e.nativeEvent.text)} 
             style={{color:'black', fontSize:18}}
-            placeholder="Enter the "/*url of the video*/
+            placeholder="Upload the url of your photo "/*url of the video*/
             placeholderTextColor='gray'
             multiline={true}
             onChangeText={handleChange('imageurl')}
@@ -66,9 +68,9 @@ const FormikSpotUploader = () => {
                 {errors.imageurl}
             </Text>
         )}
-        <Button color='blue' onPress={handleSubmit} title='Locate the place' disabled={!isValid}/>
+        <Button color='green' onPress={handleSubmit} title='Locate the place' disabled={!isValid}/>
         <Text> </Text>
-        <Button color='blue' onPress={handleSubmit} title='track' disabled={!isValid}/>
+        <Button color='red' onPress={handleSubmit} title='track' disabled={!isValid}/>
         </>
         )}
         </Formik>
