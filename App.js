@@ -13,6 +13,9 @@ import 'react-native-gesture-handler';
 import AuthNavigation from './AuthNavigation';
 import Drawer from './components/Home/Drawer';
 import { LogBox } from 'react-native';
+import SpotImage from './components/NewSpot/SpotImage';
+
+
 
 LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by messageLogBox.ignoreAllLogs();
 
@@ -21,9 +24,11 @@ export default function App() {
   return (
     //<HomeScreen/>
     //<SignedInStack/>
-   <AuthNavigation/>
-  // <SignOutStack/>
-  //<Drawer/>
+    //<AuthNavigation/>
+    // <SignOutStack/>
+    //<Drawer/>
+   <SpotImage/>
+  
   );
 }
 
