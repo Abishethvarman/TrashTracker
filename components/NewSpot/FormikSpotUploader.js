@@ -4,12 +4,17 @@ import * as Yup from 'yup'
 import { Formik } from 'formik'
 import { Divider } from 'react-native-elements'
 import { render } from 'react-dom';
+import PickerSev from './Picker'
 
 
-const PLACEHOLDER='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHaAYTNs6WDJ81eDUsMXp6ODKv2s_mp7I14qlnYoej0WCYY5558l2GomfHIPs_perUZvI&usqp=CAU'
+//const PLACEHOLDER='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHaAYTNs6WDJ81eDUsMXp6ODKv2s_mp7I14qlnYoej0WCYY5558l2GomfHIPs_perUZvI&usqp=CAU'
+const PLACEHOLDER='https://thumbs.dreamstime.com/b/add-photo-icon-isolated-white-background-camera-plus-new-vector-stock-173611946.jpg'
+//data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAA1BMVEX///+nxBvIAAAASElEQVR4nO3BgQAAAADDoPlTX+AIVQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADwDcaiAAFXD1ujAAAAAElFTkSuQmCC'
+//'https://static.thenounproject.com/png/558475-200.png'
 const uploadPostSchema= Yup.object().shape({
 
     imageurl: Yup.string().url().required('A photo is rquired'),
+    //file: Yup.mixed().required('A file is required'),
     caption: Yup.string().max(2200,'caption reached too much of charectrs')
 })
 
@@ -55,7 +60,7 @@ const FormikSpotUploader = () => {
 
         <TextInput
             onChange={(e)=>setThumbnail (e.nativeEvent.text)} 
-            style={{color:'black', fontSize:18}}
+            style={{color:'white', fontSize:18}}
             placeholder="Upload the url of your photo "/*url of the video*/
             placeholderTextColor='gray'
             multiline={true}
@@ -63,13 +68,15 @@ const FormikSpotUploader = () => {
             onBlur={handleBlur('imageurl')}
             value={values.imageurl}
         />
+
+
         {errors.imageurl &&(
             <Text style={{fontSize:10, color:'red'}}>
                 {errors.imageurl}
             </Text>
         )}
-        <Button color='green' onPress={handleSubmit} title='Locate the place' disabled={!isValid}/>
-        <Text> </Text>
+
+        <PickerSev/>
         <Button color='red' onPress={handleSubmit} title='track' disabled={!isValid}/>
         </>
         )}

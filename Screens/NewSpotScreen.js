@@ -6,10 +6,10 @@ import SpotImage from '../components/NewSpot/SpotImage'
 
 const NewSpotScreen = ({navigation}) => {
     return (
-        <View>
-            <SafeAreaView  style={styles.container}>
+        <View style={styles.container}>
+            <SafeAreaView >
             <AddNewSpot navigation={navigation}/>
-            //<Text style={{color:black}}>Hey</Text>
+            
         </SafeAreaView>
         </View>
     )

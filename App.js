@@ -14,6 +14,7 @@ import AuthNavigation from './AuthNavigation';
 import Drawer from './components/Home/Drawer';
 import { LogBox } from 'react-native';
 import SpotImage from './components/NewSpot/SpotImage';
+import PickerSev from './components/NewSpot/Picker';
 
 
 
@@ -27,8 +28,9 @@ export default function App() {
     //<AuthNavigation/>
     // <SignOutStack/>
     //<Drawer/>
-   <SpotImage/>
-  
+   //<SpotImage/>
+  //<NewSpotScreen/>
+  <PickerSev/>
   );
 }
 

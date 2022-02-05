@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, TouchableOpacity, SafeAreaView } from 'react-na
 import { Ionicons } from '@expo/vector-icons';
 import FormikSpotUploader from './FormikSpotUploader';
 import SpotImage from './SpotImage'
-import ImagePickerExample from './SpotImage';
+
 
 
 const AddNewSpot = ({navigation}) => {
@@ -11,7 +11,7 @@ const AddNewSpot = ({navigation}) => {
         <SafeAreaView style={styles.container}>
             <Header navigation={navigation}/>
             <FormikSpotUploader/>
-            <ImagePickerExample/>
+            
             
         
         </SafeAreaView>
@@ -32,7 +32,8 @@ const Header = ({navigation})=>(
 const styles=StyleSheet.create({
     container:{
         marginHorizontal:10,
-        flexDirection:'column'
+        flexDirection:'column',
+        marginTop:5
     },
     headerContainer:{
         flexDirection:'row',
