@@ -14,7 +14,7 @@ const NewSpotScreen = ({navigation}) => {
         </View>
     )
 }
-
+//
 const styles=StyleSheet.create({
     container:{
         backgroundColor:'black', 
