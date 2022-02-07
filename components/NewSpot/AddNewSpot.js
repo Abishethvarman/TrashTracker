@@ -47,7 +47,7 @@ const styles=StyleSheet.create({
         color:'green',
         fontWeight:'700',
         marginRight:20,
-        fontSize:20
+        fontSize:30
 
     }
 })

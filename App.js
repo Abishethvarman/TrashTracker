@@ -17,6 +17,7 @@ import SpotImage from './components/NewSpot/SpotImage';
 import PickerSev from './components/NewSpot/Picker';
 import AddCounter from './components/NewSpot/Counter';
 import AddNewSpot from './components/NewSpot/AddNewSpot';
+import Locate from './components/NewSpot/location';
 
 
 
@@ -35,6 +36,7 @@ export default function App() {
   //<PickerSev/>
   //<AddCounter/>
   //<AddNewSpot/>
+  //<Locate/>
   );
 }
 

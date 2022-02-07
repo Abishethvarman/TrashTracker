@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import { View, Text, Image, TextInput, Button, StyleSheet,TouchableOpacity} from 'react-native'
 import * as Yup from 'yup'
 import { Formik } from 'formik'
@@ -6,9 +6,8 @@ import { Divider } from 'react-native-elements'
 import { render } from 'react-dom';
 import PickerSev from './Picker'
 import { Feather } from '@expo/vector-icons';
-
-
-
+import * as ImagePicker from 'expo-image-picker'
+import Locate from './location'
 
 /*/Counter
 const AddCounter = () => {
@@ -67,30 +66,64 @@ const styles=StyleSheet.create({
     }
 })
 /*/
-
 //const PLACEHOLDER='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHaAYTNs6WDJ81eDUsMXp6ODKv2s_mp7I14qlnYoej0WCYY5558l2GomfHIPs_perUZvI&usqp=CAU'
-const PLACEHOLDER='https://thumbs.dreamstime.com/b/add-photo-icon-isolated-white-background-camera-plus-new-vector-stock-173611946.jpg'
+//const PLACEHOLDER='https://thumbs.dreamstime.com/b/add-photo-icon-isolated-white-background-camera-plus-new-vector-stock-173611946.jpg'
+
 //data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAA1BMVEX///+nxBvIAAAASElEQVR4nO3BgQAAAADDoPlTX+AIVQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADwDcaiAAFXD1ujAAAAAElFTkSuQmCC'
 //'https://static.thenounproject.com/png/558475-200.png'
-const uploadPostSchema= Yup.object().shape({
-
-    imageurl: Yup.string().url().required('A photo is rquired'),
-    //file: Yup.mixed().required('A file is required'),
-    caption: Yup.string().max(2200,'caption reached too much of charectrs')
-})
-
 
 const FormikSpotUploader = () => {
-    const[thumbnail,setThumbnail]=useState(PLACEHOLDER)
+    //const[thumbnail,setThumbnail]=useState(PLACEHOLDER)
     const [counter, setCounter]=useState(0);
     const [counter1, setCounter1]=useState(0);
     const [counter2, setCounter2]=useState(0);
     const [counter3, setCounter3]=useState(0);
     const [counter4, setCounter4]=useState(0);
+    const uploadImage = 'https://icon-library.com/images/upload-photo-icon/upload-photo-icon-16.jpg'
+    const [image, setImage] = useState(uploadImage);
+
+    useEffect(() => {
+        (async () => {
+            if (Platform.OS !== 'web') {
+                const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+                if (status !== 'granted') {
+                    alert('Sorry, we need camera roll permissions to make this work!');
+                }
+            }
+        })();
+    }, []);
+
+const pickImage = async () => {
+    // No permissions request is necessary for launching the image library
+    let result = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: ImagePicker.MediaTypeOptions.All,
+        allowsEditing: true,
+        aspect: [4, 3],
+        quality: 1,
+    });
+
+
+
+    if (!result.cancelled) {
+        setImage(result.uri);
+    }
+};
+
+const uploadPostSchema= Yup.object().shape({
+
+    //imageurl: Yup.string().url().required('A photo is rquired'),
+    //file: Yup.mixed().required('A file is required'),
+    caption: Yup.string().max(1000,'caption reached too much of charectrs'),
+    placespot:Yup.string().required('caption reached too much of charectrs')
+}) 
+
     return (
         <View>
+            <TouchableOpacity onPress={pickImage} style={{ alignItems: 'center', height: 100, }} >
+                    <Image source={{ uri: image }} style={{ height: '100%', width: '100%', resizeMode: 'contain', borderRadius: 20 }}></Image>
+            </TouchableOpacity>
         <Formik
-            initialValues={{caption:'', imageurl:''}}
+            initialValues={{caption:'', placespot:''}}
             onSubmit={values=>console.log(values)}
             validationSchema={uploadPostSchema}
             validateOnMount={true}
@@ -105,12 +138,17 @@ const FormikSpotUploader = () => {
         })=>(
         <>
         <View style={{marginLeft:5, marginTop:5, flexDirection:'row'}}> 
-            <Image 
+            <TouchableOpacity onPress={pickImage} style={{ alignItems: 'center', height: 100, }} >
+                    <Image source={{ uri: image }} style={{ height: '100%', width: '100%', resizeMode: 'contain', borderRadius: 20 }}></Image>
+            </TouchableOpacity>
+            {/*<Image 
             source={{uri: thumbnail ? thumbnail : PLACEHOLDER}} 
-            style={{width:100,height:100}}/>
+            style={{width:100,height:100}}/>*/}
+
+
             <View style={{flex:1, marginLeft:12}}>
                 <TextInput 
-                    style={{color:'black', fontSize:20}}
+                    style={{color:'white', fontSize:20}}
                     placeholder="Write a caption..." 
                     placeholderTextColor='gray'
                     multiline={true}
@@ -119,48 +157,62 @@ const FormikSpotUploader = () => {
                     value={values.caption}
                 >
                 </TextInput>
+                <Divider width={0.1} orientation='vertical'/>
+                <TextInput 
+                    style={{color:'white', fontSize:20}}
+                    placeholder="Name of this spot" 
+                    placeholderTextColor='gray'
+                    multiline={false}
+                    onChangeText={handleChange('placespot')}
+                    onBlur={handleBlur('placespot')}
+                    value={values.placespot}
+                >
+                </TextInput>
+
             </View>
         
         </View>
         <Divider width={0.1} orientation='vertical'/>
 
-        <TextInput
+        {/*<TextInput
             onChange={(e)=>setThumbnail (e.nativeEvent.text)} 
             style={{color:'white', fontSize:18}}
-            placeholder="Upload the url of your photo "/*url of the video*/
+            placeholder="Upload the url of your photo "/*url of the video
             placeholderTextColor='gray'
             multiline={true}
             onChangeText={handleChange('imageurl')}
             onBlur={handleBlur('imageurl')}
             value={values.imageurl}
-        />
+        />*/}
 
-        <TextInput
+        {/*<TextInput
             
             style={{color:'white', fontSize:18}}
-            placeholder="counter "/*url of the video*/
+            placeholder="counter "/*url of the video
             placeholderTextColor='gray'
             multiline={true}
             onChangeText={handleChange('counter')}
             onBlur={handleBlur('counter')}
             value={values.counter}
-        />
+        />*/}
         
 
         
 
 
-        {errors.imageurl &&(
+        {/*errors.imageurl &&(
             <Text style={{fontSize:10, color:'red'}}>
                 {errors.imageurl}
             </Text>
-        )}
+        )*/}
 
         {/*/AddCounter*/}
+        <Locate/>
         <View>
             <View style={{alignItems:'center'}}>
             <Text style={{color:'green', alignItems:'center', fontSize:32}}>Add the rough count</Text>
             </View>
+            
         {/*Polythene bags */}
         <View>
         <View style={styles.container}>
@@ -168,7 +220,7 @@ const FormikSpotUploader = () => {
         onPress={()=>{setCounter(counter-1)}}>
             <Feather name="minus-square" size={30} color="white" />
         </TouchableOpacity>
-        <Text style={{color:'white', alignItems:'center', fontSize:28}}>Polythenes Bags</Text>
+        <Text style={{color:'white', alignItems:'center', fontSize:28}}>Polythenes Bags    </Text>
         <TouchableOpacity 
         onPress={()=>{setCounter(counter+1)}}>
             <Feather name="plus-square" size={30} color="white" />
@@ -184,7 +236,7 @@ const FormikSpotUploader = () => {
         onPress={()=>{setCounter1(counter1-1)}}>
             <Feather name="minus-square" size={30} color="white" />
         </TouchableOpacity>
-        <Text style={{color:'white', alignItems:'center', fontSize:28}}>PET Bottles</Text>
+        <Text style={{color:'white', alignItems:'center', fontSize:28}}>PET Bottles              </Text>
         <TouchableOpacity 
         onPress={()=>{setCounter1(counter1+1)}}>
             <Feather name="plus-square" size={30} color="white" />
@@ -201,7 +253,7 @@ const FormikSpotUploader = () => {
         onPress={()=>{setCounter2(counter2-1)}}>
             <Feather name="minus-square" size={30} color="white" />
         </TouchableOpacity>
-        <Text style={{color:'white', alignItems:'center', fontSize:28}}>Plastic Debris</Text>
+        <Text style={{color:'white', alignItems:'center', fontSize:28}}>Plastic Debris          </Text>
         <TouchableOpacity 
         onPress={()=>{setCounter2(counter2+1)}}>
             <Feather name="plus-square" size={30} color="white" />
@@ -218,7 +270,7 @@ const FormikSpotUploader = () => {
         onPress={()=>{setCounter3(counter3-1)}}>
             <Feather name="minus-square" size={30} color="white" />
         </TouchableOpacity>
-        <Text style={{color:'white', alignItems:'center', fontSize:28}}>Food Wrappers</Text>
+        <Text style={{color:'white', alignItems:'center', fontSize:28}}>Food Wrappers        </Text>
         <TouchableOpacity 
         onPress={()=>{setCounter3(counter3+1)}}>
             <Feather name="plus-square" size={30} color="white" />
@@ -244,10 +296,13 @@ const FormikSpotUploader = () => {
         </View>
             
         </View>
+        
         </View>
 
+        <Divider width={0.1} orientation='vertical'/>
+        <Text> </Text>
         
-        <Button color='red' onPress={handleSubmit} title='track' disabled={!isValid}/>
+        <Button color='red' onPress={handleSubmit} title='track' disabled={!isValid} />
         </>
         )}
         </Formik>
