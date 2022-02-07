@@ -15,6 +15,8 @@ import Drawer from './components/Home/Drawer';
 import { LogBox } from 'react-native';
 import SpotImage from './components/NewSpot/SpotImage';
 import PickerSev from './components/NewSpot/Picker';
+import AddCounter from './components/NewSpot/Counter';
+import AddNewSpot from './components/NewSpot/AddNewSpot';
 
 
 
@@ -25,12 +27,14 @@ export default function App() {
   return (
     //<HomeScreen/>
     //<SignedInStack/>
-    //<AuthNavigation/>
+   <AuthNavigation/>
     // <SignOutStack/>
     //<Drawer/>
    //<SpotImage/>
   //<NewSpotScreen/>
-  <PickerSev/>
+  //<PickerSev/>
+  //<AddCounter/>
+  //<AddNewSpot/>
   );
 }
 

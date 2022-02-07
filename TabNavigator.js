@@ -7,6 +7,7 @@ import MapScreen from './Screens/MapScreen';
 import AddNewSpot from './components/NewSpot/AddNewSpot';
 import LeaderboardScreen from './Screens/LeaderboardScreen';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
+import NewSpotScreen from './Screens/NewSpotScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -33,7 +34,7 @@ const TabNavigator=()=>{
             <Entypo name="globe" size={size} color={color} />
           )
       }}/>
-      <Tab.Screen name="Track Trash" component={AddNewSpot} options={{
+      <Tab.Screen name="Track Trash" component={NewSpotScreen} options={{
           tabBarIcon:({color} )=>(
             <AntDesign name="pluscircleo" size={33} color={color} />
           )

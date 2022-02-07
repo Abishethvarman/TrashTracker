@@ -109,7 +109,7 @@ function SpotImage() {
   );
 }
 
-export default SpotImage;
+
 
 // Kindacode.com
 // Just some styles
@@ -136,7 +136,7 @@ const styles = StyleSheet.create({
   }
 });
 
-
+export default SpotImage;
 
 
 

@@ -18,7 +18,7 @@ const AddNewSpot = ({navigation}) => {
         
     )
 }
-
+//
 const Header = ({navigation})=>(
     <View style={styles.headerContainer}>
             <TouchableOpacity onPress={()=> navigation.goBack()}>
