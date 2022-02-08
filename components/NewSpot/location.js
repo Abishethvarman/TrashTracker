@@ -1,3 +1,4 @@
+/*
 import React, { useState, useEffect } from 'react';
 import { Platform, Text, View, StyleSheet } from 'react-native';
 import * as Location from 'expo-location';
@@ -40,3 +41,6 @@ const styles = StyleSheet.create({
         flex:1
     }
  });
+ */
+
+ 
