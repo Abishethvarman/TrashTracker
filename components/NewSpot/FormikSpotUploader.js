@@ -1,13 +1,18 @@
 import React, { useState,useEffect } from 'react'
-import { View, Text, Image, TextInput, Button, StyleSheet,TouchableOpacity} from 'react-native'
+import { View, Text, Image, TextInput, Button, StyleSheet,TouchableOpacity,Picker,ScrollView} from 'react-native'
 import * as Yup from 'yup'
 import { Formik } from 'formik'
 import { Divider } from 'react-native-elements'
 import { render } from 'react-dom';
 import PickerSev from './Picker'
 import { Feather } from '@expo/vector-icons';
+import { addDoc, collection, doc, onSnapshot, serverTimestamp, setDoc } from '../../firebase'
+import { auth, db, storage } from '../../firebase'
+import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
 import * as ImagePicker from 'expo-image-picker'
 import Locate from './location'
+
+
 
 /*/Counter
 const AddCounter = () => {
@@ -109,12 +114,47 @@ const pickImage = async () => {
     }
 };
 
+const AddSubmit = async (blogTitle, description, category, language) => {
+    let ImgUrl;
+    let DocUrl;
+
+    if (image) {
+        const response1 = await fetch(image);
+        const blob1 = await response1.blob();
+        const imgRef = ref(storage, `images/blog/${new Date().getTime()}`);
+        const snap = await uploadBytes(imgRef, blob1);
+        const downloadUrl = await getDownloadURL(ref(storage, snap.ref.fullPath));
+        ImgUrl = downloadUrl;
+    }
+    
+    await addDoc(collection(db, 'spots'), {
+        title: blogTitle,
+        description,
+        seviority,
+        language,
+        createAt: new Date(),
+        titleImage: ImgUrl,
+        file: DocUrl,
+        uid: auth.currentUser.uid,
+        username: user.username,
+        usermail: user.email,
+        UserPic: user.pro_pic,
+        book_mark_by: []
+
+    }).then(() => {
+        Alert.alert('Successfully Added');
+        navigation.navigate('HomeScreen');
+    })
+
+}
+
 const uploadPostSchema= Yup.object().shape({
 
     //imageurl: Yup.string().url().required('A photo is rquired'),
-    //file: Yup.mixed().required('A file is required'),
+    //file: Yup.mixed().required('A file is required'), AddSubmit(values.caption, values.placespot, values.seviority);
     caption: Yup.string().max(1000,'caption reached too much of charectrs'),
-    placespot:Yup.string().required('caption reached too much of charectrs')
+    placespot:Yup.string().required('caption reached too much of charectrs'),
+    
 }) 
 
     return (
@@ -124,17 +164,21 @@ const uploadPostSchema= Yup.object().shape({
             </TouchableOpacity>
         <Formik
             initialValues={{caption:'', placespot:''}}
-            onSubmit={values=>console.log(values)}
+            onSubmit={values=>console.log(values) }
+        
             validationSchema={uploadPostSchema}
             validateOnMount={true}
         >
+        
         {({
             handleBlur,
             handleSubmit,
             handleChange,
             values,
             errors,
-            isValid
+            isValid,
+            selectedValue,
+            onValueChange
         })=>(
         <>
         <View style={{marginLeft:5, marginTop:5, flexDirection:'row'}}> 
@@ -172,6 +216,7 @@ const uploadPostSchema= Yup.object().shape({
             </View>
         
         </View>
+        <ScrollView>
         <Divider width={0.1} orientation='vertical'/>
 
         {/*<TextInput
@@ -207,7 +252,18 @@ const uploadPostSchema= Yup.object().shape({
         )*/}
 
         {/*/AddCounter*/}
-        <Locate/>
+        
+        <View style={{justifyContent:'center',alignItems:'center' }}>
+        <Text style={{ fontWeight: 'bold', letterSpacing: 1, color:'white', fontSize:20, }}>Sevieority</Text>
+                        <Picker style={styles.textBox} selectedValue={values.seviority} onValueChange={handleChange('seviority')} >
+
+                            <Picker.Item label="Normal" values="Normal" />
+                            <Picker.Item label="Modrate" values="Moderate" />
+                            <Picker.Item label="High" values="High" />
+                        </Picker>
+        </View>
+        
+
         <View>
             <View style={{alignItems:'center'}}>
             <Text style={{color:'green', alignItems:'center', fontSize:32}}>Add the rough count</Text>
@@ -220,12 +276,12 @@ const uploadPostSchema= Yup.object().shape({
         onPress={()=>{setCounter(counter-1)}}>
             <Feather name="minus-square" size={30} color="white" />
         </TouchableOpacity>
-        <Text style={{color:'white', alignItems:'center', fontSize:28}}>Polythenes Bags    </Text>
+        <Text style={{color:'white', alignItems:'center', fontSize:25}}>Polythenes Bags     </Text>
         <TouchableOpacity 
         onPress={()=>{setCounter(counter+1)}}>
             <Feather name="plus-square" size={30} color="white" />
         </TouchableOpacity>
-        <Text style={{color:'white', fontSize:30}}>{counter}</Text>
+        <Text style={{color:'white', fontSize:25}}>{counter}</Text>
         </View>
             
         </View>
@@ -236,12 +292,12 @@ const uploadPostSchema= Yup.object().shape({
         onPress={()=>{setCounter1(counter1-1)}}>
             <Feather name="minus-square" size={30} color="white" />
         </TouchableOpacity>
-        <Text style={{color:'white', alignItems:'center', fontSize:28}}>PET Bottles              </Text>
+        <Text style={{color:'white', alignItems:'center', fontSize:25}}>PET Bottles              </Text>
         <TouchableOpacity 
         onPress={()=>{setCounter1(counter1+1)}}>
             <Feather name="plus-square" size={30} color="white" />
         </TouchableOpacity>
-        <Text style={{color:'white', fontSize:30}}>{counter1}</Text>
+        <Text style={{color:'white', fontSize:25}} value={values.counter1} onValueChange={handleChange('seviority')}>{counter1}</Text>
         </View>
             
         </View>
@@ -253,12 +309,12 @@ const uploadPostSchema= Yup.object().shape({
         onPress={()=>{setCounter2(counter2-1)}}>
             <Feather name="minus-square" size={30} color="white" />
         </TouchableOpacity>
-        <Text style={{color:'white', alignItems:'center', fontSize:28}}>Plastic Debris          </Text>
+        <Text style={{color:'white', alignItems:'center', fontSize:25}}>Plastic Debris          </Text>
         <TouchableOpacity 
         onPress={()=>{setCounter2(counter2+1)}}>
             <Feather name="plus-square" size={30} color="white" />
         </TouchableOpacity>
-        <Text style={{color:'white', fontSize:30}}>{counter2}</Text>
+        <Text style={{color:'white', fontSize:25}}>{counter2}</Text>
         </View>
             
         </View>
@@ -270,12 +326,12 @@ const uploadPostSchema= Yup.object().shape({
         onPress={()=>{setCounter3(counter3-1)}}>
             <Feather name="minus-square" size={30} color="white" />
         </TouchableOpacity>
-        <Text style={{color:'white', alignItems:'center', fontSize:28}}>Food Wrappers        </Text>
+        <Text style={{color:'white', alignItems:'center', fontSize:25}}>Food Wrappers        </Text>
         <TouchableOpacity 
         onPress={()=>{setCounter3(counter3+1)}}>
             <Feather name="plus-square" size={30} color="white" />
         </TouchableOpacity>
-        <Text style={{color:'white', fontSize:30}}>{counter3}</Text>
+        <Text style={{color:'white', fontSize:25}}>{counter3}</Text>
         </View>
             
         </View>
@@ -287,12 +343,12 @@ const uploadPostSchema= Yup.object().shape({
         onPress={()=>{setCounter4(counter4-1)}}>
             <Feather name="minus-square" size={30} color="white" />
         </TouchableOpacity>
-        <Text style={{color:'white', alignItems:'center', fontSize:28}}>Large Plastic Rigids</Text>
+        <Text style={{color:'white', alignItems:'center', fontSize:25}}>Large Plastic Rigids</Text>
         <TouchableOpacity 
         onPress={()=>{setCounter4(counter4+1)}}>
             <Feather name="plus-square" size={30} color="white" />
         </TouchableOpacity>
-        <Text style={{color:'white', fontSize:30}}>{counter4}</Text>
+        <Text style={{color:'white', fontSize:25}}>{counter4}</Text>
         </View>
             
         </View>
@@ -301,7 +357,7 @@ const uploadPostSchema= Yup.object().shape({
 
         <Divider width={0.1} orientation='vertical'/>
         <Text> </Text>
-        
+        </ScrollView>
         <Button color='red' onPress={handleSubmit} title='track' disabled={!isValid} />
         </>
         )}
@@ -346,7 +402,22 @@ const styles=StyleSheet.create({
         marginRight:20,
         fontSize:20
 
-    }
+    },
+    textBox: {
+        borderWidth: 1,
+        borderColor: 'red',
+        height: 50,
+        backgroundColor: 'red',
+        borderRadius: 5,
+        justifyContent: 'center',
+        marginBottom: 10,
+        elevation: 1,
+        marginTop: 10,
+        paddingHorizontal: 10,
+
+    },
+    textField: {
+        paddingHorizontal: 10,}
 })
 
 
