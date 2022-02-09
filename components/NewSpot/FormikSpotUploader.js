@@ -1,15 +1,15 @@
 import React, { useState,useEffect } from 'react'
-import { View, Text, Image, TextInput, Button, StyleSheet,TouchableOpacity,Picker,ScrollView} from 'react-native'
+import { View, Text, Image, TextInput, Button, StyleSheet,TouchableOpacity,ScrollView} from 'react-native'
 import * as Yup from 'yup'
 import { Formik } from 'formik'
 import { Divider } from 'react-native-elements'
-import { render } from 'react-dom';
 import PickerSev from './Picker'
 import { Feather } from '@expo/vector-icons';
 import { addDoc, collection, doc, onSnapshot, serverTimestamp, setDoc } from '../../firebase'
 import { auth, db, storage } from '../../firebase'
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
 import * as ImagePicker from 'expo-image-picker'
+import {Picker} from '@react-native-picker/picker';
 import Locate from './location'
 
 
@@ -76,6 +76,14 @@ const styles=StyleSheet.create({
 
 //data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAA1BMVEX///+nxBvIAAAASElEQVR4nO3BgQAAAADDoPlTX+AIVQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADwDcaiAAFXD1ujAAAAAElFTkSuQmCC'
 //'https://static.thenounproject.com/png/558475-200.png'
+const uploadPostSchema= Yup.object().shape({
+
+    //imageurl: Yup.string().url().required('A photo is rquired'),
+    //file: Yup.mixed().required('A file is required'), AddSubmit(values.caption, values.placespot, values.seviority);
+    caption: Yup.string().max(1000,'caption reached too much of charectrs'),
+    placespot:Yup.string().required('caption reached too much of charectrs'),
+    
+}) 
 
 const FormikSpotUploader = () => {
     //const[thumbnail,setThumbnail]=useState(PLACEHOLDER)
@@ -111,51 +119,41 @@ const pickImage = async () => {
 
     if (!result.cancelled) {
         setImage(result.uri);
+        console.log(result.uri);
     }
 };
 
-const AddSubmit = async (blogTitle, description, category, language) => {
+const AddSubmit = async (caption, placespot, seviority) => {
     let ImgUrl;
-    let DocUrl;
 
     if (image) {
         const response1 = await fetch(image);
         const blob1 = await response1.blob();
-        const imgRef = ref(storage, `images/blog/${new Date().getTime()}`);
+        const imgRef = ref(storage, `images/spots/${new Date().getTime()}`);
         const snap = await uploadBytes(imgRef, blob1);
         const downloadUrl = await getDownloadURL(ref(storage, snap.ref.fullPath));
         ImgUrl = downloadUrl;
     }
-    
-    await addDoc(collection(db, 'spots'), {
-        title: blogTitle,
-        description,
-        seviority,
-        language,
-        createAt: new Date(),
+    console.log('138vathu vari',ImgUrl);
+    await addDoc(collection(db,'spots'), {
+        caption: caption,
+        title: placespot,
+        //createAt: new Date(),
         titleImage: ImgUrl,
-        file: DocUrl,
-        uid: auth.currentUser.uid,
-        username: user.username,
-        usermail: user.email,
-        UserPic: user.pro_pic,
-        book_mark_by: []
+        //uid: auth.currentUser.uid,
+        //username: users.username,
+        //usermail: auth.currentUser.email
+       
+        
 
     }).then(() => {
         Alert.alert('Successfully Added');
-        navigation.navigate('HomeScreen');
+        //navigation.navigate('HomeScreen');
     })
 
 }
 
-const uploadPostSchema= Yup.object().shape({
 
-    //imageurl: Yup.string().url().required('A photo is rquired'),
-    //file: Yup.mixed().required('A file is required'), AddSubmit(values.caption, values.placespot, values.seviority);
-    caption: Yup.string().max(1000,'caption reached too much of charectrs'),
-    placespot:Yup.string().required('caption reached too much of charectrs'),
-    
-}) 
 
     return (
         <View>
@@ -164,7 +162,9 @@ const uploadPostSchema= Yup.object().shape({
             </TouchableOpacity>
         <Formik
             initialValues={{caption:'', placespot:''}}
-            onSubmit={values=>console.log(values) }
+            onSubmit={values=> {
+                AddSubmit(values.caption, values.placespot, values.seviority);
+            } }
         
             validationSchema={uploadPostSchema}
             validateOnMount={true}
@@ -241,10 +241,6 @@ const uploadPostSchema= Yup.object().shape({
             value={values.counter}
         />*/}
         
-
-        
-
-
         {/*errors.imageurl &&(
             <Text style={{fontSize:10, color:'red'}}>
                 {errors.imageurl}
@@ -257,9 +253,9 @@ const uploadPostSchema= Yup.object().shape({
         <Text style={{ fontWeight: 'bold', letterSpacing: 1, color:'white', fontSize:20, }}>Sevieority</Text>
                         <Picker style={styles.textBox} selectedValue={values.seviority} onValueChange={handleChange('seviority')} >
 
-                            <Picker.Item label="Normal" values="Normal" />
-                            <Picker.Item label="Modrate" values="Moderate" />
-                            <Picker.Item label="High" values="High" />
+                            <Picker.Item label="Normal" value="Normal" />
+                            <Picker.Item label="Modrate" value="Moderate" />
+                            <Picker.Item label="High" value="High" />
                         </Picker>
         </View>
         
@@ -270,7 +266,7 @@ const uploadPostSchema= Yup.object().shape({
             </View>
             
         {/*Polythene bags */}
-        <View>
+        {/*<View>
         <View style={styles.container}>
         <TouchableOpacity 
         onPress={()=>{setCounter(counter-1)}}>
@@ -284,9 +280,9 @@ const uploadPostSchema= Yup.object().shape({
         <Text style={{color:'white', fontSize:25}}>{counter}</Text>
         </View>
             
-        </View>
+        </View>*/}
             {/*PET Bottles */}
-        <View>
+        {/*<View>
         <View style={styles.container}>
         <TouchableOpacity 
         onPress={()=>{setCounter1(counter1-1)}}>
@@ -301,7 +297,7 @@ const uploadPostSchema= Yup.object().shape({
         </View>
             
         </View>
-
+        */}
             {/*Plastic Debris*/}
         <View>
         <View style={styles.container}>
