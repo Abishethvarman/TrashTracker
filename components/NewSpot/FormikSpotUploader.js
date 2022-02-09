@@ -1,16 +1,16 @@
 import React, { useState,useEffect } from 'react'
-import { View, Text, Image, TextInput, Button, StyleSheet,TouchableOpacity,ScrollView} from 'react-native'
+import { View, Text, Image, TextInput, Button, StyleSheet,TouchableOpacity,ScrollView, Alert} from 'react-native'
 import * as Yup from 'yup'
 import { Formik } from 'formik'
 import { Divider } from 'react-native-elements'
 import PickerSev from './Picker'
 import { Feather } from '@expo/vector-icons';
-import { addDoc, collection, doc, onSnapshot, serverTimestamp, setDoc } from '../../firebase'
-import { auth, db, storage } from '../../firebase'
-import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
+import {  auth, db, storage } from '../../firebase'
 import * as ImagePicker from 'expo-image-picker'
 import {Picker} from '@react-native-picker/picker';
 import Locate from './location'
+import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
+import { addDoc, collection } from 'firebase/firestore'
 
 
 
@@ -123,7 +123,7 @@ const pickImage = async () => {
     }
 };
 
-const AddSubmit = async (caption, placespot, seviority) => {
+const AddSubmit = async (caption, placespot) => {
     let ImgUrl;
 
     if (image) {
@@ -134,15 +134,18 @@ const AddSubmit = async (caption, placespot, seviority) => {
         const downloadUrl = await getDownloadURL(ref(storage, snap.ref.fullPath));
         ImgUrl = downloadUrl;
     }
-    console.log('138vathu vari',ImgUrl);
+    console.log('138vathu vari', ImgUrl);
+        console.log('cap', caption)
+        console.log('place', placespot)
+
     await addDoc(collection(db,'spots'), {
         caption: caption,
         title: placespot,
-        //createAt: new Date(),
+        createAt: new Date(),
         titleImage: ImgUrl,
-        //uid: auth.currentUser.uid,
+        uid: auth.currentUser.uid,
         //username: users.username,
-        //usermail: auth.currentUser.email
+        usermail: auth.currentUser.email
        
         
 
@@ -163,7 +166,7 @@ const AddSubmit = async (caption, placespot, seviority) => {
         <Formik
             initialValues={{caption:'', placespot:''}}
             onSubmit={values=> {
-                AddSubmit(values.caption, values.placespot, values.seviority);
+                AddSubmit(values.caption, values.placespot);
             } }
         
             validationSchema={uploadPostSchema}
