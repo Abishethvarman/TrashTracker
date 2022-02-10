@@ -1,22 +1,79 @@
-import React from 'react'
-import { View, Text, StyleSheet, Image, ImageBackground, ScrollView } from 'react-native'
+import React, { useEffect, useState,  } from 'react'
+import { View, Text, StyleSheet, Image, ImageBackground, ScrollView , TouchableOpacity} from 'react-native'
 import { Entypo } from '@expo/vector-icons';
+import { auth, db } from '../../firebase';
+import { collection, onSnapshot, query, where } from 'firebase/firestore';
+
 
 const TrashSpot = () => {
+    const [spot,setSpot] = useState()
+
+    useEffect(() => {
+        try {
+            const ref = collection(db, 'spots')
+            onSnapshot(ref,(snapshots)=>{
+                let spotARR = [];
+                snapshots.docs.map((doc)=>{
+
+                    spotARR.push({...doc.data(),id:doc.id})
+                
+
+                })
+              setSpot(spotARR)
+                
+
+            })
+
+             
+        } catch (error) {
+
+            let spotARR = [];
+            setSpot(spotARR)
+
+        }
+
+
+    }, [])
+
+
+// const [spot,setSpot] = useState([])
+
+//     const getTrashSpot = () =>
+//     {
+//         const spot = collection(db, 'spots')
+//         onSnapshot(spot, (snapshot) =>
+//         {
+//             setSpot((snapshot.docs.map((spots) => ({ id: spots.id, ...spots.data() }))))
+//             console.log(doc.data());
+      
+//         })
+       
+    
+//     useEffect(() => {
+//         getTrashSpot();
+//     },[])
+//     }
+
+
+
+    
     return (
         <View style={Styles.container}>
             
-            <View style={Styles.headerWrapper}>
+            <TouchableOpacity>
+                <View style={Styles.headerWrapper}>
                 <Text style={[Styles.header,{fontWeight:"bold"}]}>Trash</Text> 
                 <Text style={Styles.header}> hot spot</Text>
             </View>
+            </TouchableOpacity>
 
             <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
 
-
-            <View style={{marginLeft:20, marginBottom:10}}>
+            {spot && spot.map((spots) => (
+                <TouchableOpacity>
+            <View key={spots.id} style={{marginLeft:20, marginBottom:10}}>
                 <ImageBackground style={Styles.suggestImg} 
-                    source={require("../../assets/trash1.jpg")}
+                    source={{uri:spots.titleImage}}
                         imageStyle={{ borderRadius: 20 }} >
                         <View style={Styles.suggestTextWrapper}>
 
@@ -24,57 +81,21 @@ const TrashSpot = () => {
 
                             <View style={[Styles.suggestplace, Styles.suggestBottom]}>
                                 <Entypo name="location-pin" size={24} color="#19B4BF" />
-                                <Text style={Styles.suggestplaceText}>Kallady</Text>
+                                <Text style={Styles.suggestplaceText}>{spots.place}</Text>
                             </View>
 
                         </View>
                 </ImageBackground> 
                 </View>
-                
-
-                <View style={{ marginBottom:10}}>
-                <ImageBackground style={Styles.suggestImg} 
-                    source={require("../../assets/trash2.jpg")}
-                        imageStyle={{ borderRadius: 20 }} >
-                        <View style={Styles.suggestTextWrapper}>
-
-                            <Text></Text>
-
-                            <View style={[Styles.suggestplace, Styles.suggestBottom]}>
-                                <Entypo name="location-pin" size={24} color="#19B4BF" />
-                                <Text style={Styles.suggestplaceText}>Batticaloa</Text>
-                            </View>
-                            
-                        </View>
-                </ImageBackground> 
-                </View>
-                
-
-                <View style={{ marginBottom:10}}>
-                <ImageBackground style={Styles.suggestImg} 
-                    source={require("../../assets/trash3.jpg")}
-                        imageStyle={{ borderRadius: 20 }} >
-                        <View style={Styles.suggestTextWrapper}>
-
-                            <Text></Text>
-
-                            <View style={[Styles.suggestplace, Styles.suggestBottom]}>
-                                <Entypo name="location-pin" size={24} color="#19B4BF" />
-                                <Text style={Styles.suggestplaceText}>Polonaruwa</Text>
-                            </View>
-                            
-                        </View>
-                </ImageBackground> 
-            </View>
-
-               
+                </TouchableOpacity>
+            ))}
              
                 </ScrollView>
             
         </View>
     )
-}
 
+            }
 const Styles = StyleSheet.create({
     container: {
         marginTop: 20,

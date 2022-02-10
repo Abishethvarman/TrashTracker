@@ -31,7 +31,7 @@ export default function App() {
    <AuthNavigation/>
     // <SignOutStack/>
     //<Drawer/>
-   //<SpotImage/>
+  //  <SpotImage/>
   //<NewSpotScreen/>
   //<PickerSev/>
   //<AddCounter/>

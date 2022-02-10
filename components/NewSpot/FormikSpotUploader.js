@@ -11,6 +11,7 @@ import {Picker} from '@react-native-picker/picker';
 import Locate from './location'
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
 import { addDoc, collection } from 'firebase/firestore'
+import { useNavigation } from '@react-navigation/native'
 
 
 
@@ -86,6 +87,8 @@ const uploadPostSchema= Yup.object().shape({
 }) 
 
 const FormikSpotUploader = () => {
+    const navigation = useNavigation();
+
     //const[thumbnail,setThumbnail]=useState(PLACEHOLDER)
     const [counter, setCounter]=useState(0);
     const [counter1, setCounter1]=useState(0);
@@ -106,14 +109,29 @@ const FormikSpotUploader = () => {
         })();
     }, []);
 
-const pickImage = async () => {
+//const pickImage = async () => {
+    const openCamera = async () => {
+        // Ask the user for the permission to access the camera
+        const permissionResult = await ImagePicker.requestCameraPermissionsAsync();
+    
+        if (permissionResult.granted === false) {
+          alert("You've refused to allow this appp to access your camera!");
+          return;
+        }
+    
+        const result = await ImagePicker.launchCameraAsync({
+            mediaTypes: ImagePicker.MediaTypeOptions.All,
+            allowsEditing: true,
+            aspect: [4, 4],
+            quality: 1,
+        });
     // No permissions request is necessary for launching the image library
-    let result = await ImagePicker.launchImageLibraryAsync({
-        mediaTypes: ImagePicker.MediaTypeOptions.All,
-        allowsEditing: true,
-        aspect: [4, 3],
-        quality: 1,
-    });
+    //let result = await ImagePicker.launchImageLibraryAsync({
+    //     mediaTypes: ImagePicker.MediaTypeOptions.All,
+    //     allowsEditing: true,
+    //     aspect: [4, 4],
+    //     quality: 1,
+    // });
 
 
 
@@ -123,7 +141,7 @@ const pickImage = async () => {
     }
 };
 
-const AddSubmit = async (caption, placespot) => {
+const AddSubmit = async (caption, placespot, seviority) => {
     let ImgUrl;
 
     if (image) {
@@ -135,12 +153,13 @@ const AddSubmit = async (caption, placespot) => {
         ImgUrl = downloadUrl;
     }
     console.log('138vathu vari', ImgUrl);
-        console.log('cap', caption)
-        console.log('place', placespot)
+        console.log('\n Caption', caption)
+        console.log('\n place', placespot)
 
     await addDoc(collection(db,'spots'), {
         caption: caption,
-        title: placespot,
+        place: placespot,
+        seviority,
         createAt: new Date(),
         titleImage: ImgUrl,
         uid: auth.currentUser.uid,
@@ -151,7 +170,7 @@ const AddSubmit = async (caption, placespot) => {
 
     }).then(() => {
         Alert.alert('Successfully Added');
-        //navigation.navigate('HomeScreen');
+        navigation.push('HomeScreen');
     })
 
 }
@@ -160,13 +179,13 @@ const AddSubmit = async (caption, placespot) => {
 
     return (
         <View>
-            <TouchableOpacity onPress={pickImage} style={{ alignItems: 'center', height: 100, }} >
+            <TouchableOpacity onPress={openCamera} style={{ alignItems: 'center', height: 100, }} >
                     <Image source={{ uri: image }} style={{ height: '100%', width: '100%', resizeMode: 'contain', borderRadius: 20 }}></Image>
             </TouchableOpacity>
         <Formik
-            initialValues={{caption:'', placespot:''}}
+            initialValues={{caption:'', placespot:'', seviority:''}}
             onSubmit={values=> {
-                AddSubmit(values.caption, values.placespot);
+                AddSubmit(values.caption, values.placespot, values.seviority);
             } }
         
             validationSchema={uploadPostSchema}
@@ -185,7 +204,7 @@ const AddSubmit = async (caption, placespot) => {
         })=>(
         <>
         <View style={{marginLeft:5, marginTop:5, flexDirection:'row'}}> 
-            <TouchableOpacity onPress={pickImage} style={{ alignItems: 'center', height: 100, }} >
+            <TouchableOpacity onPress={openCamera} style={{ alignItems: 'center', height: 100, }} >
                     <Image source={{ uri: image }} style={{ height: '100%', width: '100%', resizeMode: 'contain', borderRadius: 20 }}></Image>
             </TouchableOpacity>
             {/*<Image 
@@ -206,7 +225,7 @@ const AddSubmit = async (caption, placespot) => {
                 </TextInput>
                 <Divider width={0.1} orientation='vertical'/>
                 <TextInput 
-                    style={{color:'white', fontSize:20}}
+                    style={{color:'white', fontSize:20, marginBottom:2}}
                     placeholder="Name of this spot" 
                     placeholderTextColor='gray'
                     multiline={false}
@@ -252,7 +271,7 @@ const AddSubmit = async (caption, placespot) => {
 
         {/*/AddCounter*/}
         
-        <View style={{justifyContent:'center',alignItems:'center' }}>
+        <View style={{justifyContent:'center',alignItems:'center', marginTop:15 }}>
         <Text style={{ fontWeight: 'bold', letterSpacing: 1, color:'white', fontSize:20, }}>Sevieority</Text>
                         <Picker style={styles.textBox} selectedValue={values.seviority} onValueChange={handleChange('seviority')} >
 
@@ -269,7 +288,7 @@ const AddSubmit = async (caption, placespot) => {
             </View>
             
         {/*Polythene bags */}
-        {/*<View>
+        <View>
         <View style={styles.container}>
         <TouchableOpacity 
         onPress={()=>{setCounter(counter-1)}}>
@@ -283,9 +302,9 @@ const AddSubmit = async (caption, placespot) => {
         <Text style={{color:'white', fontSize:25}}>{counter}</Text>
         </View>
             
-        </View>*/}
+        </View>
             {/*PET Bottles */}
-        {/*<View>
+        <View>
         <View style={styles.container}>
         <TouchableOpacity 
         onPress={()=>{setCounter1(counter1-1)}}>
@@ -300,9 +319,9 @@ const AddSubmit = async (caption, placespot) => {
         </View>
             
         </View>
-        */}
+        
             {/*Plastic Debris*/}
-        <View>
+        {/* <View>
         <View style={styles.container}>
         <TouchableOpacity 
         onPress={()=>{setCounter2(counter2-1)}}>
@@ -316,7 +335,7 @@ const AddSubmit = async (caption, placespot) => {
         <Text style={{color:'white', fontSize:25}}>{counter2}</Text>
         </View>
             
-        </View>
+        </View> */}
 
             {/*Food wrappers */}
         <View>
@@ -357,7 +376,7 @@ const AddSubmit = async (caption, placespot) => {
         <Divider width={0.1} orientation='vertical'/>
         <Text> </Text>
         </ScrollView>
-        <Button color='red' onPress={handleSubmit} title='track' disabled={!isValid} />
+        <Button color='red' onPress={handleSubmit} title='Track' disabled={!isValid} />
         </>
         )}
         </Formik>
@@ -403,20 +422,21 @@ const styles=StyleSheet.create({
 
     },
     textBox: {
-        borderWidth: 1,
-        borderColor: 'red',
-        height: 50,
-        backgroundColor: 'red',
-        borderRadius: 5,
+        width:200,
+        
+        borderColor: 'green',
+        height: 10,
+        backgroundColor: 'green',
+        borderRadius: 30,
         justifyContent: 'center',
-        marginBottom: 10,
+        marginBottom: 20,
         elevation: 1,
-        marginTop: 10,
+        marginTop: 5,
         paddingHorizontal: 10,
 
     },
     textField: {
-        paddingHorizontal: 10,}
+        paddingHorizontal: 0,}
 })
 
 

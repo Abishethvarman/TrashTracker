@@ -10,7 +10,7 @@ const AddNewSpot = ({navigation}) => {
     return (
         <SafeAreaView style={styles.container}>
             <Header navigation={navigation}/>
-            <FormikSpotUploader/>
+            <FormikSpotUploader />
             
             
         
