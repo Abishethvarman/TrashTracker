@@ -4,4 +4,6 @@
 HomeScreen, NewSpot Screen, And some more screens
 image picker is not working
 firebase connecting
+Firebase connection to the trashspot
+
 
