@@ -7,5 +7,7 @@ firebase connecting
 Firebase connection to the trashspot
 Nee spot screen
 image pick through camera
+Use state
+
 
 
