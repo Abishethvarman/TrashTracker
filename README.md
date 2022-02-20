@@ -12,6 +12,7 @@ Gifted chat
 Firebase crashed
 Firebase Restored
 Drawer crashed
+Mapping into map
 
 
 
