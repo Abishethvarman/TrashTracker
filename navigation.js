@@ -2,6 +2,7 @@ import { NavigationContainer, StackActions} from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import React from 'react'
 import { View, Text } from 'react-native'
+import TrashDisplay from './components/TrashSpots/TrashDisplay'
 import ForumScreen from './Screens/ForumScreen'
 import HomeScreen from './Screens/HomeScreen'
 import LoginScreen from './Screens/LoginScreen'
@@ -21,6 +22,7 @@ export const SignedInStack = () => (
             <Stack.Screen name='HomeScreen' component={TabNavigator}/>
             <Stack.Screen name='MapScreen' component={MapScreen}/>
             <Stack.Screen name='ForumScreen' component={ForumScreen}/>
+            <Stack.Screen name='TrashDisplay' component={TrashDisplay}/>
             
         </Stack.Navigator>
     </NavigationContainer>

@@ -18,6 +18,7 @@ import PickerSev from './components/NewSpot/Picker';
 import AddCounter from './components/NewSpot/Counter';
 import AddNewSpot from './components/NewSpot/AddNewSpot';
 import Locate from './components/NewSpot/location';
+import TrashSpotScreen from './Screens/TrashSpotScreen';
 
 
 
@@ -28,7 +29,7 @@ export default function App() {
   return (
     //<HomeScreen/>
     //<SignedInStack/>
-   <AuthNavigation/>
+  <AuthNavigation/>
     // <SignOutStack/>
     //<Drawer/>
   //  <SpotImage/>
@@ -37,6 +38,9 @@ export default function App() {
   //<AddCounter/>
   //<AddNewSpot/>
   //<Locate/>
+  // <TrashSpotScreen/>
+  // <ForumScreen/>
+
   );
 }
 

@@ -3,15 +3,16 @@ import { View, Text, StyleSheet, Image, ImageBackground, ScrollView , TouchableO
 import { Entypo } from '@expo/vector-icons';
 import { auth, db } from '../../firebase';
 import { collection, onSnapshot, query, where } from 'firebase/firestore';
+import TrashDisplay from '../TrashSpots/TrashDisplay';
 
-
-const TrashSpot = () => {
+TrashDisplay
+const TrashSpot = ({navigation}) => {
     const [spot,setSpot] = useState()
 
     useEffect(() => {
         try {
-            const ref = collection(db, 'spots')
-            onSnapshot(ref,(snapshots)=>{
+            const wef = collection(db, 'spots')
+            onSnapshot(wef,(snapshots)=>{
                 let spotARR = [];
                 snapshots.docs.map((doc)=>{
 
@@ -60,7 +61,7 @@ const TrashSpot = () => {
     return (
         <View style={Styles.container}>
             
-            <TouchableOpacity>
+            <TouchableOpacity onPress={()=> navigation.push("TrashDisplay")}>
                 <View style={Styles.headerWrapper}>
                 <Text style={[Styles.header,{fontWeight:"bold"}]}>Trash</Text> 
                 <Text style={Styles.header}> hot spot</Text>
