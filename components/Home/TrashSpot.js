@@ -2,21 +2,24 @@ import React, { useEffect, useState,  } from 'react'
 import { View, Text, StyleSheet, Image, ImageBackground, ScrollView , TouchableOpacity} from 'react-native'
 import { Entypo } from '@expo/vector-icons';
 import { auth, db } from '../../firebase';
-import { collection, onSnapshot, query, where } from 'firebase/firestore';
+import { collection, onSnapshot, orderBy, query, where } from 'firebase/firestore';
 import TrashDisplay from '../TrashSpots/TrashDisplay';
 
-TrashDisplay
+
 const TrashSpot = ({navigation}) => {
     const [spot,setSpot] = useState()
 
     useEffect(() => {
         try {
-            const wef = collection(db, 'spots')
+            const wef =query((collection(db, 'spots')))
+            // collection(db, 'spots')
+            
             onSnapshot(wef,(snapshots)=>{
                 let spotARR = [];
                 snapshots.docs.map((doc)=>{
 
                     spotARR.push({...doc.data(),id:doc.id})
+                    // console.log(doc.id);
                 
 
                 })
@@ -61,7 +64,7 @@ const TrashSpot = ({navigation}) => {
     return (
         <View style={Styles.container}>
             
-            <TouchableOpacity onPress={()=> navigation.push("TrashDisplay")}>
+            <TouchableOpacity navigation={navigation} onPress={()=> navigation.push("TrashSpotScreen")}>
                 <View style={Styles.headerWrapper}>
                 <Text style={[Styles.header,{fontWeight:"bold"}]}>Trash</Text> 
                 <Text style={Styles.header}> hot spot</Text>
@@ -71,8 +74,8 @@ const TrashSpot = ({navigation}) => {
             <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
 
             {spot && spot.map((spots) => (
-                <TouchableOpacity>
-            <View key={spots.id} style={{marginLeft:20, marginBottom:10}}>
+            <TouchableOpacity key={spots.id}>
+            <View  style={{marginLeft:20, marginBottom:10}}>
                 <ImageBackground style={Styles.suggestImg} 
                     source={{uri:spots.titleImage}}
                         imageStyle={{ borderRadius: 20 }} >

@@ -8,6 +8,7 @@ import HomeScreen from './Screens/HomeScreen'
 import LoginScreen from './Screens/LoginScreen'
 import MapScreen from './Screens/MapScreen'
 import SignupScreen from './Screens/SignupScreen'
+import TrashSpotScreen from './Screens/TrashSpotScreen'
 import WelcomeScreen from './Screens/WelcomeScreen'
 import TabNavigator from './TabNavigator'
 
@@ -22,7 +23,7 @@ export const SignedInStack = () => (
             <Stack.Screen name='HomeScreen' component={TabNavigator}/>
             <Stack.Screen name='MapScreen' component={MapScreen}/>
             <Stack.Screen name='ForumScreen' component={ForumScreen}/>
-            <Stack.Screen name='TrashDisplay' component={TrashDisplay}/>
+            {/* <Stack.Screen name='TrashSpotScreen' component={TrashSpotScreen}/> */}
             
         </Stack.Navigator>
     </NavigationContainer>
