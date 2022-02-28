@@ -37,7 +37,7 @@ export default function App() {
   //<PickerSev/>
   //<AddCounter/>
   //<AddNewSpot/>
-  //<Locate/>
+  // <Locate/>
   // <TrashSpotScreen/>
   // <ForumScreen/>
 

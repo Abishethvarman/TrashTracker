@@ -161,6 +161,11 @@ const AddSubmit = async (caption, placespot, seviority) => {
         caption: caption,
         place: placespot,
         seviority,
+        Polythene_bags: counter,
+        PET_Bottles: counter1,
+        Plastic_Debris: counter2,
+        Food_Wrappers: counter3,
+        Large_Plastic_Rigid: counter4,
         createAt: new Date(),
         titleImage: ImgUrl,
         uid: auth.currentUser.uid,
@@ -239,7 +244,7 @@ const AddSubmit = async (caption, placespot, seviority) => {
             </View>
         
         </View>
-        <ScrollView>
+        <ScrollView vertical={true} showsVerticalScrollIndicator={false}>
         <Divider width={0.1} orientation='vertical'/>
 
         {/*<TextInput
@@ -288,7 +293,7 @@ const AddSubmit = async (caption, placespot, seviority) => {
             <Text style={{color:'green', alignItems:'center', fontSize:32}}>Add the rough count</Text>
             </View> */}
             
-        {/* Polythene bags
+        {/* Polythene bags */}
         <View>
         <View style={styles.container}>
         <TouchableOpacity 
@@ -303,9 +308,9 @@ const AddSubmit = async (caption, placespot, seviority) => {
         <Text style={{color:'white', fontSize:25}}>{counter}</Text>
         </View>
             
-        </View> */}
-            {/*PET Bottles */}
-        {/* <View>
+        </View> 
+        {/* PET Bottles */}
+        <View>
         <View style={styles.container}>
         <TouchableOpacity 
         onPress={()=>{setCounter1(counter1-1)}}>
@@ -320,9 +325,9 @@ const AddSubmit = async (caption, placespot, seviority) => {
         </View>
             
         </View>
-         */}
+        
             {/*Plastic Debris*/}
-        {/* <View>
+        <View>
         <View style={styles.container}>
         <TouchableOpacity 
         onPress={()=>{setCounter2(counter2-1)}}>
@@ -336,10 +341,10 @@ const AddSubmit = async (caption, placespot, seviority) => {
         <Text style={{color:'white', fontSize:25}}>{counter2}</Text>
         </View>
             
-        </View> */}
+        </View>
 
             {/*Food wrappers */}
-        {/* <View>
+        <View>
         <View style={styles.container}>
         <TouchableOpacity 
         onPress={()=>{setCounter3(counter3-1)}}>
@@ -353,10 +358,11 @@ const AddSubmit = async (caption, placespot, seviority) => {
         <Text style={{color:'white', fontSize:25}}>{counter3}</Text>
         </View>
             
-        </View> */}
+        </View>
+        
 
         {/*Large plastic rigid */}
-        {/* <View>
+        <View>
         <View style={styles.container}>
         <TouchableOpacity 
         onPress={()=>{setCounter4(counter4-1)}}>
@@ -370,14 +376,15 @@ const AddSubmit = async (caption, placespot, seviority) => {
         <Text style={{color:'white', fontSize:25}}>{counter4}</Text>
         </View>
             
-        </View> */}
+        </View>
         
         </View>
 
         <Divider width={0.1} orientation='vertical'/>
-        <AddCounter/>
+        
         <Text> </Text>
         </ScrollView>
+        {/* <Locate/> */}
         <Button color='red' onPress={handleSubmit} title='Track' disabled={!isValid} />
         </>
         )}
