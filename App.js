@@ -19,7 +19,7 @@ import AddCounter from './components/NewSpot/Counter';
 import AddNewSpot from './components/NewSpot/AddNewSpot';
 import Locate from './components/NewSpot/location';
 import TrashSpotScreen from './Screens/TrashSpotScreen';
-
+import TrashDisplay from './components/TrashSpots/TrashDisplay'
 
 
 LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by messageLogBox.ignoreAllLogs();
@@ -29,7 +29,7 @@ export default function App() {
   return (
     //<HomeScreen/>
     //<SignedInStack/>
-  <AuthNavigation/>
+  // <AuthNavigation/>
     // <SignOutStack/>
     //<Drawer/>
   //  <SpotImage/>
@@ -40,6 +40,7 @@ export default function App() {
   // <Locate/>
   // <TrashSpotScreen/>
   // <ForumScreen/>
+  <TrashDisplay/>
 
   );
 }

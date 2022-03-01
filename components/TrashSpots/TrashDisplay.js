@@ -1,16 +1,86 @@
-import { View, Text,TouchableOpacity,StyleSheet } from 'react-native'
-import React from 'react'
+import { View, Text,TouchableOpacity,StyleSheet,ScrollView, ImageBackground } from 'react-native'
+import React ,{useEffect,useState} from 'react'
+import { Entypo } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
+import { auth, db } from '../../firebase';
+import { collection, onSnapshot, orderBy, query, where } from 'firebase/firestore';
+
 
 const TrashDisplay = ({navigation}) => {
+  const [spot,setSpot] = useState()
+
+  useEffect(() => {
+      try {
+          const wef =query((collection(db, 'spots')))
+          // collection(db, 'spots')
+          
+          onSnapshot(wef,(snapshots)=>{
+              let spotARR = [];
+              snapshots.docs.map((doc)=>{
+
+                  spotARR.push({...doc.data(),id:doc.id})
+                  // console.log(doc.id);
+              
+
+              })
+            setSpot(spotARR)
+              
+
+          })
+
+           
+      } catch (error) {
+
+          let spotARR = [];
+          setSpot(spotARR)
+
+      }
+
+
+  }, [])
+
+
   return (
-    <View >
-      
-      <Header navigation={navigation}/>
-      <Text>TrashDisplay</Text>
+    <View style={Styles.container}>
+        
+        <TouchableOpacity navigation={navigation} onPress={()=> navigation.push("TrashSpotScreen")}>
+            <View style={Styles.headerWrapper}>
+            <Text style={[Styles.header,{fontWeight:"bold"}]}>Trash</Text> 
+            <Text style={Styles.header}> hot spot</Text>
+        </View>
+        </TouchableOpacity>
+
+        <ScrollView verical={true} showsHorizontalScrollIndicator={false}>
+
+       {spot && spot.map((spots) => ( 
+        <TouchableOpacity key={spots.id}>
+        <View  style={{marginLeft:20, marginBottom:10}}>
+            <ImageBackground style={Styles.suggestImg} 
+                source={{uri:spots.titleImage}}
+                    imageStyle={{ borderRadius: 20 }} >
+                    <View style={Styles.suggestTextWrapper}>
+
+                        <Text></Text>
+
+                        <View style={[Styles.suggestplace, Styles.suggestBottom]}>
+                            <Entypo name="location-pin" size={24} color="#19B4BF" />
+                            <Text style={Styles.suggestplaceText}>{spots.place}</Text>
+                        </View>
+
+                    </View>
+            </ImageBackground> 
+            </View>
+            </TouchableOpacity>
+        ))} 
+         
+            </ScrollView>
+        
     </View>
-  )
-}
+)
+
+        }
+
+
 
 const Header = ({navigation})=>(
   <View style={styles.headerContainer}>
@@ -21,6 +91,61 @@ const Header = ({navigation})=>(
           <Text> </Text>
       </View>
 )
+
+const Styles = StyleSheet.create({
+  container: {
+      marginTop: 20,
+      // paddingHorizontal:20
+    
+  },
+  headerWrapper: {
+      flexDirection: "row",
+      marginBottom: 20,
+      marginTop:20
+  },
+  header: {
+      fontSize: 20,
+      color:"#4c4c4b"
+  },
+  suggestImg: {
+      width: 380,
+      height: 220,
+      marginRight:10
+      
+  },
+  suggestTextWrapper: {
+      flex:1,
+      justifyContent: "space-between",
+      marginHorizontal:0
+  },
+  suggestBottom: {
+      borderBottomLeftRadius: 20,
+      borderBottomRightRadius: 20,
+      backgroundColor: 'rgba(52, 52, 52, 0.6)',
+      width: 380,
+      
+  },
+  suggestText: {
+      fontSize: 16,
+      color: "white",
+      fontWeight: "bold",
+      paddingVertical:10,
+      paddingHorizontal: 10,
+      
+  },
+  suggestplace: {
+      flexDirection: "row",
+      paddingHorizontal: 10,
+      paddingTop: 7,
+     
+  },
+  suggestplaceText: {
+      fontSize: 17,
+      color: "white",
+      fontWeight: "bold",
+      paddingBottom:10
+  }
+  })
 
 const styles=StyleSheet.create({
 container:{
