@@ -13,7 +13,7 @@ Firebase crashed
 Firebase Restored
 Drawer crashed
 Mapping into map
-Map to preview- 
+Map to preview
 Preview over a page 
 
 
