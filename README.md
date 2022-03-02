@@ -17,5 +17,18 @@ Map to preview
 Preview over a page 
 =
 
-
+image picker is not working
+firebase connecting
+Firebase connection to the trashspot
+Nee spot screen
+image pick through camera
+Use state
+Gifted chat
+Firebase crashed
+Firebase Restored
+Drawer crashed
+Mapping into map
+Map to preview
+Preview over a page 
+=
 
