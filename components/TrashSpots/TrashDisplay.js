@@ -44,9 +44,10 @@ const TrashDisplay = ({navigation}) => {
     <View style={Styles.container}>
         
         <TouchableOpacity navigation={navigation} onPress={()=> navigation.push("TrashSpotScreen")}>
-            <View style={Styles.headerWrapper}>
+            <View style={Styles.headerWrapper} style={{justifyContent:'flex-start'}}>
+                <Header/>
             <Text style={[Styles.header,{fontWeight:"bold"}]}>Trash</Text> 
-            <Text style={Styles.header}> hot spot</Text>
+            <Text style={Styles.header}> hot spots</Text>
         </View>
         </TouchableOpacity>
 
@@ -87,7 +88,6 @@ const Header = ({navigation})=>(
           <TouchableOpacity onPress={()=> navigation.goBack()}>
           <Ionicons name="chevron-back-outline" size={30} color="black" />
           </TouchableOpacity>
-          <Text style={styles.headerText}>Trash Spots</Text>
           <Text> </Text>
       </View>
 )
@@ -95,6 +95,7 @@ const Header = ({navigation})=>(
 const Styles = StyleSheet.create({
   container: {
       marginTop: 20,
+      backgroundColor:'pink'
       // paddingHorizontal:20
     
   },
