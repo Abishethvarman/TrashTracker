@@ -8,7 +8,7 @@ import { signOut } from '@firebase/auth'
 import { doc, updateDoc } from 'firebase/firestore'
 
 
-const Header = () => {
+const Header = ({navigation}) => {
 
     const SignOut = async () => {
         await updateDoc(doc(db, 'users', auth.currentUser.uid), {
@@ -35,7 +35,7 @@ const Header = () => {
                 <Text style={{color:'transparent'}}>'  '</Text>
 
                 {/*User icon */}
-                <TouchableOpacity>
+                <TouchableOpacity onPress={()=>navigation.push('ProfileScreen')}>
                 <FontAwesome name="user-circle-o" size={30} color="black" />
                 </TouchableOpacity>
             </View>

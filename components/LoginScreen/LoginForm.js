@@ -16,7 +16,7 @@ const LoginForm = ({navigation}) => {
         signInWithEmailAndPassword(auth, email, password)
        .then((re) => {
            console.log("Sucessfully log in ");
-           navigation.push("HomeScreen");
+           navigation.navigate("HomeScreen");
        })
        .catch((re) => {
            console.log(re.message + "hi");

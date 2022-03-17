@@ -30,7 +30,7 @@ export default function App() {
   return (
     //<HomeScreen/>
     //<SignedInStack/>
-  // <AuthNavigation/>
+  <AuthNavigation/>
     // <SignOutStack/>
     //<Drawer/>
   //  <SpotImage/>
@@ -42,7 +42,7 @@ export default function App() {
   // <TrashSpotScreen/>
   // <ForumScreen/>
   // <TrashDisplay/>
- < ProfileScreen/>
+//  < ProfileScreen/>
 
   );
 }
