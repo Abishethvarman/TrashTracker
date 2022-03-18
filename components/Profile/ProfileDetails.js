@@ -1,8 +1,9 @@
 
-import { View, Text, StyleSheet, SafeAreaView, TouchableOpacity } from 'react-native'
+import { View, Text, StyleSheet, SafeAreaView, TouchableOpacity,Image, Alert } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import {Avatar,Title,Caption,TouchableRipple,} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import * as ImagePicker from 'expo-image-picker'
 
 import { Entypo } from '@expo/vector-icons';
 // import Share from 'react-native-share';
@@ -14,16 +15,27 @@ import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
 const ProfileDetails = () => {
  
 
-// const user = useSelector(SignInUser);
-const user = async() => {}
-const [cUser, setCuser] = useState()
+
+// const user = async() => {}
+
 
 // const [image, setImage] = useState(user.pic);
-const uploadImage = 'https://icon-library.com/images/upload-photo-icon/upload-photo-icon-16.jpg'
-const [image, setImage] = useState(uploadImage);
+// const uploadImage = 'https://icon-library.com/images/upload-photo-icon/upload-photo-icon-16.jpg'
+const [image, setImage] = useState();
 const Rnimage = { uri: "https://reactjs.org/logo-og.png" };
+const[user,setuser]=useState();
 
 //Profile image picker 
+useEffect(() => {
+  (async () => {
+      if (Platform.OS !== 'web') {
+          const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+          if (status !== 'granted') {
+              Alert('Sorry, we need permossion of your gallery to change profile picture!');
+          }
+      }
+  })();
+}, []);
 
 const pickImage = async () => {
     // No permissions request is necessary for launching the image library
@@ -35,9 +47,10 @@ const pickImage = async () => {
             quality: 1,
           });
       
-          console.log(result);
+          // console.log(result);
       
           if (!result.cancelled) {
+            console.log('resultURI',result.uri);
               setImage(result.uri);
               
             
@@ -46,6 +59,7 @@ const pickImage = async () => {
     
         // if (image != user.pic) {
           if (image) {
+            console.log('Image',image)
             const response1 = await fetch(image);
             const blob1 = await response1.blob();
             const imgRef = ref(storage, `Profile_image/${new Date().getTime()}`);
@@ -55,8 +69,9 @@ const pickImage = async () => {
            
             }
        if(ImgUrl)  
-       { await updateDoc(doc(db,'users',user.uid), {
-            pic:ImgUrl
+       { console.log('Imageurl', ImgUrl);
+         await updateDoc(doc(db,'users',owner_uid), {
+            profile_pic:ImgUrl
 
        })
        
@@ -93,10 +108,10 @@ const getUser = async () =>
         onSnapshot(ref, (snapshot) => {
             // console.log(snapshot.data())
 
-            setCuser(snapshot.data())
+            setuser(snapshot.data())
                    
             })
-        console.log(cUser)
+        console.log(user)
         
     }
     catch (error) {
@@ -115,7 +130,7 @@ return (
     <View style={{alignItems:'center', justifyContent:'center',flexDirection: 'column', marginTop: 20}}>
     <TouchableOpacity onPress={pickImage} style={{ alignItems: 'center', height: 100, }} >
         
-        {/* <Image source={{ uri: image }} style={{ height: '100%', width: '100%', resizeMode: 'contain', borderRadius: 20 }}></Image> */}
+        <Image source={{ uri: image }} style={{ width: 100, height: '100%', resizeMode: 'contain', borderRadius: 20 }}></Image>
         
     </TouchableOpacity>
     
