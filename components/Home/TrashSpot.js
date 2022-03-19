@@ -11,10 +11,10 @@ const TrashSpot = ({navigation}) => {
 
     useEffect(() => {
         try {
-            const wef =query((collection(db, 'spots')))
+            const getTrashSpot =query((collection(db, 'spots')),orderBy("createAt", "desc"))
             // collection(db, 'spots')
             
-            onSnapshot(wef,(snapshots)=>{
+            onSnapshot(getTrashSpot,(snapshots)=>{
                 let spotARR = [];
                 snapshots.docs.map((doc)=>{
 
@@ -42,7 +42,7 @@ const TrashSpot = ({navigation}) => {
 
 // const [spot,setSpot] = useState([])
 
-//     const getTrashSpot = () =>
+//     const  = () =>
 //     {
 //         const spot = collection(db, 'spots')
 //         onSnapshot(spot, (snapshot) =>
@@ -58,8 +58,6 @@ const TrashSpot = ({navigation}) => {
 //     },[])
 //     }
 
-
-
     
     return (
         <View style={Styles.container}>
@@ -74,7 +72,12 @@ const TrashSpot = ({navigation}) => {
             <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
 
             {spot && spot.map((spots) => (
-            <TouchableOpacity key={spots.id}>
+            <TouchableOpacity 
+            key={spots.id}
+            onPress={() => {navigation.navigate('TrashList', {
+                    uid: spots.uid,
+                     })   
+              }}>
             <View  style={{marginLeft:20, marginBottom:10}}>
                 <ImageBackground style={Styles.suggestImg} 
                     source={{uri:spots.titleImage}}

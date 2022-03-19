@@ -10,6 +10,7 @@ import LoginScreen from './Screens/LoginScreen'
 import MapScreen from './Screens/MapScreen'
 import ProfileScreen from './Screens/ProfileScreen'
 import SignupScreen from './Screens/SignupScreen'
+import TrashList from './Screens/TrashList'
 import TrashSpotScreen from './Screens/TrashSpotScreen'
 import WelcomeScreen from './Screens/WelcomeScreen'
 import TabNavigator from './TabNavigator'
@@ -28,7 +29,7 @@ export const SignedInStack = () => (
             <Stack.Screen name='ProfileScreen' component={ProfileScreen}/>
             <Stack.Screen name='EditProfileScreen' component={EditProfileScreen}/>
             <Stack.Screen name='TrashSpotScreen' component={TrashSpotScreen}/>
-            
+            <Stack.Screen name='TrashList' component={TrashList}/>
         </Stack.Navigator>
     </NavigationContainer>
 
