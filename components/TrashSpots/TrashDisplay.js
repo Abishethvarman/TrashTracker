@@ -43,13 +43,13 @@ const TrashDisplay = ({navigation}) => {
   return (
     <View style={Styles.container}>
         
-        <TouchableOpacity navigation={navigation} onPress={()=> navigation.push("TrashSpotScreen")}>
+        
             <View style={Styles.headerWrapper} style={{justifyContent:'flex-start'}}>
-                <Header/>
-            <Text style={[Styles.header,{fontWeight:"bold"}]}>Trash</Text> 
+                <Header navigation={navigation}/>
+            <Text style={[Styles.header,{fontWeight:"bold"}]}>Tras</Text> 
             <Text style={Styles.header}> hot spots</Text>
         </View>
-        </TouchableOpacity>
+       
 
         <ScrollView verical={true} showsHorizontalScrollIndicator={false}>
 
@@ -59,6 +59,11 @@ const TrashDisplay = ({navigation}) => {
             <ImageBackground style={Styles.suggestImg} 
                 source={{uri:spots.titleImage}}
                     imageStyle={{ borderRadius: 20 }} >
+                        <View style={{flexDirection:'row-reverse'}}>
+                        <View style={Styles.seviorityDetail}>
+                            <Text style={Styles.sevierText}>{spots.seviority}</Text>
+                        </View>
+                        </View>
                     <View style={Styles.suggestTextWrapper}>
 
                         <Text></Text>
@@ -85,7 +90,7 @@ const TrashDisplay = ({navigation}) => {
 
 const Header = ({navigation})=>(
   <View style={styles.headerContainer}>
-          <TouchableOpacity onPress={()=> navigation.goBack()}>
+          <TouchableOpacity navigation= {navigation} onPress={()=> navigation.push('HomeScreen')}>
           <Ionicons name="chevron-back-outline" size={30} color="black" />
           </TouchableOpacity>
           <Text> </Text>
@@ -145,7 +150,24 @@ const Styles = StyleSheet.create({
       color: "white",
       fontWeight: "bold",
       paddingBottom:10
-  }
+  },
+  seviorityDetail:{
+        
+    margin:10,
+    backgroundColor:'#f70d1a',
+    width:'20%',
+    height:'75%',
+    borderRadius:10,
+    alignItems:'center'
+    
+    
+},
+sevierText:{
+    color:'#fff005',
+    fontSize:10,
+    paddingTop:10
+    
+},
   })
 
 const styles=StyleSheet.create({
@@ -166,7 +188,8 @@ headerText:{
     marginRight:20,
     fontSize:30
 
-} 
+},
+
 })
 
 export default TrashDisplay

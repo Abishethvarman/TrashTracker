@@ -3,14 +3,14 @@ import {View, SafeAreaView, StyleSheet,TouchableOpacity, Image, Button, Pressabl
 
 import ProfileHeader from '../components/Profile/ProfileHeader';
 import ProfileDetails from '../components/Profile/ProfileDetails';
-import Signout from '../components/Profile/Signout';
+import Signout from '../components/Profile/ProfileSignout';
 
 
 const ProfileScreen = ({navigation}) => {
   return(
     <View style={styles.container}>
     <ProfileHeader navigation={navigation}/>
-    <ProfileDetails/>
+    <ProfileDetails navigation={navigation}/>
     <Signout/>
     </View>
   )

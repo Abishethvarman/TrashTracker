@@ -64,7 +64,7 @@ const TrashSpot = ({navigation}) => {
     return (
         <View style={Styles.container}>
             
-            <TouchableOpacity navigation={navigation} onPress={()=> navigation.push("TrashSpotScreen")}>
+            <TouchableOpacity navigation={navigation} onPress={()=> navigation.navigate("TrashSpotScreen")}>
                 <View style={Styles.headerWrapper}>
                 <Text style={[Styles.header,{fontWeight:"bold"}]}>Trash</Text> 
                 <Text style={Styles.header}> hot spot</Text>
@@ -79,6 +79,11 @@ const TrashSpot = ({navigation}) => {
                 <ImageBackground style={Styles.suggestImg} 
                     source={{uri:spots.titleImage}}
                         imageStyle={{ borderRadius: 20 }} >
+                        <View style={{flexDirection:'row-reverse'}}>
+                        <View style={Styles.seviorityDetail}>
+                            <Text style={Styles.sevierText}>{spots.seviority}</Text>
+                        </View>
+                        </View>
                         <View style={Styles.suggestTextWrapper}>
 
                             <Text></Text>
@@ -152,6 +157,21 @@ const Styles = StyleSheet.create({
         color: "white",
         fontWeight: "bold",
         paddingBottom:10
+    },
+    seviorityDetail:{
+        
+        margin:10,
+        backgroundColor:'red',
+        width:'30%',
+        borderRadius:10,
+        alignItems:'center'
+        
+        
+    },
+    sevierText:{
+        color:'yellow',
+        fontSize:10,
+        paddingVertical:1
     }
 })
 

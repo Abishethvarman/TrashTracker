@@ -170,7 +170,8 @@ const AddSubmit = async (caption, placespot, seviority) => {
         titleImage: ImgUrl,
         uid: auth.currentUser.uid,
         //username: users.username,
-        usermail: auth.currentUser.email
+        usermail: auth.currentUser.email,
+        
        
         
 

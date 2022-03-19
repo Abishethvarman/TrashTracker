@@ -15,7 +15,7 @@ const HomeScreen=({navigation})=> {
             <Search/>
             
             <ScrollView>
-            <TrashSpot/>
+            <TrashSpot navigation={navigation}/>
             <Events/>
             <ResolvedPlaces/>
             </ScrollView>

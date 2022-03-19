@@ -1,9 +1,20 @@
 import { View, Text, Pressable,StyleSheet } from 'react-native'
 import React from 'react'
+import { auth, db } from '../../firebase'
+import {signOut} from '@firebase/auth'
+import { doc, updateDoc } from 'firebase/firestore'
 
-const Signout = () => {
+
+const ProfileSignout = ({navigation}) => {
+  const SignOut = async () => {
+    await updateDoc(doc(db, 'users', auth.currentUser.uid), {
+        isOnline: false,
+    });
+
+    await signOut(auth);
+  }
   return (
-    <Pressable  style={styles.signoutButton}>
+    <Pressable  style={styles.signoutButton} onPress={SignOut}>
         <Text style={styles.buttonText}>Sign Out</Text>
     </Pressable>
   )
@@ -32,7 +43,7 @@ const styles=StyleSheet.create({
       },
 })
 
-export default Signout;
+export default ProfileSignout;
 
 
 
