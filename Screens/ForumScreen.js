@@ -6,6 +6,7 @@ import { GiftedChat } from "react-native-gifted-chat";
 import Fire from '../firebase'
 import { useEffect, useState } from 'react';
 import Chat from '../components/Forum/Chat';
+import { Feather } from '@expo/vector-icons';
 
 //import { Button, FAB, Dialog, Portal, Provider as PaperProvider,TextInput,ActivityIndicator,Colors,} from "react-native-paper";
 //import * as firebase from "firebase";
@@ -20,7 +21,9 @@ const ForumScreen = ({navigation}) => {
         <Header navigation={navigation}/>
         <Chat/>
         <View style={styles.writeButton}>
-          
+          <TouchableOpacity onPress={()=>navigation.push('AddChatScreen')}>
+        <Feather name="plus-circle" size={30} color="black" />
+        </TouchableOpacity>
         </View>
     </SafeAreaView>
   );
@@ -543,8 +546,9 @@ const styles=StyleSheet.create({
       width:50
     },
     writeButton:{
-      flex: 1,
-justifyContent: 'flex-end',
+      
+
+flexDirection:'row-reverse',
 marginBottom: 5
     }
 })
