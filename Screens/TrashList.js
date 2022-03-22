@@ -48,7 +48,7 @@ const TrashList = ({ navigation}) => {
                     {Tlist.map((doc,index) => (
                         
                         <TouchableOpacity key={index} onPress={() => {
-                            navigation.navigate('TripPlanScreen',
+                            navigation.navigate('TripDisplay',
                                 {
                                     uid: spots.uid,
                                     imgURL: spots.imgURL,

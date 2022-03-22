@@ -5,7 +5,7 @@ import { KeyboardAvoidingView } from 'react-native';
 import { GiftedChat } from "react-native-gifted-chat";
 import Fire from '../firebase'
 import { useEffect, useState } from 'react';
-
+import Chat from '../components/Forum/Chat';
 
 //import { Button, FAB, Dialog, Portal, Provider as PaperProvider,TextInput,ActivityIndicator,Colors,} from "react-native-paper";
 //import * as firebase from "firebase";
@@ -18,7 +18,10 @@ const ForumScreen = ({navigation}) => {
   return (
     <SafeAreaView style={styles.container}>
         <Header navigation={navigation}/>
-        
+        <Chat/>
+        <View style={styles.writeButton}>
+          
+        </View>
     </SafeAreaView>
   );
 };
@@ -534,6 +537,15 @@ const styles=StyleSheet.create({
         marginRight:20,
         fontSize:20
 
-    } 
+    },
+    penPlus:{
+      resizeMode:'center',
+      width:50
+    },
+    writeButton:{
+      flex: 1,
+justifyContent: 'flex-end',
+marginBottom: 5
+    }
 })
 export default ForumScreen;

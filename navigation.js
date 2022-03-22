@@ -3,6 +3,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import React from 'react'
 import { View, Text } from 'react-native'
 import TrashDisplay from './components/TrashSpots/TrashDisplay'
+import AddChatScreen from './Screens/AddChatScreen'
 import EditProfileScreen from './Screens/EditProfileScreen'
 import ForumScreen from './Screens/ForumScreen'
 import HomeScreen from './Screens/HomeScreen'
@@ -30,6 +31,8 @@ export const SignedInStack = () => (
             <Stack.Screen name='EditProfileScreen' component={EditProfileScreen}/>
             <Stack.Screen name='TrashSpotScreen' component={TrashSpotScreen}/>
             <Stack.Screen name='TrashList' component={TrashList}/>
+            <Stack.Screen name='AddChatScreen' component={AddChatScreen}/>
+            
         </Stack.Navigator>
     </NavigationContainer>
 
