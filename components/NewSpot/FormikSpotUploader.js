@@ -171,6 +171,7 @@ const AddSubmit = async (caption, placespot, seviority) => {
         uid: auth.currentUser.uid,
         //username: users.username,
         usermail: auth.currentUser.email,
+        // username:auth.currentUser.username
         
        
         
