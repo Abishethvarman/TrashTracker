@@ -21,6 +21,7 @@ import Locate from './components/NewSpot/location';
 import TrashSpotScreen from './Screens/TrashSpotScreen';
 import TrashDisplay from './components/TrashSpots/TrashDisplay'
 import ProfileScreen from './Screens/ProfileScreen';
+import Chat from './components/Forum/Chat';
 
 
 LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by messageLogBox.ignoreAllLogs();
@@ -28,9 +29,9 @@ LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by messageLogBox
 export default function App() {
   console.disableYellowBox = true;
   return (
-    //<HomeScreen/>
+    // <HomeScreen/>
     //<SignedInStack/>
-  <AuthNavigation/>
+ <AuthNavigation/>
     // <SignOutStack/>
     //<Drawer/>
   //  <SpotImage/>
@@ -43,6 +44,7 @@ export default function App() {
   // <ForumScreen/>
   // <TrashDisplay/>
 //  < ProfileScreen/>
+
 
   );
 }

@@ -10,7 +10,7 @@ const TrashList = ({ navigation}) => {
     
 
     const route = useRoute();
-    const { uid} = route.params;
+    const {uid} = route.params;
 
     const getTrashSpot = () =>
     {
@@ -48,7 +48,7 @@ const TrashList = ({ navigation}) => {
                     {Tlist.map((doc,index) => (
                         
                         <TouchableOpacity key={index} onPress={() => {
-                            navigation.navigate('TripDisplay',
+                            navigation.navigate('TrashDisplay',
                                 {
                                     uid: spots.uid,
                                     imgURL: spots.imgURL,

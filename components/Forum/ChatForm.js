@@ -1,9 +1,10 @@
-import { View, Text, TextInput, Button } from 'react-native'
+import { View, Text, TextInput, Button, Alert } from 'react-native'
 import React from 'react'
 import { Formik } from 'formik'
 import * as Yup from 'yup'
 import { addDoc, collection } from 'firebase/firestore'
-import { db } from '../../firebase'
+import { auth, db } from '../../firebase'
+import { useNavigation } from '@react-navigation/native'
 
 const uploadPostSchema= Yup.object().shape({
 
@@ -15,7 +16,10 @@ const uploadPostSchema= Yup.object().shape({
 }) 
 
 const ChatForm = () => {
-  const AddSubmit =  () => {
+  const navigation = useNavigation();
+
+
+  const AddSubmit = (caption) => {
 
      addDoc(collection(db,'chats'), {
         caption: caption,
@@ -68,7 +72,7 @@ const ChatForm = () => {
                 >
                 </TextInput>
 
-                <Button title="kumaru" color='pink' onPress={handleSubmit} />
+                <Button title="kumaru" color='pink' onPress={handleSubmit} disabled={!isValid} />
     </View>
   )}
   </Formik>
