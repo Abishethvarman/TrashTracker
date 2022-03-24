@@ -18,13 +18,16 @@ import { Feather } from '@expo/vector-icons';
 const ForumScreen = ({navigation}) => {
   return (
     <SafeAreaView style={styles.container}>
-        <Header navigation={navigation}/>
+    <Header navigation={navigation}/>
         <Chat/>
-        <View style={styles.writeButton}>
-          <TouchableOpacity onPress={()=>navigation.push('AddChatScreen')}>
-        <Feather name="plus-circle" size={30} color="black" />
+         
+        <Image style={{height:800 ,width:500}} source={{uri:'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'}}/>
+      
+      <TouchableOpacity style={{ position: 'absolute', bottom: 20, right: 20 }} onPress={() => navigation.push('AddChatScreen')}>
+        {/* <Feather name="plus-circle" size={30} color="black" /> */}
+        <Image style={styles.penPlus} source={require("../assets/pen.png")}/>
         </TouchableOpacity>
-        </View>
+    
     </SafeAreaView>
   );
 };
@@ -543,7 +546,9 @@ const styles=StyleSheet.create({
     },
     penPlus:{
       resizeMode:'center',
-      width:50
+      width: 50,
+    height:50,
+    
     },
     writeButton:{
       
