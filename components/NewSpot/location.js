@@ -28,6 +28,7 @@ export default function Locate() {
   }
 
   console.log(text);
+  
   return (
     <View style={styles.container}>
       
