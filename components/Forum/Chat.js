@@ -18,7 +18,7 @@ const Chat = () => {
                   ChatDisplay.push({...doc.data(),id:doc.id})
                     // console.log(doc.id);
                   
-                  console.log(chats.caption)
+                  console.log(doc.caption)
 
                 })
               setChat(ChatDisplay)

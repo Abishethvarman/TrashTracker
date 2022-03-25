@@ -386,7 +386,7 @@ const AddSubmit = async (caption, placespot, seviority) => {
         
         <Text> </Text>
         </ScrollView>
-        {/* <Locate/> */}
+        <Locate/>
         <Button color='red' onPress={handleSubmit} title='Track' disabled={!isValid} />
         </>
         )}

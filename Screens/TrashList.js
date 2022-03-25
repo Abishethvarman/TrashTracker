@@ -1,4 +1,4 @@
-import { View, Text, StatusBar,StyleSheet, TouchableOpacity,Image,ScrollView } from 'react-native';
+import { View, Text, StatusBar,StyleSheet, TouchableOpacity,Image,ScrollView, Button } from 'react-native';
 import React,{useEffect,useState} from 'react';
 import { Ionicons, AntDesign } from '@expo/vector-icons'; 
 import { collection, onSnapshot,query ,where} from '@firebase/firestore'
@@ -6,12 +6,14 @@ import { db } from '../firebase'
 import {useRoute} from '@react-navigation/native'
 
 const TrashList = ({ navigation}) => {
-    const [Tlist, setTlist] = useState([])
+    const [Tlist, setTlist] = useState()
     
 
     const route = useRoute();
     const {uid} = route.params;
+    // console.log(uid);
 
+    
     const getTrashSpot = () =>
     {
         const ref = collection(db, 'spots')
@@ -19,7 +21,10 @@ const TrashList = ({ navigation}) => {
 
         onSnapshot(q, (snapshot) =>
         {
-            setTlist((snapshot.docs.map((doc) => ({id: doc.id, ...doc.data()} ))))
+            snapshot.docs.map((doc)=>{
+                setTlist({...doc.data(),id:doc.id})
+            })
+            // setTlist((snapshot.docs.map((doc) => ({id: doc.id, ...doc.data()} ))))
       
         })
 
@@ -29,7 +34,7 @@ const TrashList = ({ navigation}) => {
 
     useEffect(() => {
         getTrashSpot();
-    })
+    },[])
 
     return (
         <View style={Styles.container}>
@@ -37,75 +42,60 @@ const TrashList = ({ navigation}) => {
             <Ionicons style={{paddingTop:10}} name="chevron-back" size={30} color="#4c4c4b" />
             </TouchableOpacity>
   
-            <View style={Styles.headerWrapper}>
-                <Text style={[Styles.heading, { fontWeight: "bold" }]}>{Tlist.place}</Text> 
-                <Text style={Styles.heading}>{ Tlist.usermail}</Text>
-            </View>
+            {Tlist && <View style={Styles.headerWrapper}>
+                <Text >{Tlist.place} thani detail screen</Text>
+                <Image source={{uri:Tlist.titleImage}} style={{height:100, width:100}}/>
+                <Text>Date added {Tlist.CreateAt}</Text>
+                <Text >{Tlist.usermail}</Text>
+                <Text>{Tlist.seviority}</Text>
+                <Text>Food_Wrappers {Tlist.Food_Wrappers}</Text>
+                <Text>Polythene_bags {Tlist.Polythene_bags}</Text>
+                <Text>PET_Bottles {Tlist.PET_Bottles}</Text>
+                <Text>Plastic_Debris {Tlist.Plastic_Debris}</Text>
+                <Text>Large_Plastic_Rigid {Tlist.Large_Plastic_Rigid}</Text>
+                <View style={{bottom:0, marginBottom:5}}>
+                <Button title='Im cleaning it on ' color='blue'/>
+                </View>
+            </View>}
+                
+            <View >
   
-            <View style={Styles.destination}>
-  
-                <ScrollView >
-                    {Tlist.map((doc,index) => (
+                {/* <ScrollView>
+                    {Tlist && Tlist.map((doc,index) => (
                         
                         <TouchableOpacity key={index} onPress={() => {
-                            navigation.navigate('TrashDisplay',
+                            navigation.navigate('HomeScreen',
                                 {
-                                    uid: spots.uid,
-                                    imgURL: spots.imgURL,
+                                    uid: doc.uid,
+                                    imgURL: doc.imgURL,
                                    
                             })
                                 
                         }
                         }   >
   
-                        <Image    style={Styles.imga}           
+                        <Image style={Styles.imga}           
                       source={{uri:doc.imgURL}}
                      />
                     
-                    <View style={Styles.suggestTextWrapper}>
-                    
-                        <View style={Styles.catogary}>
-                                    <Text style={Styles.destinationText}>{doc.category }</Text>
-                        </View>
-  
-                        <View style={[Styles.suggestplace]}>
-                            <Text style={Styles.suggestplaceText}>{ doc.d_name}</Text>
-                        </View>
-                        
-                        <View style={Styles.catogaryWrapper}>
-  
-                            <View >
-                                <AntDesign name="clockcircle" size={13} color="#19B4BF" />
-                                <Text style={Styles.durationText}> {doc.duration} Days</Text>
-                            </View>
-                            
-                            <View style={Styles.budget}>
-                                        <Text style={[Styles.destinationText, { fontSize: 17 }]}>${doc.budget }</Text>
-                            </View>
-                          
-                        </View>
-  
-                    </View>
-                    
-                            
-                        </TouchableOpacity>
-                        
+          
+                    </TouchableOpacity>        
   
                      ) )}
   
-  
                 
-                    </ScrollView>
+                
+                </ScrollView> */}
                 
             </View> 
-            
-        </View>
+         </View>  
         
     );
   };
   const Styles=StyleSheet.create({
  container:{
-    backgroundColor:"yellow"
+         
+     
  }
   })
   export default TrashList;
