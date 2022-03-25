@@ -6,14 +6,16 @@ import * as Location from 'expo-location';
 export default function Locate() {
   const [location, setLocation] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
-  const [region,setRegion]=useState({
-    latitude: 37.78825,
-    longitude: -122.4324,
-    latitudeDelta: 0.015,
-    longitudeDelta: 0.0121,
-  }
+  const [latitude, setLatitude] = useState(null);
+  const [longitude, setLongitude] = useState(null);
+//   const [region,setRegion]=useState({
+//     latitude: 37.78825,
+//     longitude: -122.4324,
+//     // latitudeDelta: 0.015,
+//     // longitudeDelta: 0.0121,
+//   }
 
-)
+// )
 
   useEffect(() => {
     (async () => {
@@ -24,48 +26,55 @@ export default function Locate() {
       }
 
       let location = await Location.getCurrentPositionAsync({});
-      setLocation(location);
+      // setLocation(location);
+      setLatitude(location.coords.latitude)
+      setLongitude(location.coords.longitude);
+      setLocation(location.coords);
     })();
   }, []);
 //--------------------
-  // let text = 'Waiting..';
-  // if (errorMsg) {
-  //   text = errorMsg;
-  // } else if (location) {
-  //   text = JSON.stringify(location);
-  // }
- 
-  // // console.log(text);
+  let text = 'Waiting..';
+  if (errorMsg) {
+    text = errorMsg;
+  } else if (location) {
+    text = JSON.stringify(location);
+  }
+  console.warn("latitude: ", latitude);
+  console.warn("longitude: ", longitude);
+  // console.log(text);
   // console.log(location);
 //----------------------
 
-const getLoc =() =>{
-  //console.log("press",location.coords)
-  let latitude= location.coords.latitude
-  let longitude=location.coords.longitude
-  setRegion({
-            latitude: latitude,
-            longitude: longitude,
-            latitudeDelta: 0.015,
-            longitudeDelta: 0.0121,
-          })
-}
+// const getLoc =() =>{
+//   //console.log("press",location.coords)
+//   let latitude= location.coords.latitude
+//   let longitude=location.coords.longitude
+//   setRegion({
+//             latitude: latitude,
+//             longitude: longitude,
+//             // latitudeDelta: 0.015,
+//             // longitudeDelta: 0.0121,
+//           })
+// }
 
 
-const sendLoc =() =>{
+// const sendLoc =() =>{
   
-  let latitude= location.coords.latitude
-  let longitude=location.coords.longitude
-console.log("Use these variables to send current location(",latitude, ",",longitude,")")
-}
+//   let latitude= location.coords.latitude
+//   let longitude=location.coords.longitude
+// console.log("Use these variables to send current location(",latitude, ",",longitude,")")
+// }
 
 
   return (
     <View style={styles.container}>
       
       
-      <Button title='locatida su' onPress={getLoc}/>
-      <TextInput style={styles.TextInput}> {region.latitude}</TextInput>
+      <Text>
+
+      </Text>
+      <Text > {latitude}</Text>
+      <Text > {longitude}</Text>
     </View>
     //<Text style={styles.paragraph}>{text}</Text>
   );
