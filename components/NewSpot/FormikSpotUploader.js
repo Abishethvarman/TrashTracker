@@ -100,6 +100,14 @@ const FormikSpotUploader = () => {
     const uploadImage = 'https://icon-library.com/images/upload-photo-icon/upload-photo-icon-16.jpg'
     const [image, setImage] = useState(uploadImage);
 
+
+
+    //location
+    const [location, setLocation] = useState(null);
+    const [errorMsg, setErrorMsg] = useState(null);
+    const [latitude, setLatitude] = useState(null);
+    const [longitude, setLongitude] = useState(null);
+
     useEffect(() => {
         (async () => {
             if (Platform.OS !== 'web') {
@@ -110,6 +118,24 @@ const FormikSpotUploader = () => {
             }
         })();
     }, []);
+
+
+        //location useEffect
+        useEffect(() => {
+            (async () => {
+              let { status } = await Location.requestForegroundPermissionsAsync();
+              if (status !== 'granted') {
+                setErrorMsg('Permission to access location was denied');
+                return;
+              }
+        
+              let location = await Location.getCurrentPositionAsync({});
+              // setLocation(location);
+              setLatitude(location.coords.latitude)
+              setLongitude(location.coords.longitude);
+              setLocation(location.coords);
+            })();
+          }, []);
 
 //const pickImage = async () => {
     const openCamera = async () => {
@@ -144,11 +170,11 @@ const FormikSpotUploader = () => {
 };
 
 const Locate = () => {
-    const [location, setLocation] = useState(null);
-    const [errorMsg, setErrorMsg] = useState(null);
-    const [latitude, setLatitude] = useState(null);
-    const [longitude, setLongitude] = useState(null);
-  //   const [region,setRegion]=useState({
+   
+  
+  
+  
+    //   const [region,setRegion]=useState({
   //     latitude: 37.78825,
   //     longitude: -122.4324,
   //     // latitudeDelta: 0.015,
@@ -157,30 +183,20 @@ const Locate = () => {
   
   // )
   
-    useEffect(() => {
-      (async () => {
-        let { status } = await Location.requestForegroundPermissionsAsync();
-        if (status !== 'granted') {
-          setErrorMsg('Permission to access location was denied');
-          return;
-        }
-  
-        let location = await Location.getCurrentPositionAsync({});
-        // setLocation(location);
-        setLatitude(location.coords.latitude)
-        setLongitude(location.coords.longitude);
-        setLocation(location.coords);
-      })();
-    }, []);
+   
   //--------------------
-    let text = 'Waiting..';
-    if (errorMsg) {
-      text = errorMsg;
-    } else if (location) {
-      text = JSON.stringify(location);
-    }
-    console.warn("latitude: ", latitude);
-    console.warn("longitude: ", longitude);
+    // let text = 'Waiting..';
+    // if (errorMsg) {
+    //   text = errorMsg;
+    // } else if (location) {
+    //   text = JSON.stringify(location);
+    // }
+    // console.warn("latitude: ", latitude);
+    // console.warn("longitude: ", longitude);
+
+    // return(
+        
+    // )
  }
 
 
