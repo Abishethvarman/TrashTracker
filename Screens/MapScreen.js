@@ -3,13 +3,53 @@ import MapView, { Circle } from 'react-native-maps';
 import { StyleSheet, Text, View, Dimensions, TouchableOpacity, SafeAreaView, StatusBar} from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { Marker } from "react-native-maps";
+import { useEffect, useState } from 'react';
+import { collection, onSnapshot, orderBy, query } from 'firebase/firestore';
+import { db } from '../firebase';
 
 
 const MapScreen = ({navigation})=> {
+
+  const [spot,setSpot] = useState()
+
+  useEffect(() => {
+      try {
+          const getTrashSpot =query((collection(db, 'spots')),orderBy("createAt", "desc"))
+          // collection(db, 'spots')
+          
+          onSnapshot(getTrashSpot,(snapshots)=>{
+              let spotARR = [];
+              snapshots.docs.map((doc)=>{
+
+                  spotARR.push({...doc.data(),id:doc.id})
+                  // console.log(doc.id);
+              
+
+              })
+            setSpot(spotARR)
+              
+
+          })
+
+           
+      } catch (error) {
+
+          let spotARR = [];
+          setSpot(spotARR)
+
+      }
+
+
+  }, [])
+
+
   return (
     <SafeAreaView style={styles.container}>
       <Header navigation={navigation}></Header>
-      <MapView style={styles.map} 
+      
+      <MapView 
+      
+      style={styles.map} 
       initialRegion={{
         /*Kandy 7.2906° N, 80.6337° E - Dambulla 7.903092	80.670837*/
       latitude: 7.95,
@@ -20,34 +60,31 @@ const MapScreen = ({navigation})=> {
   >
   
   {/*marker to a nearby location */}
-  <Marker
+  {spot && spot.map((spots) => (
+            <Marker 
+            key={spots.id}
+            
+    
     coordinate={{
-      latitude: 7.7714827145542,
-      longitude: 81.6551462687416,
-    }
-    // {
-    //   latitude: 7.914827145542,
+      latitude: spots.latitude ,
+      longitude: spots.longitude
+    }}
+    pinColor="green"
+    /> 
+    )) }
+    
+    {/* //   latitude: 7.914827145542,
     //   longitude: 81.6551462687416,
     // },
     // {
     //   latitude: 7.7714827145542,
     //   longitude: 81.6551462687416,
-    // }
-  }
-    pinColor="green"
-  />
-  <Marker
-  coordinate={
-    {
-      latitude: 8.914827145542,
-      longitude: 81.6551462687416,
-    }
-  }
-  pinColor="red"
+    // } */}
+  
+  
+  
 
-  />
-
-  </MapView>
+  </MapView> 
     </SafeAreaView>
   );
 }

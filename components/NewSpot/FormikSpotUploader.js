@@ -99,10 +99,7 @@ const FormikSpotUploader = () => {
     const [counter4, setCounter4]=useState(0);
     const uploadImage = 'https://icon-library.com/images/upload-photo-icon/upload-photo-icon-16.jpg'
     const [image, setImage] = useState(uploadImage);
-
-
-
-    //location
+ //location
     const [location, setLocation] = useState(null);
     const [errorMsg, setErrorMsg] = useState(null);
     const [latitude, setLatitude] = useState(null);
