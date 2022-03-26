@@ -13,6 +13,7 @@ import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
 import { addDoc, collection } from 'firebase/firestore'
 import { useNavigation } from '@react-navigation/native'
 import AddCounter from './Counter'
+import * as Location from 'expo-location';
 
 
 
@@ -142,6 +143,47 @@ const FormikSpotUploader = () => {
     }
 };
 
+const Locate = () => {
+    const [location, setLocation] = useState(null);
+    const [errorMsg, setErrorMsg] = useState(null);
+    const [latitude, setLatitude] = useState(null);
+    const [longitude, setLongitude] = useState(null);
+  //   const [region,setRegion]=useState({
+  //     latitude: 37.78825,
+  //     longitude: -122.4324,
+  //     // latitudeDelta: 0.015,
+  //     // longitudeDelta: 0.0121,
+  //   }
+  
+  // )
+  
+    useEffect(() => {
+      (async () => {
+        let { status } = await Location.requestForegroundPermissionsAsync();
+        if (status !== 'granted') {
+          setErrorMsg('Permission to access location was denied');
+          return;
+        }
+  
+        let location = await Location.getCurrentPositionAsync({});
+        // setLocation(location);
+        setLatitude(location.coords.latitude)
+        setLongitude(location.coords.longitude);
+        setLocation(location.coords);
+      })();
+    }, []);
+  //--------------------
+    let text = 'Waiting..';
+    if (errorMsg) {
+      text = errorMsg;
+    } else if (location) {
+      text = JSON.stringify(location);
+    }
+    console.warn("latitude: ", latitude);
+    console.warn("longitude: ", longitude);
+ }
+
+
 const AddSubmit = async (caption, placespot, seviority) => {
     let ImgUrl;
 
@@ -171,6 +213,8 @@ const AddSubmit = async (caption, placespot, seviority) => {
         uid: auth.currentUser.uid,
         //username: users.username,
         usermail: auth.currentUser.email,
+        latitude: latitude,
+        longitude:longitude
         // username:auth.currentUser.username
         
        
@@ -386,7 +430,8 @@ const AddSubmit = async (caption, placespot, seviority) => {
         
         <Text> </Text>
         </ScrollView>
-        <Locate/>
+        {/* <Locate/> */}
+        {/* <Button title='lov'  onPress={()=>{setLongitude()}}/> */}
         <Button color='red' onPress={handleSubmit} title='Track' disabled={!isValid} />
         </>
         )}
@@ -459,4 +504,4 @@ const styles=StyleSheet.create({
 })
 
 
-export default FormikSpotUploader
+export default FormikSpotUploader;
