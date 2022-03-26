@@ -73,7 +73,7 @@ export default function Locate() {
       <Text>
 
       </Text>
-      <Text > {latitude}</Text>
+      <Text style={{color:'red'}} > {latitude}</Text>
       <Text > {longitude}</Text>
     </View>
     //<Text style={styles.paragraph}>{text}</Text>

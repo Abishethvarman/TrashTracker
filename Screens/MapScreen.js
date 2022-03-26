@@ -24,17 +24,29 @@ const MapScreen = ({navigation})=> {
     coordinate={{
       latitude: 7.7714827145542,
       longitude: 81.6551462687416,
-    },
-    {
-      latitude: 7.914827145542,
-      longitude: 81.6551462687416,
-    },
-    {
-      latitude: 7.7714827145542,
-      longitude: 81.6551462687416,
-    }}
+    }
+    // {
+    //   latitude: 7.914827145542,
+    //   longitude: 81.6551462687416,
+    // },
+    // {
+    //   latitude: 7.7714827145542,
+    //   longitude: 81.6551462687416,
+    // }
+  }
     pinColor="green"
   />
+  <Marker
+  coordinate={
+    {
+      latitude: 8.914827145542,
+      longitude: 81.6551462687416,
+    }
+  }
+  pinColor="red"
+
+  />
+
   </MapView>
     </SafeAreaView>
   );
