@@ -223,7 +223,7 @@ const AddSubmit = async (caption, placespot, seviority) => {
         Large_Plastic_Rigid: counter4,
         createAt: new Date(),
         titleImage: ImgUrl,
-        uid: auth.currentUser.uid,
+        userid: auth.currentUser.uid,
         //username: users.username,
         usermail: auth.currentUser.email,
         latitude: latitude,

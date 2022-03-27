@@ -7,7 +7,7 @@ import TrashDisplay from '../TrashSpots/TrashDisplay';
 
 
 const TrashSpot = ({navigation}) => {
-    const [spot,setSpot] = useState()
+    const [spots,setSpots] = useState()
 
     useEffect(() => {
         try {
@@ -23,7 +23,7 @@ const TrashSpot = ({navigation}) => {
                 
 
                 })
-              setSpot(spotARR)
+              setSpots(spotARR)
                 
 
             })
@@ -32,7 +32,7 @@ const TrashSpot = ({navigation}) => {
         } catch (error) {
 
             let spotARR = [];
-            setSpot(spotARR)
+            setSpots(spotARR)
 
         }
 
@@ -71,20 +71,20 @@ const TrashSpot = ({navigation}) => {
 
             <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
 
-            {spot && spot.map((spots) => (
+            {spots && spots.map((spot) => (
             <TouchableOpacity 
-            key={spots.id}
+            key={spot.id}
             onPress={() => {navigation.navigate('TrashList', {
-                    uid: spots.uid,
+                spot
                      })   
               }}>
             <View  style={{marginLeft:20, marginBottom:10}}>
                 <ImageBackground style={Styles.suggestImg} 
-                    source={{uri:spots.titleImage}}
+                    source={{uri:spot.titleImage}}
                         imageStyle={{ borderRadius: 20 }} >
                         <View style={{flexDirection:'row-reverse'}}>
                         <View style={Styles.seviorityDetail}>
-                            <Text style={Styles.sevierText}>{spots.seviority}</Text>
+                            <Text style={Styles.sevierText}>{spot.seviority}</Text>
                         </View>
                         </View>
                         <View style={Styles.suggestTextWrapper}>
@@ -93,7 +93,7 @@ const TrashSpot = ({navigation}) => {
 
                             <View style={[Styles.suggestplace, Styles.suggestBottom]}>
                                 <Entypo name="location-pin" size={24} color="#19B4BF" />
-                                <Text style={Styles.suggestplaceText}>{spots.place}</Text>
+                                <Text style={Styles.suggestplaceText}>{spot.place}</Text>
                             </View>
 
                         </View>
