@@ -7,11 +7,11 @@ import { collection, onSnapshot, orderBy, query, where } from 'firebase/firestor
 
 
 const TrashDisplay = ({navigation}) => {
-  const [spot,setSpot] = useState()
+  const [spots,setSpots] = useState()
 
   useEffect(() => {
       try {
-          const wef =query((collection(db, 'spots')))
+          const wef =query((collection(db, 'spots')), orderBy("createAt",'desc'))
           // collection(db, 'spots')
           
           onSnapshot(wef,(snapshots)=>{
@@ -23,7 +23,7 @@ const TrashDisplay = ({navigation}) => {
               
 
               })
-            setSpot(spotARR)
+            setSpots(spotARR)
               
 
           })
@@ -32,7 +32,7 @@ const TrashDisplay = ({navigation}) => {
       } catch (error) {
 
           let spotARR = [];
-          setSpot(spotARR)
+          setSpots(spotARR)
 
       }
 
@@ -46,22 +46,22 @@ const TrashDisplay = ({navigation}) => {
         
             <View style={Styles.headerWrapper} style={{justifyContent:'flex-start'}}>
                 <Header navigation={navigation}/>
-            <Text style={[Styles.header,{fontWeight:"bold"}]}>Tras</Text> 
+            <Text style={[Styles.header,{fontWeight:"bold"}]}>Trash</Text> 
             <Text style={Styles.header}> hot spots</Text>
         </View>
        
 
         <ScrollView verical={true} showsHorizontalScrollIndicator={false}>
 
-       {spot && spot.map((spots) => ( 
-        <TouchableOpacity key={spots.id}>
+       {spots && spots.map((spot) => ( 
+        <TouchableOpacity key={spot.id} onPress={()=>navigation.navigate('TrashList',{spot})}>
         <View  style={{marginLeft:20, marginBottom:10}}>
             <ImageBackground style={Styles.suggestImg} 
-                source={{uri:spots.titleImage}}
+                source={{uri:spot.titleImage}}
                     imageStyle={{ borderRadius: 20 }} >
                         <View style={{flexDirection:'row-reverse'}}>
                         <View style={Styles.seviorityDetail}>
-                            <Text style={Styles.sevierText}>{spots.seviority}</Text>
+                            <Text style={Styles.sevierText}>{spot.seviority}</Text>
                         </View>
                         </View>
                     <View style={Styles.suggestTextWrapper}>
@@ -70,7 +70,7 @@ const TrashDisplay = ({navigation}) => {
 
                         <View style={[Styles.suggestplace, Styles.suggestBottom]}>
                             <Entypo name="location-pin" size={24} color="#19B4BF" />
-                            <Text style={Styles.suggestplaceText}>{spots.place}</Text>
+                            <Text style={Styles.suggestplaceText}>{spot.place}</Text>
                         </View>
 
                     </View>
