@@ -1,9 +1,10 @@
-import { View, Text, StatusBar,StyleSheet, TouchableOpacity,Image,ScrollView, Button } from 'react-native';
+import { View, Text, StatusBar,StyleSheet, TouchableOpacity,Image,ScrollView, Button, MaskedViewComponent } from 'react-native';
 import React,{useEffect,useState} from 'react';
 import { Ionicons, AntDesign } from '@expo/vector-icons'; 
 import { collection, onSnapshot,query ,where, doc} from '@firebase/firestore'
 import { db } from '../firebase'
 import {useRoute} from '@react-navigation/native'
+// import Moment from 'react-moment';
 
 const TrashList = ({ navigation}) => {
     const [Tlist, setTlist] = useState()
@@ -45,7 +46,7 @@ const TrashList = ({ navigation}) => {
             {spot &&  <View style={Styles.headerWrapper}>
                 <Text>{spot.place} thani detail screen</Text>
                 <Image source={{uri:spot.titleImage}} style={{height:100, width:100}}/>
-                <Text>Date added {spot.CreateAt}</Text>
+                  
                 <Text >{spot.usermail}</Text>
                 <Text>{spot.seviority}</Text>
                 <Text>Food_Wrappers {spot.Food_Wrappers}</Text>
