@@ -1,4 +1,4 @@
-import { View, Text, ScrollView } from 'react-native'
+import { View, Text, ScrollView, StyleSheet } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { collection, doc, onSnapshot, orderBy, query } from 'firebase/firestore'
 import { db } from '../../firebase'
@@ -40,9 +40,10 @@ const Chat = () => {
 
   return (
     <View>
+      <ScrollView>
     {chats && chats.map((chat) => (
    
-   <View key={chat.id}>
+   <View key={chat.id} style={styles.singleChat}>
      <Divider></Divider>
      <Text >{chat.caption}</Text>
      
@@ -50,9 +51,20 @@ const Chat = () => {
 
                
     ))}
+    </ScrollView>
      </View>
     
   )
 }
+
+const styles=StyleSheet.create({
+  singleChat:{
+    margin:5,
+    padding:5,
+    alignItems:'baseline',
+    borderColor:'white',
+    borderWidth:5
+  }
+})
 
 export default Chat
