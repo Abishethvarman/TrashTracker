@@ -1,11 +1,12 @@
 import * as React from 'react';
-import MapView, { Circle } from 'react-native-maps';
+import MapView, { Callout, Circle } from 'react-native-maps';
 import { StyleSheet, Text, View, Dimensions, TouchableOpacity, SafeAreaView, StatusBar} from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { Marker } from "react-native-maps";
+import { Marker,BottomSheetModal } from "react-native-maps";
 import { useEffect, useState } from 'react';
 import { collection, onSnapshot, orderBy, query } from 'firebase/firestore';
 import { db } from '../firebase';
+import { TouchableRipple } from 'react-native-paper';
 
 
 const MapScreen = ({navigation})=> {
@@ -44,11 +45,9 @@ const MapScreen = ({navigation})=> {
 
 
   return (
-    <SafeAreaView style={styles.container}>
-      <Header navigation={navigation}></Header>
-      
-      <MapView 
-      
+   <SafeAreaView>
+   <Header navigation={navigation}></Header>
+     <MapView 
       style={styles.map} 
       initialRegion={{
         /*Kandy 7.2906° N, 80.6337° E - Dambulla 7.903092	80.670837*/
@@ -59,7 +58,7 @@ const MapScreen = ({navigation})=> {
     }}
   >
   
-  {/*marker to a nearby location */}
+   {/*marker to a nearby location */}
   {spot && spot.map((spots) => (
             <Marker 
             key={spots.id}
@@ -71,21 +70,18 @@ const MapScreen = ({navigation})=> {
     }}
     pinColor="green"
     /> 
-    )) }
+    )) } 
     
-    {/* //   latitude: 7.914827145542,
-    //   longitude: 81.6551462687416,
-    // },
-    // {
-    //   latitude: 7.7714827145542,
-    //   longitude: 81.6551462687416,
-    // } */}
-  
-  
-  
+  {/* latitude: 7.914827145542,
+    longitude: 81.6551462687416,
 
+ latitude: 7.7714827145542,
+ longitude: 81.6551462687416, */}
+
+  
   </MapView> 
-    </SafeAreaView>
+  </SafeAreaView>
+    
   );
 }
 
