@@ -55,7 +55,7 @@ const TrashList = ({ navigation}) => {
                 <Text>Plastic_Debris {spot.Plastic_Debris}</Text>
                 <Text>Large_Plastic_Rigid {spot.Large_Plastic_Rigid}</Text>
                 <View style={{bottom:0, marginBottom:5}}>
-                <Button title='Im cleaning it on ' color='blue'/>
+                <Button title='Im cleaning it on ' color='blue' onPress={()=>navigation.navigate('AddCleanUp',{spot})}/>
                 </View>
             </View>
         }

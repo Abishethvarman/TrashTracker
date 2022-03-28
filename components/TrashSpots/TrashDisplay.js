@@ -44,7 +44,7 @@ const TrashDisplay = ({navigation}) => {
     <View style={Styles.container}>
         
         
-            <View style={Styles.headerWrapper} style={{justifyContent:'flex-start'}}>
+            <View style={Styles.headerWrapper} >
                 <Header navigation={navigation}/>
             <Text style={[Styles.header,{fontWeight:"bold"}]}>Trash</Text> 
             <Text style={Styles.header}> hot spots</Text>
