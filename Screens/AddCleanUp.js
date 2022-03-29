@@ -1,9 +1,11 @@
-import { View, Text, StyleSheet, TouchableOpacity, Image, Button } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity, Image, Button, Alert } from 'react-native'
 import React from 'react'
 import { useNavigation, useRoute } from '@react-navigation/native'
 import { Ionicons } from '@expo/vector-icons';
 import { addDoc, collection } from 'firebase/firestore';
 import { db } from '../firebase';
+import { Formik } from 'formik';
+import * as Yup from 'yup'
  
 
 const AddCleanUp = () => {
@@ -14,10 +16,11 @@ const AddCleanUp = () => {
   const navigation = useNavigation();
 
   const AddSubmit = async () => {
-   
+   console.log('add ')
     await addDoc(collection(db,'cleanup'), {
-        caption: spot.caption,
-        place: spot.placespot,
+      name:''
+        // caption: spot.caption,
+        // place: spot.placespot,
         // seviority,
         // Polythene_bags: counter,
         // PET_Bottles: counter1,
@@ -33,7 +36,7 @@ const AddCleanUp = () => {
         // longitude:longitude
         // // username:auth.currentUser.username
         
-       
+         
         
 
     }).then(() => {
@@ -42,12 +45,19 @@ const AddCleanUp = () => {
     })
 
 }
+console.log(spot.caption);   
+
+const DeleteSpot =()=>{
+  console.log('naan delete panna poram');
+}
 
   
   return (
+    
     <View>
       <Header navigation={navigation}/>
       <Text>AddCleanUp</Text>
+      
       {spot &&  <View style={styles.headerWrapper}>
                 <Text>{spot.place} thani detail screen</Text>
                 <Image source={{uri:spot.titleImage}} style={{height:100, width:100}}/>
@@ -62,11 +72,12 @@ const AddCleanUp = () => {
                 <View style={{bottom:0, marginBottom:5}}>
                 <Button title='Im cleaning it on ' color='green' onPress={()=>{
                   AddSubmit();
-                  // DeleteSpot();
+                  DeleteSpot();
                 }}/>
                 </View>
             </View>
-    } 
+    }
+    
     </View>
     
   )
