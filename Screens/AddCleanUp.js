@@ -17,24 +17,24 @@ const AddCleanUp = () => {
 
   const AddSubmit = async () => {
    console.log('add ')
-    await addDoc(collection(db,'cleanup'), {
-      name:''
-        // caption: spot.caption,
-        // place: spot.placespot,
-        // seviority,
-        // Polythene_bags: counter,
-        // PET_Bottles: counter1,
-        // Plastic_Debris: counter2,
-        // Food_Wrappers: counter3,
-        // Large_Plastic_Rigid: counter4,
-        // createAt: new Date(),
-        // titleImage: ImgUrl,
-        // userid: auth.currentUser.uid,
-        // //username: users.username,
-        // usermail: auth.currentUser.email,
-        // latitude: latitude,
-        // longitude:longitude
-        // // username:auth.currentUser.username
+    await addDoc(collection(db,'events'), {
+      name:'',
+        caption: spot.caption,
+        place: spot.place,
+        seviority,
+        Polythene_bags: counter,
+        PET_Bottles: counter1,
+        Plastic_Debris: counter2,
+        Food_Wrappers: counter3,
+        Large_Plastic_Rigid: counter4,
+        createAt: new Date(),
+        
+        userid: auth.currentUser.uid,
+        //username: users.username,
+        usermail: auth.currentUser.email,
+        latitude: latitude,
+        longitude:longitude
+        // username:auth.currentUser.username
         
          
         

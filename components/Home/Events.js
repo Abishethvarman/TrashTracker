@@ -1,80 +1,113 @@
-import React from 'react'
-import { View, Text, StyleSheet, Image, ImageBackground, ScrollView } from 'react-native'
+import React, { useEffect, useState,  } from 'react'
+import { View, Text, StyleSheet, Image, ImageBackground, ScrollView , TouchableOpacity} from 'react-native'
 import { Entypo } from '@expo/vector-icons';
 
-const Events = () => {
+import TrashDisplay from '../TrashSpots/TrashDisplay';
+import { collection, onSnapshot, orderBy, query } from 'firebase/firestore';
+
+
+const Events = ({navigation}) => {
+    const [events,setEvents] = useState()
+
+    useEffect(() => {
+        try {
+            const getEvent =query((collection(db, 'events')),orderBy("createAt", "desc"))
+            // collection(db, 'spots')
+            
+            onSnapshot(getEvent,(snapshots)=>{
+                let spotARR = [];
+                snapshots.docs.map((doc)=>{
+
+                    spotARR.push({...doc.data(),id:doc.id})
+                    // console.log(doc.id);
+                
+
+                })
+                setEvents(spotARR)
+                
+
+            })
+
+             
+        } catch (error) {
+
+            let spotARR = [];
+            setEvents(spotARR)
+
+        }
+
+
+    }, [])
+
+
+// const [spot,setSpot] = useState([])
+
+//     const  = () =>
+//     {
+//         const spot = collection(db, 'spots')
+//         onSnapshot(spot, (snapshot) =>
+//         {
+//             setSpot((snapshot.docs.map((spots) => ({ id: spots.id, ...spots.data() }))))
+//             console.log(doc.data());
+      
+//         })
+       
+    
+//     useEffect(() => {
+//         getTrashSpot();
+//     },[])
+//     }
+
+    
     return (
         <View style={Styles.container}>
             
-            <View style={Styles.headerWrapper}>
-                <Text style={[Styles.header,{fontWeight:"bold"}]}>Clean Ups</Text> 
-                <Text style={Styles.header}> places</Text>
+            <TouchableOpacity navigation={navigation} onPress={()=> navigation.navigate("TrashSpotScreen")}>
+                <View style={Styles.headerWrapper}>
+                <Text style={[Styles.header,{fontWeight:"bold"}]}>Trash</Text> 
+                <Text style={Styles.header}> hot spot</Text>
             </View>
+            </TouchableOpacity>
 
             <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
 
-
-            <View style={{marginLeft:20, marginBottom:10}}>
+            {events && events.map((event) => (
+            <TouchableOpacity 
+            key={event.id}
+            onPress={() => {navigation.navigate('TrashList', {
+                event
+                     })   
+              }}>
+            <View  style={{marginLeft:20, marginBottom:10}}>
                 <ImageBackground style={Styles.suggestImg} 
-                    source={require("../../assets/trash2.jpg")}
+                    source={{uri:event.titleImage}}
                         imageStyle={{ borderRadius: 20 }} >
+                        <View style={{flexDirection:'row-reverse'}}>
+                        <View style={Styles.seviorityDetail}>
+                            <Text style={Styles.sevierText}>{event.seviority}</Text>
+                        </View>
+                        </View>
                         <View style={Styles.suggestTextWrapper}>
 
                             <Text></Text>
 
                             <View style={[Styles.suggestplace, Styles.suggestBottom]}>
                                 <Entypo name="location-pin" size={24} color="#19B4BF" />
-                                <Text style={Styles.suggestplaceText}>Batticaloa</Text>
+                                <Text style={Styles.suggestplaceText}>{event.place}</Text>
                             </View>
 
                         </View>
                 </ImageBackground> 
                 </View>
-                
-
-                <View style={{ marginBottom:10}}>
-                <ImageBackground style={Styles.suggestImg} 
-                    source={require("../../assets/trash1.jpg")}
-                        imageStyle={{ borderRadius: 20 }} >
-                        <View style={Styles.suggestTextWrapper}>
-
-                            <Text></Text>
-
-                            <View style={[Styles.suggestplace, Styles.suggestBottom]}>
-                                <Entypo name="location-pin" size={24} color="#19B4BF" />
-                                <Text style={Styles.suggestplaceText}>Kallady</Text>
-                            </View>
-                            
-                        </View>
-                </ImageBackground> 
-                </View>
-                
-
-                <View style={{ marginBottom:10}}>
-                <ImageBackground style={Styles.suggestImg} 
-                    source={require("../../assets/globe-offline.png")}
-                        imageStyle={{ borderRadius: 20 }} >
-                        <View style={Styles.suggestTextWrapper}>
-
-                            <Text></Text>
-
-                            <View style={[Styles.suggestplace, Styles.suggestBottom]}>
-                                <Entypo name="location-pin" size={24} color="#19B4BF" />
-                                <Text style={Styles.suggestplaceText}>Trincomalee</Text>
-                            </View>
-                            
-                        </View>
-                </ImageBackground> 
-            </View>
-
-               
+                </TouchableOpacity>
+            ))}
              
                 </ScrollView>
             
         </View>
     )
-}
 
+            }
 const Styles = StyleSheet.create({
     container: {
         marginTop: 20,
@@ -127,6 +160,21 @@ const Styles = StyleSheet.create({
         color: "white",
         fontWeight: "bold",
         paddingBottom:10
+    },
+    seviorityDetail:{
+        
+        margin:10,
+        backgroundColor:'red',
+        width:'30%',
+        borderRadius:10,
+        alignItems:'center'
+        
+        
+    },
+    sevierText:{
+        color:'yellow',
+        fontSize:10,
+        paddingVertical:1
     }
 })
 
