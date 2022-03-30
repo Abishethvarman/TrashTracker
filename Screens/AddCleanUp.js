@@ -16,13 +16,13 @@ const AddCleanUp = () => {
   const navigation = useNavigation();
 
   const AddSubmit = async () => {
-   console.log('add ')
+   console.log('19 vathu add ')
     await addDoc(collection(db,'events'), {
-      name:'',
+        name:'',
         caption: spot.caption,
         place: spot.place,
-        seviority,
-        Polythene_bags: counter,
+        seviority: spot.seviority,
+        Polythene_bags: spot.counter,
         PET_Bottles: counter1,
         Plastic_Debris: counter2,
         Food_Wrappers: counter3,
@@ -32,8 +32,8 @@ const AddCleanUp = () => {
         userid: auth.currentUser.uid,
         //username: users.username,
         usermail: auth.currentUser.email,
-        latitude: latitude,
-        longitude:longitude
+        latitude: spot.latitude,
+        longitude:spot.longitude
         // username:auth.currentUser.username
         
          
@@ -42,6 +42,7 @@ const AddCleanUp = () => {
     }).then(() => {
         Alert.alert('Successfully Added');
         navigation.push('HomeScreen');
+        console.log(spot.caption)
     })
 
 }
