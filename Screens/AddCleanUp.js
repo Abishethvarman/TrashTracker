@@ -2,7 +2,7 @@ import { View, Text, StyleSheet, TouchableOpacity, Image, Button, Alert } from '
 import React from 'react'
 import { useNavigation, useRoute } from '@react-navigation/native'
 import { Ionicons } from '@expo/vector-icons';
-import { addDoc, collection } from 'firebase/firestore';
+import { addDoc, collection, doc, setDoc } from 'firebase/firestore';
 import { db } from '../firebase';
 import { Formik } from 'formik';
 import * as Yup from 'yup'
@@ -17,21 +17,21 @@ const AddCleanUp = () => {
 
   const AddSubmit = async () => {
    console.log('19 vathu add ')
-    await addDoc(collection(db,'events'), {
+    await setDoc(doc(db,'events',spot.id), {
         name:'',
         caption: spot.caption,
         place: spot.place,
         seviority: spot.seviority,
-        Polythene_bags: spot.counter,
-        PET_Bottles: counter1,
-        Plastic_Debris: counter2,
-        Food_Wrappers: counter3,
-        Large_Plastic_Rigid: counter4,
+        // Polythene_bags: spot.counter,
+        // PET_Bottles: spot.counter1,
+        // Plastic_Debris: spot.counter2,
+        // Food_Wrappers: spot.counter3,
+        // Large_Plastic_Rigid: spot.counter4,
         createAt: new Date(),
         
-        userid: auth.currentUser.uid,
-        //username: users.username,
-        usermail: auth.currentUser.email,
+        // userid: auth.currentUser.uid,
+        // //username: users.username,
+        // usermail: auth.currentUser.email,
         latitude: spot.latitude,
         longitude:spot.longitude
         // username:auth.currentUser.username
@@ -44,6 +44,9 @@ const AddCleanUp = () => {
         navigation.push('HomeScreen');
         console.log(spot.caption)
     })
+    
+    // .catch(()=>error)
+    // console.log(error)
 
 }
 console.log(spot.caption);   
