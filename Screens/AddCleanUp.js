@@ -2,7 +2,7 @@ import { View, Text, StyleSheet, TouchableOpacity, Image, Button, Alert } from '
 import React from 'react'
 import { useNavigation, useRoute } from '@react-navigation/native'
 import { Ionicons } from '@expo/vector-icons';
-import { addDoc, collection, doc, setDoc } from 'firebase/firestore';
+import { addDoc, collection, deleteDoc, doc, setDoc } from 'firebase/firestore';
 import { db } from '../firebase';
 import { Formik } from 'formik';
 import * as Yup from 'yup'
@@ -28,7 +28,7 @@ const AddCleanUp = () => {
         // Food_Wrappers: spot.counter3,
         // Large_Plastic_Rigid: spot.counter4,
         createAt: new Date(),
-        
+        titleImage: spot.titleImage,
         // userid: auth.currentUser.uid,
         // //username: users.username,
         // usermail: auth.currentUser.email,
@@ -41,7 +41,7 @@ const AddCleanUp = () => {
 
     }).then(() => {
         Alert.alert('Successfully Added');
-        navigation.push('HomeScreen');
+        
         console.log(spot.caption)
     })
     
@@ -53,6 +53,11 @@ console.log(spot.caption);
 
 const DeleteSpot =()=>{
   console.log('naan delete panna poram');
+  const docRef = doc(db,'spots',spot.id)
+  deleteDoc(docRef)
+  .then(()=>{
+    navigation.push('HomeScreen');
+  })
 }
 
   

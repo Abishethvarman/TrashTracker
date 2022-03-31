@@ -4,6 +4,7 @@ import { Entypo } from '@expo/vector-icons';
 
 import TrashDisplay from '../TrashSpots/TrashDisplay';
 import { collection, onSnapshot, orderBy, query } from 'firebase/firestore';
+import {  db } from '../../firebase';
 
 
 const Events = ({navigation}) => {
@@ -64,8 +65,8 @@ const Events = ({navigation}) => {
             
             <TouchableOpacity navigation={navigation} onPress={()=> navigation.navigate("TrashSpotScreen")}>
                 <View style={Styles.headerWrapper}>
-                <Text style={[Styles.header,{fontWeight:"bold"}]}>Trash</Text> 
-                <Text style={Styles.header}> hot spot</Text>
+                <Text style={[Styles.header,{fontWeight:"bold"}]}>Clean Up</Text> 
+                <Text style={Styles.header}> events</Text>
             </View>
             </TouchableOpacity>
 
