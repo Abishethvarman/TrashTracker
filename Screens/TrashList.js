@@ -4,6 +4,8 @@ import { Ionicons, AntDesign } from '@expo/vector-icons';
 import { collection, onSnapshot,query ,where, doc} from '@firebase/firestore'
 import { db } from '../firebase'
 import {useRoute} from '@react-navigation/native'
+import moment from 'moment';
+import Chat from '../components/Forum/Chat';
 // import Moment from 'react-moment';
 
 const TrashList = ({ navigation}) => {
@@ -46,7 +48,9 @@ const TrashList = ({ navigation}) => {
             {spot &&  <View style={Styles.headerWrapper}>
                 <Text>{spot.place} thani detail screen</Text>
                 <Image source={{uri:spot.titleImage}} style={{height:100, width:100}}/>
-                  
+                <Text>Spot tracked on : {moment(spot.createAt.toDate()).format('MMMM Do YYYY, h:mm:ss a')}</Text>
+                <Text> {moment(spot.createAt.toDate()).startOf('day').fromNow()}</Text>
+                
                 <Text >{spot.usermail}</Text>
                 <Text>{spot.seviority}</Text>
                 <Text>Food_Wrappers {spot.Food_Wrappers}</Text>

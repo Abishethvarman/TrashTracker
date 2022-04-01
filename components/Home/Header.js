@@ -27,9 +27,9 @@ const Header = ({navigation}) => {
                     <Image style={styles.logo} source={require('../../assets/TTlogo.png')}/>
                 </TouchableOpacity>
             <View style={styles.iconContainer}>
-               <TouchableOpacity>
+               <TouchableOpacity navigation={navigation} onPress={()=>navigation.push('NotificationScreen')}>
                     <View style={styles.readableBadge}>
-                        <Text style={styles.unreadableText}>2</Text>
+                        <Text style={styles.unreadableText}></Text>
                     </View>
                     <Ionicons name="notifications" size={30} color="black" />
                 </TouchableOpacity>  

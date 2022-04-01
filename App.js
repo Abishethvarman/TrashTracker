@@ -22,6 +22,8 @@ import TrashSpotScreen from './Screens/TrashSpotScreen';
 import TrashDisplay from './components/TrashSpots/TrashDisplay'
 import ProfileScreen from './Screens/ProfileScreen';
 import Chat from './components/Forum/Chat';
+import NotificationScreen from './Screens/NotificationScreen';
+import NewUserNotification from './components/Notification/NewUserNotification';
 
 
 LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by messageLogBox.ignoreAllLogs();
@@ -44,6 +46,8 @@ export default function App() {
   // <ForumScreen/>
   // <TrashDisplay/>
 //  < ProfileScreen/>
+//  <NotificationScreen/>
+//  <NewUserNotification/> 
 
 
 

@@ -2,10 +2,10 @@ import { View, Text } from 'react-native'
 import React from 'react'
 import NewUserNotification from '../components/Notification/NewUserNotification'
 
-const NotificationScreen = () => {
+const NotificationScreen = ({navigation}) => {
   return (
     <View>
-      <NewUserNotification/>
+      <NewUserNotification navigation={navigation}/>
     </View>
   )
 }

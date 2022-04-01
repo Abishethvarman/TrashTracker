@@ -1,9 +1,10 @@
-import { View, Text } from 'react-native'
-import React, { useState } from 'react'
-import { collection, orderBy, query } from 'firebase/firestore'
+import { View, Text, StyleSheet } from 'react-native'
+import React, { useEffect, useState } from 'react'
+import { collection, onSnapshot, orderBy, query } from 'firebase/firestore'
 import { db } from '../../firebase'
+import { useNavigation } from '@react-navigation/native'
 
-const NewUserNotification = () => {
+const NewUserNotification = ({navigation}) => {
 
     const [users,setUsers] = useState()
 
@@ -21,7 +22,7 @@ const NewUserNotification = () => {
                 
 
                 })
-              getNewUser(spotARR)
+              setUsers(spotARR)
                 
 
             })
@@ -38,12 +39,18 @@ const NewUserNotification = () => {
     }, [])
 
   return (
-    <View>
+    <View style={styles.container}>
         {users && users.map((user) => (
-      <Text>Hey!!! a new member to our family. Tracker {user.username} has joined the TT community.</Text>
+      <Text key={user.id} style={{color:'blue'}}>Hey!!! a new member to our family. Tracker {user.username} has joined the TT community.</Text>
         ))}
     </View>
   )
 }
 
+const styles = StyleSheet.create({
+  container:{
+    backgroundColor:"red",
+    flex:1
+  }
+})
 export default NewUserNotification
