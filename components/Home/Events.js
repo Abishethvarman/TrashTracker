@@ -44,24 +44,6 @@ const Events = () => {
     }, [])
 
 
-// const [spot,setSpot] = useState([])
-
-//     const  = () =>
-//     {
-//         const spot = collection(db, 'spots')
-//         onSnapshot(spot, (snapshot) =>
-//         {
-//             setSpot((snapshot.docs.map((spots) => ({ id: spots.id, ...spots.data() }))))
-//             console.log(doc.data());
-      
-//         })
-       
-    
-//     useEffect(() => {
-//         getTrashSpot();
-//     },[])
-//     }
-
     
     return (
         <View style={Styles.container}>

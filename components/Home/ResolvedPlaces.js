@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { View, Text, StyleSheet, Image, ImageBackground, ScrollView } from 'react-native'
 import { Entypo } from '@expo/vector-icons';
 import { collection, onSnapshot, orderBy, query } from 'firebase/firestore';
@@ -49,9 +49,9 @@ const ResolvedPlaces = () => {
             <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
 
             {rplaces && rplaces.map((rplace) => (
-            <View style={{marginLeft:20, marginBottom:10}}>
+            <View style={{marginLeft:20, marginBottom:10}} key={rplace.id}>
                 <ImageBackground style={Styles.suggestImg} 
-                    source={require("../../assets/Nocleanup.jpg")}
+                    source={{uri:rplace.titleImage}}
                         imageStyle={{ borderRadius: 20 }} >
                         <View style={Styles.suggestTextWrapper}>
 
@@ -59,14 +59,14 @@ const ResolvedPlaces = () => {
 
                             <View style={[Styles.suggestplace, Styles.suggestBottom]}>
                                 <Entypo name="location-pin" size={24} color="#19B4BF" />
-                                <Text style={Styles.suggestplaceText}>{rplace.Place}</Text>
+                                <Text style={Styles.suggestplaceText}>{rplace.place}</Text>
                             </View>
 
                         </View>
                 </ImageBackground> 
                 </View>
                 
-
+                ))}
                 
              
                 </ScrollView>
