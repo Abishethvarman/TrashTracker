@@ -9,7 +9,7 @@ const LeaderboardScreen = ({navigation}) => {
   return (
     <SafeAreaView style={styles.container}>
         <Header navigation={navigation}/>
-        
+        <Points/>
     </SafeAreaView>
   );
 };
