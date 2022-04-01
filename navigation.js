@@ -13,6 +13,7 @@ import ForumScreen from './Screens/ForumScreen'
 import HomeScreen from './Screens/HomeScreen'
 import LoginScreen from './Screens/LoginScreen'
 import MapScreen from './Screens/MapScreen'
+import NotificationScreen from './Screens/NotificationScreen'
 import ProfileScreen from './Screens/ProfileScreen'
 import SignupScreen from './Screens/SignupScreen'
 import TrashList from './Screens/TrashList'
@@ -40,6 +41,7 @@ export const SignedInStack = () => (
             <Stack.Screen name='EventList' component={EventList}/>
             <Stack.Screen name='EventsScreen' component={EventsScreen}/>
             <Stack.Screen name='AddResolve' component={AddResolveScreen}/>
+            <Stack.Screen name='NotificationScreen' component={NotificationScreen}/>
 
             
         </Stack.Navigator>
