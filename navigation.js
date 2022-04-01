@@ -2,10 +2,13 @@ import { NavigationContainer, StackActions} from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import React from 'react'
 import { View, Text } from 'react-native'
+import EventList from './components/Event/EventList'
 import TrashDisplay from './components/TrashSpots/TrashDisplay'
 import AddChatScreen from './Screens/AddChatScreen'
 import AddCleanUp from './Screens/AddCleanUp'
+import AddResolveScreen from './Screens/AddResolveScreen'
 import EditProfileScreen from './Screens/EditProfileScreen'
+import EventsScreen from './Screens/EventsScreen'
 import ForumScreen from './Screens/ForumScreen'
 import HomeScreen from './Screens/HomeScreen'
 import LoginScreen from './Screens/LoginScreen'
@@ -34,6 +37,10 @@ export const SignedInStack = () => (
             <Stack.Screen name='TrashList' component={TrashList}/>
             <Stack.Screen name='AddChatScreen' component={AddChatScreen}/>
             <Stack.Screen name='AddCleanUp' component={AddCleanUp}/>
+            <Stack.Screen name='EventList' component={EventList}/>
+            <Stack.Screen name='EventsScreen' component={EventsScreen}/>
+            <Stack.Screen name='AddResolve' component={AddResolveScreen}/>
+
             
         </Stack.Navigator>
     </NavigationContainer>

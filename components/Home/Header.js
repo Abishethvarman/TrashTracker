@@ -6,10 +6,11 @@ import { Entypo } from '@expo/vector-icons';
 import { auth, db } from '../../firebase'
 import { signOut } from '@firebase/auth'
 import { doc, updateDoc } from 'firebase/firestore'
+import { useNavigation } from '@react-navigation/native';
 
 
 const Header = ({navigation}) => {
-
+    
     const SignOut = async () => {
         await updateDoc(doc(db, 'users', auth.currentUser.uid), {
             isOnline: false,

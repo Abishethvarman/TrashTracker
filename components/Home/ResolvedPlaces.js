@@ -1,8 +1,43 @@
 import React from 'react'
 import { View, Text, StyleSheet, Image, ImageBackground, ScrollView } from 'react-native'
 import { Entypo } from '@expo/vector-icons';
+import { collection, onSnapshot, orderBy, query } from 'firebase/firestore';
+import { db } from '../../firebase';
 
 const ResolvedPlaces = () => {
+
+    const [rplaces,setRplaces] = useState()
+
+    useEffect(() => {
+        try {
+            const getResolved =query((collection(db, 'resolves')),orderBy("createAt", "desc"))
+            // collection(db, 'spots')
+            
+            onSnapshot(getResolved,(snapshots)=>{
+                let spotARR = [];
+                snapshots.docs.map((doc)=>{
+
+                    spotARR.push({...doc.data(),id:doc.id})
+                    // console.log(doc.id);
+                
+
+                })
+              setRplaces(spotARR)
+                
+
+            })
+
+             
+        } catch (error) {
+
+            let spotARR = [];
+            setRplaces(spotARR)
+
+        }
+
+
+    }, [])
+
     return (
         <View style={Styles.container}>
             
@@ -13,7 +48,7 @@ const ResolvedPlaces = () => {
 
             <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
 
-
+            {rplaces && rplaces.map((rplace) => (
             <View style={{marginLeft:20, marginBottom:10}}>
                 <ImageBackground style={Styles.suggestImg} 
                     source={require("../../assets/Nocleanup.jpg")}
@@ -24,7 +59,7 @@ const ResolvedPlaces = () => {
 
                             <View style={[Styles.suggestplace, Styles.suggestBottom]}>
                                 <Entypo name="location-pin" size={24} color="#19B4BF" />
-                                <Text style={Styles.suggestplaceText}>Batticaloa</Text>
+                                <Text style={Styles.suggestplaceText}>{rplace.Place}</Text>
                             </View>
 
                         </View>
@@ -32,42 +67,7 @@ const ResolvedPlaces = () => {
                 </View>
                 
 
-                <View style={{ marginBottom:10}}>
-                <ImageBackground style={Styles.suggestImg} 
-                    source={require("../../assets/Nocleanup.jpg")}
-                        imageStyle={{ borderRadius: 20 }} >
-                        <View style={Styles.suggestTextWrapper}>
-
-                            <Text></Text>
-
-                            <View style={[Styles.suggestplace, Styles.suggestBottom]}>
-                                <Entypo name="location-pin" size={24} color="#19B4BF" />
-                                <Text style={Styles.suggestplaceText}>Kallady</Text>
-                            </View>
-                            
-                        </View>
-                </ImageBackground> 
-                </View>
                 
-
-                <View style={{ marginBottom:10}}>
-                <ImageBackground style={Styles.suggestImg} 
-                    source={require("../../assets/Nocleanup.jpg")}
-                        imageStyle={{ borderRadius: 20 }} >
-                        <View style={Styles.suggestTextWrapper}>
-
-                            <Text></Text>
-
-                            <View style={[Styles.suggestplace, Styles.suggestBottom]}>
-                                <Entypo name="location-pin" size={24} color="#19B4BF" />
-                                <Text style={Styles.suggestplaceText}>Trincomalee</Text>
-                            </View>
-                            
-                        </View>
-                </ImageBackground> 
-            </View>
-
-               
              
                 </ScrollView>
             

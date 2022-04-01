@@ -5,9 +5,12 @@ import { Entypo } from '@expo/vector-icons';
 import TrashDisplay from '../TrashSpots/TrashDisplay';
 import { collection, onSnapshot, orderBy, query } from 'firebase/firestore';
 import {  db } from '../../firebase';
+import { useNavigation } from '@react-navigation/native';
 
 
-const Events = ({navigation}) => {
+
+const Events = () => {
+    const navigation = useNavigation();
     const [events,setEvents] = useState()
 
     useEffect(() => {
@@ -63,7 +66,7 @@ const Events = ({navigation}) => {
     return (
         <View style={Styles.container}>
             
-            <TouchableOpacity navigation={navigation} onPress={()=> navigation.navigate("TrashSpotScreen")}>
+            <TouchableOpacity navigation={navigation} onPress={()=> navigation.navigate("EventsScreen")}>
                 <View style={Styles.headerWrapper}>
                 <Text style={[Styles.header,{fontWeight:"bold"}]}>Clean Up</Text> 
                 <Text style={Styles.header}> events</Text>
@@ -75,9 +78,7 @@ const Events = ({navigation}) => {
             {events && events.map((event) => (
             <TouchableOpacity 
             key={event.id}
-            onPress={() => {navigation.navigate('TrashList', {
-                event
-                     })   
+            onPress={() => {navigation.navigate ('EventList',  {event}  )
               }}>
             <View  style={{marginLeft:20, marginBottom:10}}>
                 <ImageBackground style={Styles.suggestImg} 

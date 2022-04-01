@@ -2,7 +2,8 @@ import { View, Text, StyleSheet, SafeAreaView, TouchableOpacity } from 'react-na
 import React from 'react';
 import { Ionicons } from '@expo/vector-icons';
 import Leaderboard from 'react-native-leaderboard';
-
+import points from '../components/LeaderBoard/Points';
+import Points from '../components/LeaderBoard/Points';
 
 const LeaderboardScreen = ({navigation}) => {
   return (

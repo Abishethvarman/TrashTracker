@@ -6,7 +6,9 @@ import { collection, onSnapshot, orderBy, query, where } from 'firebase/firestor
 import TrashDisplay from '../TrashSpots/TrashDisplay';
 
 
+
 const TrashSpot = ({navigation}) => {
+    
     const [spots,setSpots] = useState()
 
     useEffect(() => {
@@ -62,7 +64,9 @@ const TrashSpot = ({navigation}) => {
     return (
         <View style={Styles.container}>
             
-            <TouchableOpacity navigation={navigation} onPress={()=> navigation.navigate("TrashSpotScreen")}>
+            <TouchableOpacity navigation={navigation} 
+            onPress={()=> navigation.navigate("TrashSpotScreen")}
+            >
                 <View style={Styles.headerWrapper}>
                 <Text style={[Styles.header,{fontWeight:"bold"}]}>Trash</Text> 
                 <Text style={Styles.header}> hot spot</Text>
