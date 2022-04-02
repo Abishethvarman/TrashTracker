@@ -6,6 +6,7 @@ import { addDoc, collection, deleteDoc, doc, setDoc } from 'firebase/firestore';
 import { db } from '../firebase';
 import { Formik } from 'formik';
 import * as Yup from 'yup'
+import DateTimePicker from '@react-native-community/datetimepicker';
 
  
 
@@ -21,19 +22,22 @@ const AddCleanUp = () => {
   const [text,setText] = useState('empty')
   const [open, setOpen] = useState(false)
 
-  const onChange ={event,selectDate} => {
+  const onChange =(event,selectDate) => {
     const currentDate = selectDate || date;
     setDate(currentDate);
     let tempDate = new Date(currentDate);
     let fDate = tempDate.getDate()+'/'+(tempDate.getMonth()+1)+'/'+tempDate.getFullYear();
     let fTime = 'Hours: ' + tempDate.getHours()+ 'Minutes' +tempDate.getMinutes();
-    
+    setText(fDate+'\n'+fTime)
   }
 
   const showMode =(currentMode)=>{
     setShown(true);
     setMode(currentMode);
   }
+  const showDatepicker = () => {
+    showMode('date');
+  };
 
   const AddSubmit = async () => {
    console.log('19 vathu add ')
@@ -99,20 +103,29 @@ const DeleteSpot =()=>{
                 <Text>Plastic_Debris {spot.Plastic_Debris}</Text>
                 <Text>Large_Plastic_Rigid {spot.Large_Plastic_Rigid}</Text>
                 <View style={{bottom:0, marginBottom:5}}>
-                <Button title="Open" onPress={() => setOpen(true)} />
+                {/* <Button title="Open" onPress={() => setOpen(true)} /> */}
                 {/* <DatePicker modal open={open} date={date} 
                 onConfirm={(date) => { setOpen(false), setDate(date)}}
                 onCancel={() => { setOpen(false)}}
                 /> */}
-                <Button title='Selct the date' onPress={()=>showMode('date')}/>
-                <Button title='Im cleaning it on ' color='green' onPress={()=>{
+                
+                <Button title= 'Im cleaning it' style={{color:'green'}} onPress={()=>{
                   AddSubmit();
                   DeleteSpot();
                 }}/>
+                
                 </View>
             </View>
     }
     
+    <View>
+                <Button title='Selct the date' onPress={()=>showMode('date')}/>
+                <Button title='Selct the time' onPress={()=>showMode('time')}/>
+                <Text>{text}</Text>
+                {shown &&(
+                <DateTimePicker testID='dateTimePicker' value={date} mode={mode} is24Hour={true} display={'spinner'} onChange={onChange}
+                />)}
+                </View>
     </View>
     
   )
