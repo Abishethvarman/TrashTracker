@@ -6,7 +6,7 @@ import { addDoc, collection, deleteDoc, doc, setDoc } from 'firebase/firestore';
 import { db } from '../firebase';
 import { Formik } from 'formik';
 import * as Yup from 'yup'
-import DatePicker from 'react-native-date-picker';
+
  
 
 const AddCleanUp = () => {
@@ -16,7 +16,24 @@ const AddCleanUp = () => {
   console.log(spot.place)
   const navigation = useNavigation();
   const [date, setDate] = useState(new Date())
+  const [mode,setMode] =useState('date')
+  const [shown,setShown] =useState(false)
+  const [text,setText] = useState('empty')
   const [open, setOpen] = useState(false)
+
+  const onChange ={event,selectDate} => {
+    const currentDate = selectDate || date;
+    setDate(currentDate);
+    let tempDate = new Date(currentDate);
+    let fDate = tempDate.getDate()+'/'+(tempDate.getMonth()+1)+'/'+tempDate.getFullYear();
+    let fTime = 'Hours: ' + tempDate.getHours()+ 'Minutes' +tempDate.getMinutes();
+    
+  }
+
+  const showMode =(currentMode)=>{
+    setShown(true);
+    setMode(currentMode);
+  }
 
   const AddSubmit = async () => {
    console.log('19 vathu add ')
@@ -83,10 +100,11 @@ const DeleteSpot =()=>{
                 <Text>Large_Plastic_Rigid {spot.Large_Plastic_Rigid}</Text>
                 <View style={{bottom:0, marginBottom:5}}>
                 <Button title="Open" onPress={() => setOpen(true)} />
-                <DatePicker modal open={open} date={date} 
+                {/* <DatePicker modal open={open} date={date} 
                 onConfirm={(date) => { setOpen(false), setDate(date)}}
                 onCancel={() => { setOpen(false)}}
-                />
+                /> */}
+                <Button title='Selct the date' onPress={()=>showMode('date')}/>
                 <Button title='Im cleaning it on ' color='green' onPress={()=>{
                   AddSubmit();
                   DeleteSpot();
