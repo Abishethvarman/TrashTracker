@@ -1,43 +1,64 @@
 import { View, Text, StyleSheet } from 'react-native'
 import React, { useEffect, useState } from 'react'
-import { collection, onSnapshot, orderBy, query } from 'firebase/firestore'
-import { db } from '../../firebase'
+import { collection, doc, onSnapshot, orderBy, query, where } from 'firebase/firestore'
+import { auth, db } from '../../firebase'
 import { useNavigation } from '@react-navigation/native'
 
 const NewUserNotification = ({navigation}) => {
 
     const [users,setUsers] = useState()
-
+    const [currentUser,setCurrentUser]=useState();
     useEffect(() => {
-        try {
-            const getNewUser =query((collection(db, 'users')),orderBy("createAt", "desc"))
-            // collection(db, 'spots')
-            
-            onSnapshot(getNewUser,(snapshots)=>{
-                let spotARR = [];
-                snapshots.docs.map((doc)=>{
-
-                    spotARR.push({...doc.data(),id:doc.id})
-                    // console.log(doc.id);
-                
-
-                })
-              setUsers(spotARR)
-                
-
-            })
-
-             
-        } catch (error) {
-
-            let spotARR = [];
-            setUsers(spotARR)
-
-        }
-
+    
+    current();
+    // newUser();
 
     }, [])
 
+    const newUser=()=>{
+    try {
+      const getNewUser =query((collection(db, 'users')), where("createAt",">=",currentUser.createAt) )
+      // collection(db, 'spots')
+      // where >= createAt
+      
+      onSnapshot(getNewUser,(snapshots)=>{
+          let spotARR = [];
+          snapshots.docs.map((doc)=>{
+
+              spotARR.push({...doc.data(),id:doc.id})
+              // console.log(doc.id);
+          
+
+          })
+        setUsers(spotARR)
+          
+
+      })
+      } catch (error) {
+
+        let spotARR = [];
+        setUsers(spotARR)
+
+        }}
+
+      const current=()=>{
+    try {
+      const getCurrentUser =query((doc(db, 'users','FS8yYVnQmESSYp5jRT5lRDgqFKI2')))
+      // collection(db, 'spots')
+      // where >= createAt
+      // console.log(auth.currentUser.uid)
+      onSnapshot(getCurrentUser,(snapshots)=>{
+         
+        setCurrentUser(snapshots.data())
+          })
+
+          
+
+      } catch (error) {
+
+     console.log(error)
+
+  }}
   return (
     <View style={styles.container}>
         {users && users.map((user) => (

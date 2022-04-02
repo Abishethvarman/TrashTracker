@@ -1,11 +1,12 @@
 import { View, Text, StyleSheet, TouchableOpacity, Image, Button, Alert } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 import { useNavigation, useRoute } from '@react-navigation/native'
 import { Ionicons } from '@expo/vector-icons';
 import { addDoc, collection, deleteDoc, doc, setDoc } from 'firebase/firestore';
 import { db } from '../firebase';
 import { Formik } from 'formik';
 import * as Yup from 'yup'
+import DatePicker from 'react-native-date-picker';
  
 
 const AddCleanUp = () => {
@@ -14,6 +15,8 @@ const AddCleanUp = () => {
   console.log(spot);
   console.log(spot.place)
   const navigation = useNavigation();
+  const [date, setDate] = useState(new Date())
+  const [open, setOpen] = useState(false)
 
   const AddSubmit = async () => {
    console.log('19 vathu add ')
@@ -79,6 +82,11 @@ const DeleteSpot =()=>{
                 <Text>Plastic_Debris {spot.Plastic_Debris}</Text>
                 <Text>Large_Plastic_Rigid {spot.Large_Plastic_Rigid}</Text>
                 <View style={{bottom:0, marginBottom:5}}>
+                <Button title="Open" onPress={() => setOpen(true)} />
+                <DatePicker modal open={open} date={date} 
+                onConfirm={(date) => { setOpen(false), setDate(date)}}
+                onCancel={() => { setOpen(false)}}
+                />
                 <Button title='Im cleaning it on ' color='green' onPress={()=>{
                   AddSubmit();
                   DeleteSpot();

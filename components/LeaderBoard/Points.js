@@ -57,7 +57,7 @@ console.log(points)
           {/* <Caption>Orders</Caption> */}
         </View>
       </View>
-      <ScrollView vertical={true} showsVerticalScrollIndicator={false}>
+      <ScrollView  showsVerticalScrollIndicator={false}>
         {points && points.map((point) => (
             
      <View key={point.id}>

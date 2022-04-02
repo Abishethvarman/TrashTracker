@@ -6,10 +6,12 @@ import { db } from '../firebase'
 import {useRoute} from '@react-navigation/native'
 import moment from 'moment';
 import Chat from '../components/Forum/Chat';
+import DatePicker from 'react-native-date-picker';
 // import Moment from 'react-moment';
 
 const TrashList = ({ navigation}) => {
     const [Tlist, setTlist] = useState()
+    
    
 
     const route = useRoute();
@@ -59,6 +61,8 @@ const TrashList = ({ navigation}) => {
                 <Text>Plastic_Debris {spot.Plastic_Debris}</Text>
                 <Text>Large_Plastic_Rigid {spot.Large_Plastic_Rigid}</Text>
                 <View style={{bottom:0, marginBottom:5}}>
+                
+                
                 <Button title='Im cleaning it on ' color='blue' onPress={()=>navigation.navigate('AddCleanUp',{spot})}/>
                 </View>
             </View>
