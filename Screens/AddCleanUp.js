@@ -11,6 +11,13 @@ import DateTimePicker from '@react-native-community/datetimepicker';
  
 
 const AddCleanUp = () => {
+
+  useEffect(() => {
+    
+
+
+}, [])
+
   const route = useRoute();
   const {spot} = route.params;
   console.log(spot);
@@ -122,8 +129,8 @@ const DeleteSpot =()=>{
                 <Button title='Selct the date' onPress={()=>showMode('date')}/>
                 <Button title='Selct the time' onPress={()=>showMode('time')}/>
                 <Text>{text}</Text>
-                {shown &&(
-                <DateTimePicker testID='dateTimePicker' value={date} mode={mode} is24Hour={true} display={'spinner'} onChange={onChange}
+                {shown && (
+                <DateTimePicker testID='dateTimePicker' value={date} mode={mode} is24Hour={true}  onChange={onChange}
                 />)}
                 </View>
     </View>
