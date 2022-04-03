@@ -65,6 +65,8 @@ const ChatForm = () => {
                     style={{color:'white', fontSize:20}}
                     placeholder="Write a caption..." 
                     placeholderTextColor='gray'
+                    autoCorrect={true}
+                    maxLength={200}
                     multiline={true}
                     onChangeText={handleChange('caption')}
                     onBlur={handleBlur('caption')}
