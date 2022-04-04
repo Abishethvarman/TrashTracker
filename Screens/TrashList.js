@@ -52,11 +52,13 @@ const TrashList = ({ navigation}) => {
                 <Image source={{uri:spot.titleImage}} style={Styles.titleImage}/>
                 <View style={{flexDirection:'row'}}>
                 <Text style={Styles.text1}>Spot tracked on : {moment(spot.createAt.toDate()).format('MMMM Do YYYY, h:mm a')}</Text>
+                <Text style={Styles.text1}> </Text>
                 <Ionicons name="time" size={24} color="black" />
                 <Text style={Styles.text1}> {moment(spot.createAt.toDate()).startOf('day').fromNow()}</Text>
                 </View>
-                <Text >{spot.usermail}</Text>
-                <Text>{spot.seviority}</Text>
+                <View>
+                <Text style={Styles.seviority}>Seviority of the spot :  {spot.seviority}</Text>
+                </View>
                 <Text>Food_Wrappers {spot.Food_Wrappers}</Text>
                 <Text>Polythene_bags {spot.Polythene_bags}</Text>
                 <Text>PET_Bottles {spot.PET_Bottles}</Text>
@@ -124,6 +126,18 @@ const TrashList = ({ navigation}) => {
         fontSize:15,
         fontWeight:'500',
         marginLeft:5
+    },
+    seviority:{
+        borderWidth:1,
+        padding:10,
+        alignItems:'center',
+        alignContent:'center',
+        borderColor:"red",
+        marginHorizontal:20,
+        fontSize:25,
+        justifyContent:'center',
+        color:'red',
+        backgroundColor:'silver'
     }
   })
   export default TrashList;
