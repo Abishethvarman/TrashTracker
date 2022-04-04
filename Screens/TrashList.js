@@ -61,13 +61,13 @@ const TrashList = ({ navigation}) => {
                 <Text style={Styles.seviority}>Seviority of the spot :  {spot.seviority}</Text>
                 </View>
                 <Divider/>
-                <Text>Food_Wrappers {spot.Food_Wrappers}</Text>
+                <Text>Food Wrappers {spot.Food_Wrappers}</Text>
                 <Text>Polythene_bags {spot.Polythene_bags}</Text>
                 <Text>PET_Bottles {spot.PET_Bottles}</Text>
                 <Text>Plastic_Debris {spot.Plastic_Debris}</Text>
                 <Text>Large_Plastic_Rigid {spot.Large_Plastic_Rigid}</Text>
                 <View style={{bottom:0, marginBottom:5}}>
-                <Divider style={{marginTop:5, size:5}}/>
+                <Divider style={{margin:5, size:5, color:'black'}}/>
                 <View style={Styles.EnterButton}>
                 <Button title='Im cleaning it on ' color='blue' onPress={()=>navigation.navigate('AddCleanUp',{spot})}/>
                 </View>
