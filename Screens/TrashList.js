@@ -48,8 +48,8 @@ const TrashList = ({ navigation}) => {
             </TouchableOpacity>
              
             {spot &&  <View style={Styles.headerWrapper}>
-                <Text>{spot.place} thani detail screen</Text>
-                <Image source={{uri:spot.titleImage}} style={{height:100, width:100}}/>
+                <Text>@ {spot.place} </Text>
+                <Image source={{uri:spot.titleImage}} style={Styles.titleImage}/>
                 <Text>Spot tracked on : {moment(spot.createAt.toDate()).format('MMMM Do YYYY, h:mm:ss a')}</Text>
                 <Text> {moment(spot.createAt.toDate()).startOf('day').fromNow()}</Text>
                 
@@ -62,8 +62,9 @@ const TrashList = ({ navigation}) => {
                 <Text>Large_Plastic_Rigid {spot.Large_Plastic_Rigid}</Text>
                 <View style={{bottom:0, marginBottom:5}}>
                 
-                
-                <Button title='Im cleaning it on ' color='blue' onPress={()=>navigation.navigate('AddCleanUp',{spot})}/>
+                <View style={Styles.EnterButton}>
+                <Button title='Im cleaning it on '  color='blue' onPress={()=>navigation.navigate('AddCleanUp',{spot})}/>
+                </View>
                 </View>
             </View>
         }
@@ -104,8 +105,18 @@ const TrashList = ({ navigation}) => {
   };
   const Styles=StyleSheet.create({
  container:{
-         
+      backgroundColor:'#20b2aa',
+      flex:1   
      
- }
+ },
+ titleImage:{
+     height:250, 
+     width:'90%', 
+     marginHorizontal:20,
+     borderRadius:20
+    },
+    EnterButton:{
+        bottom:0
+    }
   })
   export default TrashList;
