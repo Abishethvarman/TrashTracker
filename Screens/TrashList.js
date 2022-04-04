@@ -50,9 +50,11 @@ const TrashList = ({ navigation}) => {
             {spot &&  <View style={Styles.headerWrapper}>
                 <Text>@ {spot.place} </Text>
                 <Image source={{uri:spot.titleImage}} style={Styles.titleImage}/>
-                <Text>Spot tracked on : {moment(spot.createAt.toDate()).format('MMMM Do YYYY, h:mm a')}</Text>
-                <Text> {moment(spot.createAt.toDate()).startOf('day').fromNow()}</Text>
-                
+                <View style={{flexDirection:'row'}}>
+                <Text style={Styles.text1}>Spot tracked on : {moment(spot.createAt.toDate()).format('MMMM Do YYYY, h:mm a')}</Text>
+                <Ionicons name="time" size={24} color="black" />
+                <Text style={Styles.text1}> {moment(spot.createAt.toDate()).startOf('day').fromNow()}</Text>
+                </View>
                 <Text >{spot.usermail}</Text>
                 <Text>{spot.seviority}</Text>
                 <Text>Food_Wrappers {spot.Food_Wrappers}</Text>
@@ -117,6 +119,11 @@ const TrashList = ({ navigation}) => {
     },
     EnterButton:{
         bottom:0
+    },
+    text1:{
+        fontSize:15,
+        fontWeight:'500',
+        marginLeft:5
     }
   })
   export default TrashList;
