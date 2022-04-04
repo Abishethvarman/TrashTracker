@@ -56,7 +56,7 @@ const TrashList = ({ navigation}) => {
                 <Ionicons name="time" size={24} color="black" />
                 <Text style={Styles.text1}> {moment(spot.createAt.toDate()).startOf('day').fromNow()}</Text>
                 </View>
-                <View>
+                <View style={{justifyContent:'center'}}>
                 <Text style={Styles.seviority}>Seviority of the spot :  {spot.seviority}</Text>
                 </View>
                 <Text>Food_Wrappers {spot.Food_Wrappers}</Text>
@@ -130,14 +130,14 @@ const TrashList = ({ navigation}) => {
     seviority:{
         borderWidth:1,
         padding:10,
-        alignItems:'center',
-        alignContent:'center',
+       
         borderColor:"red",
         marginHorizontal:20,
-        fontSize:25,
+        fontSize:24,
         justifyContent:'center',
         color:'red',
-        backgroundColor:'silver'
+        backgroundColor:'silver',
+        borderRadius:10
     }
   })
   export default TrashList;
