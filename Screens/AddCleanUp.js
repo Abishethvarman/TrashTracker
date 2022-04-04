@@ -12,11 +12,11 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 
 const AddCleanUp = () => {
 
-  useEffect(() => {
+//   useEffect(() => {
     
 
 
-}, [])
+// }, [])
 
   const route = useRoute();
   const {spot} = route.params;

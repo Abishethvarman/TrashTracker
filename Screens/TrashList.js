@@ -1,5 +1,5 @@
 import { View, Text, StatusBar,StyleSheet, TouchableOpacity,Image,ScrollView, Button, MaskedViewComponent } from 'react-native';
-import React,{useEffect,useState} from 'react';
+import React,{useState} from 'react';
 import { Ionicons, AntDesign } from '@expo/vector-icons'; 
 import { collection, onSnapshot,query ,where, doc} from '@firebase/firestore'
 import { db } from '../firebase'
@@ -50,7 +50,7 @@ const TrashList = ({ navigation}) => {
             {spot &&  <View style={Styles.headerWrapper}>
                 <Text>@ {spot.place} </Text>
                 <Image source={{uri:spot.titleImage}} style={Styles.titleImage}/>
-                <Text>Spot tracked on : {moment(spot.createAt.toDate()).format('MMMM Do YYYY, h:mm:ss a')}</Text>
+                <Text>Spot tracked on : {moment(spot.createAt.toDate()).format('MMMM Do YYYY, h:mm a')}</Text>
                 <Text> {moment(spot.createAt.toDate()).startOf('day').fromNow()}</Text>
                 
                 <Text >{spot.usermail}</Text>
@@ -63,7 +63,7 @@ const TrashList = ({ navigation}) => {
                 <View style={{bottom:0, marginBottom:5}}>
                 
                 <View style={Styles.EnterButton}>
-                <Button title='Im cleaning it on '  color='blue' onPress={()=>navigation.navigate('AddCleanUp',{spot})}/>
+                <Button title='Im cleaning it on ' color='blue' onPress={()=>navigation.navigate('AddCleanUp',{spot})}/>
                 </View>
                 </View>
             </View>
