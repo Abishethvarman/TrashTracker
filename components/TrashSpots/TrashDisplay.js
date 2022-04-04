@@ -2,6 +2,7 @@ import { View, Text,TouchableOpacity,StyleSheet,ScrollView, ImageBackground } fr
 import React ,{useEffect,useState} from 'react'
 import { Entypo } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
+import { AntDesign } from '@expo/vector-icons';
 import { auth, db } from '../../firebase';
 import { collection, onSnapshot, orderBy, query, where } from 'firebase/firestore';
 
@@ -45,9 +46,8 @@ const TrashDisplay = ({navigation}) => {
         
         
             <View style={Styles.headerWrapper} >
-                <Header navigation={navigation}/>
-            <Text style={[Styles.header,{fontWeight:"bold"}]}>Trash</Text> 
-            <Text style={Styles.header}> hot spots</Text>
+            <Header navigation={navigation}/>
+            
         </View>
        
 
@@ -55,7 +55,7 @@ const TrashDisplay = ({navigation}) => {
 
        {spots && spots.map((spot) => ( 
         <TouchableOpacity key={spot.id} onPress={()=>navigation.navigate('TrashList',{spot})}>
-        <View  style={{marginLeft:20, marginBottom:10}}>
+        <View  style={{marginBottom:7, marginHorizontal:15}}>
             <ImageBackground style={Styles.suggestImg} 
                 source={{uri:spot.titleImage}}
                     imageStyle={{ borderRadius: 20 }} >
@@ -91,8 +91,10 @@ const TrashDisplay = ({navigation}) => {
 const Header = ({navigation})=>(
   <View style={styles.headerContainer}>
           <TouchableOpacity navigation= {navigation} onPress={()=> navigation.push('HomeScreen')}>
-          <Ionicons name="chevron-back-outline" size={30} color="black" />
+          <AntDesign name="back" size={30} color="black" />
           </TouchableOpacity>
+          <Text style={[Styles.header,{fontWeight:"bold"}]}> Trash</Text> 
+            <Text style={Styles.header}>hot spots</Text>
           <Text> </Text>
       </View>
 )
@@ -100,18 +102,22 @@ const Header = ({navigation})=>(
 const Styles = StyleSheet.create({
   container: {
       marginTop: 20,
-      backgroundColor:'pink'
+    //   backgroundColor:'pink'
       // paddingHorizontal:20
     
   },
   headerWrapper: {
       flexDirection: "row",
       marginBottom: 20,
-      marginTop:20
+      marginTop:10,
+      alignItems:'flex-start'
   },
   header: {
-      fontSize: 20,
-      color:"#4c4c4b"
+      fontSize: 30,
+      color:"#4c4c4b",
+      fontWeight:'700',
+      marginRight:10,
+      
   },
   suggestImg: {
       width: 380,
@@ -178,8 +184,8 @@ container:{
 headerContainer:{
     flexDirection:'row',
     alignItems:'center',
-    justifyContent:'space-between',
-    marginTop:30
+    justifyContent:'flex-start',
+    marginTop:0
 
 },
 headerText:{
