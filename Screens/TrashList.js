@@ -7,6 +7,7 @@ import {useRoute} from '@react-navigation/native'
 import moment from 'moment';
 import Chat from '../components/Forum/Chat';
 import DatePicker from 'react-native-date-picker';
+import { Divider } from 'react-native-elements';
 // import Moment from 'react-moment';
 
 const TrashList = ({ navigation}) => {
@@ -59,13 +60,14 @@ const TrashList = ({ navigation}) => {
                 <View style={{justifyContent:'center'}}>
                 <Text style={Styles.seviority}>Seviority of the spot :  {spot.seviority}</Text>
                 </View>
+                <Divider/>
                 <Text>Food_Wrappers {spot.Food_Wrappers}</Text>
                 <Text>Polythene_bags {spot.Polythene_bags}</Text>
                 <Text>PET_Bottles {spot.PET_Bottles}</Text>
                 <Text>Plastic_Debris {spot.Plastic_Debris}</Text>
                 <Text>Large_Plastic_Rigid {spot.Large_Plastic_Rigid}</Text>
                 <View style={{bottom:0, marginBottom:5}}>
-                
+                <Divider style={{marginTop:5, size:5}}/>
                 <View style={Styles.EnterButton}>
                 <Button title='Im cleaning it on ' color='blue' onPress={()=>navigation.navigate('AddCleanUp',{spot})}/>
                 </View>
