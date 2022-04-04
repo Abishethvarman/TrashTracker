@@ -5,6 +5,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import { auth, db } from '../../firebase';
 import { collection, onSnapshot, orderBy, query, where } from 'firebase/firestore';
+import Search from '../Home/Search';
 
 
 const TrashDisplay = ({navigation}) => {
@@ -48,7 +49,9 @@ const TrashDisplay = ({navigation}) => {
             <View style={Styles.headerWrapper} >
             <Header navigation={navigation}/>
             
+            
         </View>
+        <Search style={{marginTop:0}}/>
        
 
         <ScrollView verical={true} showsHorizontalScrollIndicator={false}>
@@ -91,7 +94,7 @@ const TrashDisplay = ({navigation}) => {
 const Header = ({navigation})=>(
   <View style={styles.headerContainer}>
           <TouchableOpacity navigation= {navigation} onPress={()=> navigation.push('HomeScreen')}>
-          <AntDesign name="back" size={30} color="black" />
+          <Entypo name="chevron-left" size={30} color="black" />
           </TouchableOpacity>
           <Text>    </Text>
           <Text style={[Styles.header,{fontWeight:"bold"}]}> Trash</Text> 
@@ -109,14 +112,13 @@ const Styles = StyleSheet.create({
   },
   headerWrapper: {
       flexDirection: "row",
-      marginBottom: 20,
+      marginBottom: 10,
       marginTop:10,
       alignItems:'flex-start'
   },
   header: {
       fontSize: 30,
       color:"#4c4c4b",
-      fontWeight:'700',
       marginRight:10,
       
   },
