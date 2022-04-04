@@ -93,6 +93,7 @@ const Header = ({navigation})=>(
           <TouchableOpacity navigation= {navigation} onPress={()=> navigation.push('HomeScreen')}>
           <AntDesign name="back" size={30} color="black" />
           </TouchableOpacity>
+          <Text>    </Text>
           <Text style={[Styles.header,{fontWeight:"bold"}]}> Trash</Text> 
             <Text style={Styles.header}>hot spots</Text>
           <Text> </Text>
