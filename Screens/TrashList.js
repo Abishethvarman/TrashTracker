@@ -55,12 +55,17 @@ const TrashList = ({ navigation}) => {
             </View>
             {spot &&  <View style={Styles.headerWrapper}>
                 <Image source={{uri:spot.titleImage}} style={Styles.titleImage}/>
-                <View style={{flexDirection:'row'}}>
+                
+                <View style={{flexDirection:'row', marginHorizontal:5}}>
                 <Text style={Styles.text1}>Spot tracked on : {moment(spot.createAt.toDate()).format('MMMM Do YYYY, h:mm a')}</Text>
                 <Text style={Styles.text1}> </Text>
                 <Ionicons name="time" size={18} color="black" style={{marginVertical:5}}/>
                 <Text style={Styles.text1}> {moment(spot.createAt.toDate()).startOf('day').fromNow()}</Text>
                 </View>
+                <TouchableOpacity onPress={()=>} style={{marginHorizontal:5,flexDirection:'row',justifyContent:'center'}}>
+                <Ionicons name="earth" size={15} color="#C5C8CB" />
+                <Text style={Styles.mapText}>View on map</Text>
+                </TouchableOpacity>
                 <View style={{justifyContent:'center'}}>
                 <Text style={Styles.seviority}>Seviority of the spot :  {spot.seviority}</Text>
                 </View>
@@ -72,7 +77,6 @@ const TrashList = ({ navigation}) => {
                 <Text style={Styles.text3}>Plastic_Debris : {spot.Plastic_Debris}</Text>
                 <Text style={Styles.text3}>Large Plastic Rigid : {spot.Large_Plastic_Rigid}</Text>
                 <View style={{bottom:0, marginBottom:5}}>
-                <Divider style={{margin:5, size:5, color:'black'}}/>
                 <View style={Styles.EnterButton}>
                 <Pressable style={Styles.endButton} onPress={()=>navigation.navigate('AddCleanUp',{spot})}>
                     <Text style={Styles.text4}> I'm cleaning it on!</Text>
@@ -122,6 +126,9 @@ const TrashList = ({ navigation}) => {
       flex:1   
      
  },
+ headerWrapper:{
+     
+ },
  titleImage:{
      height:250, 
      width:'90%', 
@@ -138,6 +145,11 @@ const TrashList = ({ navigation}) => {
         fontWeight:'500',
         marginLeft:5,
         marginVertical:5
+    },
+    mapText:{
+        fontSize:15,
+        color:'green',
+        fontFamily:'areal'
     },
     seviority:{
         borderWidth:1,
