@@ -62,7 +62,7 @@ const TrashList = ({ navigation}) => {
                 <Ionicons name="time" size={18} color="black" style={{marginVertical:5}}/>
                 <Text style={Styles.text1}> {moment(spot.createAt.toDate()).startOf('day').fromNow()}</Text>
                 </View>
-                <TouchableOpacity onPress={()=>} style={{marginHorizontal:5,flexDirection:'row',justifyContent:'center'}}>
+                <TouchableOpacity onPress={()=>navigation.navigate('MapDisplay',{spot})} style={{marginHorizontal:5,flexDirection:'row',justifyContent:'center'}}>
                 <Ionicons name="earth" size={15} color="#C5C8CB" />
                 <Text style={Styles.mapText}>View on map</Text>
                 </TouchableOpacity>
