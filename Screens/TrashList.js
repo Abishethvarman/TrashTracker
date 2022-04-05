@@ -44,18 +44,21 @@ const TrashList = ({ navigation}) => {
 
     return (
         <View style={Styles.container}>
-            <View>
+            <View style={{marginTop:20, flexDirection:'row'}}>
             <TouchableOpacity onPress={() => navigation.goBack()}>
             <Ionicons style={{paddingTop:10}} name="chevron-back" size={30} color="#4c4c4b" />
             </TouchableOpacity>
+                {spot &&  <View style={Styles.headerWrapper}>
+                <Text style={{fontSize:30, marginHorizontal:5}}>@ {spot.place} </Text>
+                
+                </View>}
             </View>
             {spot &&  <View style={Styles.headerWrapper}>
-                <Text>@ {spot.place} </Text>
                 <Image source={{uri:spot.titleImage}} style={Styles.titleImage}/>
                 <View style={{flexDirection:'row'}}>
                 <Text style={Styles.text1}>Spot tracked on : {moment(spot.createAt.toDate()).format('MMMM Do YYYY, h:mm a')}</Text>
                 <Text style={Styles.text1}> </Text>
-                <Ionicons name="time" size={24} color="black" />
+                <Ionicons name="time" size={18} color="black" />
                 <Text style={Styles.text1}> {moment(spot.createAt.toDate()).startOf('day').fromNow()}</Text>
                 </View>
                 <View style={{justifyContent:'center'}}>
@@ -120,7 +123,9 @@ const TrashList = ({ navigation}) => {
      height:250, 
      width:'90%', 
      marginHorizontal:20,
-     borderRadius:20
+     borderRadius:20,
+     borderColor:'green',
+     borderWidth: 2
     },
     EnterButton:{
         bottom:0
