@@ -1,4 +1,4 @@
-import { View, Text, StatusBar,StyleSheet, TouchableOpacity,Image,ScrollView, Button, MaskedViewComponent } from 'react-native';
+import { View, Text, StatusBar,StyleSheet, TouchableOpacity,Image,ScrollView, Button, MaskedViewComponent, Pressable } from 'react-native';
 import React,{useState} from 'react';
 import { Ionicons, AntDesign } from '@expo/vector-icons'; 
 import { collection, onSnapshot,query ,where, doc} from '@firebase/firestore'
@@ -66,15 +66,17 @@ const TrashList = ({ navigation}) => {
                 </View>
                 <Divider/>
                 <Text style={Styles.text2}>What can we see there with naked eye!</Text>
-                <Text>Food wrappers {spot.Food_Wrappers}</Text>
-                <Text>Polythene bags {spot.Polythene_bags}</Text>
-                <Text>PET bottles {spot.PET_Bottles}</Text>
-                <Text>Plastic_Debris {spot.Plastic_Debris}</Text>
-                <Text>Large_Plastic_Rigid {spot.Large_Plastic_Rigid}</Text>
+                <Text style={Styles.text3}>Food wrappers : {spot.Food_Wrappers}</Text>
+                <Text style={Styles.text3}>Polythene bags : {spot.Polythene_bags}</Text>
+                <Text style={Styles.text3}>PET bottles : {spot.PET_Bottles}</Text>
+                <Text style={Styles.text3}>Plastic_Debris : {spot.Plastic_Debris}</Text>
+                <Text style={Styles.text3}>Large Plastic Rigid : {spot.Large_Plastic_Rigid}</Text>
                 <View style={{bottom:0, marginBottom:5}}>
                 <Divider style={{margin:5, size:5, color:'black'}}/>
                 <View style={Styles.EnterButton}>
-                <Button title='Im cleaning it on ' color='blue' onPress={()=>navigation.navigate('AddCleanUp',{spot})}/>
+                <Pressable style={Styles.endButton} onPress={()=>navigation.navigate('AddCleanUp',{spot})}>
+                    <Text style={Styles.text4}> I'm cleaning it on!</Text>
+                </Pressable>
                 </View>
                 </View>
             </View>
@@ -152,6 +154,30 @@ const TrashList = ({ navigation}) => {
         fontWeight:'bold',
         fontSize:24,
         color:'blue',
+        alignItems:'center'
+    },
+    text3:{
+        fontWeight:'bold',
+        fontSize:20,
+        color:'white',
+        marginLeft:5
+    },
+    endButton:{
+        alignItems: 'center',
+        justifyContent: 'center',
+        paddingVertical: 10,
+        paddingHorizontal: 30,
+        borderRadius: 50,
+        elevation: 5,
+        margin:10,
+        backgroundColor:'#0288D1',
+        width:'95%',
+        height:50
+    },
+    text4:{
+        fontWeight:'bold',
+        fontSize:24,
+        color:'white',
         alignItems:'center'
     }
   })
