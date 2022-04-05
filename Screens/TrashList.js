@@ -44,10 +44,11 @@ const TrashList = ({ navigation}) => {
 
     return (
         <View style={Styles.container}>
+            <View>
             <TouchableOpacity onPress={() => navigation.goBack()}>
             <Ionicons style={{paddingTop:10}} name="chevron-back" size={30} color="#4c4c4b" />
             </TouchableOpacity>
-             
+            </View>
             {spot &&  <View style={Styles.headerWrapper}>
                 <Text>@ {spot.place} </Text>
                 <Image source={{uri:spot.titleImage}} style={Styles.titleImage}/>
