@@ -65,6 +65,7 @@ const TrashList = ({ navigation}) => {
                 <Text style={Styles.seviority}>Seviority of the spot :  {spot.seviority}</Text>
                 </View>
                 <Divider/>
+                <Text style={Styles.text2}>What can we see there with naked eye!</Text>
                 <Text>Food wrappers {spot.Food_Wrappers}</Text>
                 <Text>Polythene bags {spot.Polythene_bags}</Text>
                 <Text>PET bottles {spot.PET_Bottles}</Text>
@@ -138,7 +139,6 @@ const TrashList = ({ navigation}) => {
     seviority:{
         borderWidth:1,
         padding:10,
-       
         borderColor:"red",
         marginHorizontal:20,
         fontSize:24,
@@ -146,6 +146,13 @@ const TrashList = ({ navigation}) => {
         color:'red',
         backgroundColor:'silver',
         borderRadius:10
+    },
+    text2:{
+        fontStyle:'italic',
+        fontWeight:'bold',
+        fontSize:24,
+        color:'blue',
+        alignItems:'center'
     }
   })
   export default TrashList;
