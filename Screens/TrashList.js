@@ -149,7 +149,7 @@ const TrashList = ({ navigation}) => {
     mapText:{
         fontSize:15,
         color:'green',
-        fontFamily:'areal'
+        // fontFamily:'roboto'
     },
     seviority:{
         borderWidth:1,

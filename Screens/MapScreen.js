@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
     marginTop: StatusBar.currentHeight
   },
   map: {
-    width: Dimensions.get('window').width-20,
+    width: Dimensions.get('window').width,
     height: Dimensions.get('window').height-50,
     marginBottom:0,
     marginTop:0
