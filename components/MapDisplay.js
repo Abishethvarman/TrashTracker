@@ -7,41 +7,14 @@ import { useEffect, useState } from 'react';
 import { collection, onSnapshot, orderBy, query } from 'firebase/firestore';
 import { db } from '../firebase';
 import { TouchableRipple } from 'react-native-paper';
+import { useRoute } from '@react-navigation/native';
 
 
 const MapDisplay = ({navigation})=> {
 
-  const [spot,setSpot] = useState()
-
-  useEffect(() => {
-      try {
-          const getTrashSpot =query((collection(db, 'spots')),orderBy("createAt", "desc"))
-          // collection(db, 'spots')
-          
-          onSnapshot(getTrashSpot,(snapshots)=>{
-              let spotARR = [];
-              snapshots.docs.map((doc)=>{
-
-                  spotARR.push({...doc.data(),id:doc.id})
-                  // console.log(doc.id);
-              
-
-              })
-            setSpot(spotARR)
-              
-
-          })
-
-           
-      } catch (error) {
-
-          let spotARR = [];
-          setSpot(spotARR)
-
-      }
-
-
-  }, [])
+  const route = useRoute();
+    const {spot} = route.params;
+    console.log(spot);
 
 
   return (
@@ -59,18 +32,19 @@ const MapDisplay = ({navigation})=> {
   >
   
    {/*marker to a nearby location */}
-  {spot && spot.map((spots) => (
+  {spot &&
             <Marker 
-            key={spots.id}
+            key={spot.id}
             
     
     coordinate={{
-      latitude: spots.latitude ,
-      longitude: spots.longitude
+      latitude: spot.latitude ,
+      longitude: spot.longitude
     }}
-    pinColor="green"
+    pinColor="red"
+    // image={{uri:spot.TitleImage}}
     /> 
-    )) } 
+    } 
     
   {/* latitude: 7.914827145542,
     longitude: 81.6551462687416,
@@ -107,7 +81,7 @@ const styles = StyleSheet.create({
     marginTop: StatusBar.currentHeight
   },
   map: {
-    width: Dimensions.get('window').width-20,
+    width: Dimensions.get('window').width,
     height: Dimensions.get('window').height-50,
     marginBottom:0,
     marginTop:0

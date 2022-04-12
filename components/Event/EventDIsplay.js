@@ -100,7 +100,7 @@ const Header = ({navigation})=>(
 const Styles = StyleSheet.create({
   container: {
       marginTop: 20,
-      backgroundColor:'pink'
+      backgroundColor:"#65BB00"
       // paddingHorizontal:20
     
   },
