@@ -74,7 +74,7 @@ const Header = ({navigation:{goBack}})=>(
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: 'red',
     justifyContent: 'center',
     flexDirection:'column',
     marginHorizontal:10,
