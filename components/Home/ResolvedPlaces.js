@@ -43,7 +43,7 @@ const ResolvedPlaces = ({navigation}) => {
             
             <View style={Styles.headerWrapper}>
                 <TouchableOpacity navigation={navigation} 
-            onPress={()=> navigation.navigate("ResolvedScreen")}>
+            onPress={()=> navigation.push("ResolvedScreen")}>
                 <Text style={[Styles.header,{fontWeight:"bold"}]}>Resolved </Text> 
                 <Text style={Styles.header}> places</Text>
                 </TouchableOpacity>
