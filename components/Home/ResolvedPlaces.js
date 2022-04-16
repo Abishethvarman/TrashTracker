@@ -4,7 +4,7 @@ import { Entypo } from '@expo/vector-icons';
 import { collection, onSnapshot, orderBy, query } from 'firebase/firestore';
 import { db } from '../../firebase';
 
-const ResolvedPlaces = () => {
+const ResolvedPlaces = ({navigation}) => {
 
     const [rplaces,setRplaces] = useState()
 
@@ -43,7 +43,7 @@ const ResolvedPlaces = () => {
             
             <View style={Styles.headerWrapper}>
                 <TouchableOpacity navigation={navigation} 
-            onPress={()=> navigation.navigate("TrashSpotScreen")}>
+            onPress={()=> navigation.navigate("ResolvedScreen")}>
                 <Text style={[Styles.header,{fontWeight:"bold"}]}>Resolved </Text> 
                 <Text style={Styles.header}> places</Text>
                 </TouchableOpacity>

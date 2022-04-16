@@ -1,6 +1,5 @@
-import { View, Text } from 'react-native'
+import { View, Text, ImageBackground, TouchableOpacity, ScrollView, StyleSheet } from 'react-native'
 import React ,{useEffect,useState} from 'react'
-import { View, Text,TouchableOpacity,StyleSheet,ScrollView, ImageBackground } from 'react-native'
 import { Entypo } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
@@ -9,7 +8,7 @@ import { collection, onSnapshot, orderBy, query, where } from 'firebase/firestor
 import Search from '../Home/Search';
 
 
-const ResolveDisplay = () => {
+const ResolveDisplay = ({navigation}) => {
     
       const [resolves,setResolves] = useState()
     
@@ -45,6 +44,7 @@ const ResolveDisplay = () => {
     
     
       return (
+          
         <View style={Styles.container}>
             
             
@@ -59,7 +59,7 @@ const ResolveDisplay = () => {
             <ScrollView verical={true} showsHorizontalScrollIndicator={false}>
     
            {resolves && resolves.map((resolve) => ( 
-            <TouchableOpacity key={resolve.id} onPress={()=>navigation.navigate('TrashList',{resolve})}>
+            <TouchableOpacity key={resolve.id} onPress={()=>navigation.navigate('ResolveList',{resolve})}>
             <View  style={{marginBottom:7, marginHorizontal:15}}>
                 <ImageBackground style={Styles.suggestImg} 
                     source={{uri:resolve.titleImage}}
