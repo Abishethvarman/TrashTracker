@@ -42,13 +42,12 @@ const ResolvedPlaces = ({navigation}) => {
 
     return (
         <View style={Styles.container}>
-            
+            <TouchableOpacity navigation={navigation} onPress={({navigation})=> navigation.navigate("ProfileScreen")} >
             <View style={Styles.headerWrapper}>
-                <TouchableOpacity navigation={navigation} onPress={()=> navigation.navigate("ResolvedScreen")}>
                 <Text style={[Styles.header,{fontWeight:"bold"}]}>Resolved </Text> 
                 <Text style={Styles.header}> places</Text>
-                </TouchableOpacity>
             </View>
+            </TouchableOpacity>
 
             <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
 
@@ -86,7 +85,7 @@ const Styles = StyleSheet.create({
       
     },
     headerWrapper: {
-        flexDirection: "row",
+        flexDirection: 'row',
         marginBottom: 20,
         marginLeft:20
     },
