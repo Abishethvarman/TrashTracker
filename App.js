@@ -48,8 +48,7 @@ export default function App() {
   // <TrashDisplay/>
 //  < ProfileScreen/>
 //  <NotificationScreen/>
-//  <NewUserNotification/> 
-{/* <ResolvedScreen/> */}
+//  <NewUserNotification/>
 
 
 

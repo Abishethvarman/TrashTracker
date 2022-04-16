@@ -3,9 +3,11 @@ import { View, Text, StyleSheet, Image, ImageBackground, ScrollView, TouchableOp
 import { Entypo } from '@expo/vector-icons';
 import { collection, onSnapshot, orderBy, query } from 'firebase/firestore';
 import { db } from '../../firebase';
+import { useNavigation } from '@react-navigation/native';
 
 const ResolvedPlaces = ({navigation}) => {
 
+   
     const [rplaces,setRplaces] = useState()
 
     useEffect(() => {
@@ -42,8 +44,7 @@ const ResolvedPlaces = ({navigation}) => {
         <View style={Styles.container}>
             
             <View style={Styles.headerWrapper}>
-                <TouchableOpacity navigation={navigation} 
-            onPress={()=> navigation.push("ResolvedScreen")}>
+                <TouchableOpacity navigation={navigation} onPress={()=> navigation.navigate("ResolvedScreen")}>
                 <Text style={[Styles.header,{fontWeight:"bold"}]}>Resolved </Text> 
                 <Text style={Styles.header}> places</Text>
                 </TouchableOpacity>
