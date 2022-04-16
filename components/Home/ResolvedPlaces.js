@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { View, Text, StyleSheet, Image, ImageBackground, ScrollView } from 'react-native'
+import { View, Text, StyleSheet, Image, ImageBackground, ScrollView, TouchableOpacity } from 'react-native'
 import { Entypo } from '@expo/vector-icons';
 import { collection, onSnapshot, orderBy, query } from 'firebase/firestore';
 import { db } from '../../firebase';
@@ -42,8 +42,11 @@ const ResolvedPlaces = () => {
         <View style={Styles.container}>
             
             <View style={Styles.headerWrapper}>
+                <TouchableOpacity navigation={navigation} 
+            onPress={()=> navigation.navigate("TrashSpotScreen")}>
                 <Text style={[Styles.header,{fontWeight:"bold"}]}>Resolved </Text> 
                 <Text style={Styles.header}> places</Text>
+                </TouchableOpacity>
             </View>
 
             <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>

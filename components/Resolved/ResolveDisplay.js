@@ -27,7 +27,7 @@ const ResolveDisplay = () => {
                   
     
                   })
-                setSpots(spotARR)
+                setResolves(spotARR)
                   
     
               })
@@ -75,7 +75,7 @@ const ResolveDisplay = () => {
     
                             <View style={[Styles.suggestplace, Styles.suggestBottom]}>
                                 <Entypo name="location-pin" size={24} color="#19B4BF" />
-                                <Text style={Styles.suggestplaceText}>{rersolve.place}</Text>
+                                <Text style={Styles.suggestplaceText}>{resolve.place}</Text>
                             </View>
     
                         </View>
