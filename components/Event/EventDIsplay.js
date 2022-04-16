@@ -4,7 +4,7 @@ import { Entypo } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 import { auth, db } from '../../firebase';
 import { collection, onSnapshot, orderBy, query, where } from 'firebase/firestore';
-
+import Search from '../Home/Search';
 
 const EventDisplay = ({navigation}) => {
   const [events,setEvents] = useState()
@@ -44,14 +44,11 @@ const EventDisplay = ({navigation}) => {
     <View style={Styles.container}>
         
         
-            <View style={Styles.headerWrapper} >
-                <Header navigation={navigation}/>
-            <Text style={[Styles.header,{fontWeight:"bold"}]}>Clean U</Text> 
-            <Text style={Styles.header}> events</Text>
+        <View style={Styles.headerWrapper} >
+            <Header navigation={navigation}/>  
         </View>
-       
-
-        <ScrollView verical={true} showsHorizontalScrollIndicator={false}>
+        <Search style={{marginTop:0}}/>
+      <ScrollView verical={true} showsHorizontalScrollIndicator={false}>
 
        {events && events.map((event) => ( 
         <TouchableOpacity key={event.id} onPress={()=>navigation.navigate('EventList',{event})}>
@@ -89,29 +86,40 @@ const EventDisplay = ({navigation}) => {
 
 
 const Header = ({navigation})=>(
-  <View style={styles.headerContainer}>
+  <View style={Styles.headerContainer}>
           <TouchableOpacity navigation= {navigation} onPress={()=> navigation.push('HomeScreen')}>
           <Ionicons name="chevron-back-outline" size={30} color="black" />
           </TouchableOpacity>
-          <Text> </Text>
+          <Text>    </Text>
+          <Text style={[Styles.header,{fontWeight:"bold"}]}> Clean Up</Text> 
+            <Text style={Styles.header}>events</Text>
       </View>
 )
 
 const Styles = StyleSheet.create({
   container: {
       marginTop: 20,
-      backgroundColor:"#65BB00"
+      backgroundColor:"#65BB00",
       // paddingHorizontal:20
     
   },
   headerWrapper: {
       flexDirection: "row",
-      marginBottom: 20,
-      marginTop:20
+      marginBottom: 10,
+      marginTop:10,
+      alignItems:'flex-start'
   },
+  headerContainer:{
+    flexDirection:'row',
+    alignItems:'center',
+    justifyContent:'space-between',
+    marginTop:10
+
+},
   header: {
-      fontSize: 20,
-      color:"#4c4c4b"
+      fontSize: 30,
+      color:"#4c4c4b",
+      marginRight:10,
   },
   suggestImg: {
       width: 380,
@@ -167,20 +175,6 @@ sevierText:{
     fontSize:10,
     paddingTop:10
     
-},
-  })
-
-const styles=StyleSheet.create({
-container:{
-    backgroundColor:'#50C878',
-    flex:1
-},
-headerContainer:{
-    flexDirection:'row',
-    alignItems:'center',
-    justifyContent:'space-between',
-    marginTop:30
-
 },
 headerText:{
     color:'white',

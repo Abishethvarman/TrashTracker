@@ -5,7 +5,6 @@ import EventDisplay from '../components/Event/EventDIsplay'
 const EventsScreen = ({navigation}) => {
   return (
     <View>
-      <Text>EventsScreen</Text>
       <EventDisplay navigation={navigation}/>
     </View>
   )
