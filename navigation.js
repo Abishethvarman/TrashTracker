@@ -16,6 +16,7 @@ import LoginScreen from './Screens/LoginScreen'
 import MapScreen from './Screens/MapScreen'
 import NotificationScreen from './Screens/NotificationScreen'
 import ProfileScreen from './Screens/ProfileScreen'
+import ResolvedScreen from './Screens/ResolvedScreen'
 import SignupScreen from './Screens/SignupScreen'
 import TrashList from './Screens/TrashList'
 import TrashSpotScreen from './Screens/TrashSpotScreen'
@@ -41,6 +42,7 @@ export const SignedInStack = () => (
             <Stack.Screen name='AddCleanUp' component={AddCleanUp}/>
             <Stack.Screen name='EventList' component={EventList}/>
             <Stack.Screen name='EventsScreen' component={EventsScreen}/>
+            <Stack.Screen name='ResolvedScreen' component={ResolvedScreen}/>
             <Stack.Screen name='AddResolve' component={AddResolveScreen}/>
             <Stack.Screen name='NotificationScreen' component={NotificationScreen}/>
             <Stack.Screen name='MapDisplay' component={MapDisplay}/>
