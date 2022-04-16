@@ -49,7 +49,8 @@ const EventList = ({ navigation}) => {
   const Styles=StyleSheet.create({
  container:{
          
-     
+     backgroundColor:"blue",
+     flex:1
  }
   })
   export default EventList;

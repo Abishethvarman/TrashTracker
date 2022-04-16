@@ -46,7 +46,7 @@ const EventDisplay = ({navigation}) => {
         
             <View style={Styles.headerWrapper} >
                 <Header navigation={navigation}/>
-            <Text style={[Styles.header,{fontWeight:"bold"}]}>Clean Up</Text> 
+            <Text style={[Styles.header,{fontWeight:"bold"}]}>Clean U</Text> 
             <Text style={Styles.header}> events</Text>
         </View>
        
