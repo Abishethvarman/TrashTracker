@@ -5,8 +5,8 @@ import { collection, onSnapshot, orderBy, query } from 'firebase/firestore';
 import { db } from '../../firebase';
 import { useNavigation } from '@react-navigation/native';
 
-const ResolvedPlaces = ({navigation}) => {
-
+const ResolvedPlaces = () => {
+    const navigation = useNavigation()
    
     const [rplaces,setRplaces] = useState()
 
@@ -42,7 +42,7 @@ const ResolvedPlaces = ({navigation}) => {
 
     return (
         <View style={Styles.container}>
-            <TouchableOpacity navigation={navigation} onPress={({navigation})=> navigation.navigate("ProfileScreen")} >
+            <TouchableOpacity onPress={()=> navigation.navigate("ResolvedScreen")} >
             <View style={Styles.headerWrapper}>
                 <Text style={[Styles.header,{fontWeight:"bold"}]}>Resolved </Text> 
                 <Text style={Styles.header}> places</Text>
@@ -52,6 +52,8 @@ const ResolvedPlaces = ({navigation}) => {
             <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
 
             {rplaces && rplaces.map((rplace) => (
+            <TouchableOpacity key={rplace.id} onPress={() => {navigation.navigate('ResolveList', { rplace}
+            )}}>
             <View style={{marginLeft:20, marginBottom:10}} key={rplace.id}>
                 <ImageBackground style={Styles.suggestImg} 
                     source={{uri:rplace.titleImage}}
@@ -68,7 +70,7 @@ const ResolvedPlaces = ({navigation}) => {
                         </View>
                 </ImageBackground> 
                 </View>
-                
+                </TouchableOpacity> 
                 ))}
                 
              

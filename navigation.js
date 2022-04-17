@@ -4,6 +4,7 @@ import React from 'react'
 import { View, Text } from 'react-native'
 import EventList from './components/Event/EventList'
 import MapDisplay from './components/MapDisplay'
+import ResolveList from './components/Resolved/ResolveList'
 import TrashDisplay from './components/TrashSpots/TrashDisplay'
 import AddChatScreen from './Screens/AddChatScreen'
 import AddCleanUp from './Screens/AddCleanUp'
@@ -44,6 +45,7 @@ export const SignedInStack = () => (
             <Stack.Screen name='EventsScreen' component={EventsScreen}/>
             <Stack.Screen name='ResolvedScreen' component={ResolvedScreen}/>
             <Stack.Screen name='AddResolve' component={AddResolveScreen}/>
+            <Stack.Screen name='ResolveList' component={ResolveList}/>
             <Stack.Screen name='NotificationScreen' component={NotificationScreen}/>
             <Stack.Screen name='MapDisplay' component={MapDisplay}/>
 
