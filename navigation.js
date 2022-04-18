@@ -39,12 +39,11 @@ export const SignedInStack = () => (
             <Stack.Screen name='EditProfileScreen' component={EditProfileScreen}/>
             <Stack.Screen name='TrashSpotScreen' component={TrashSpotScreen}/>
             <Stack.Screen name='TrashList' component={TrashList}/>
-            <Stack.Screen name='AddChatScreen' component={AddChatScreen}/>
             <Stack.Screen name='AddCleanUp' component={AddCleanUp}/>
-            <Stack.Screen name='EventList' component={EventList}/>
             <Stack.Screen name='EventsScreen' component={EventsScreen}/>
-            <Stack.Screen name='ResolvedScreen' component={ResolvedScreen}/>
+            <Stack.Screen name='EventList' component={EventList}/>
             <Stack.Screen name='AddResolve' component={AddResolveScreen}/>
+            <Stack.Screen name='ResolvedScreen' component={ResolvedScreen}/>
             <Stack.Screen name='ResolveList' component={ResolveList}/>
             <Stack.Screen name='NotificationScreen' component={NotificationScreen}/>
             <Stack.Screen name='MapDisplay' component={MapDisplay}/>
