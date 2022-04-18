@@ -139,20 +139,30 @@ const DeleteSpot =()=>{
 }
 
 const Header = ({navigation: { goBack }})=>(
-  <View style={styles.headerContainer}>
+  
+  <View style={{marginTop:20, flexDirection:'row',}}>
           <TouchableOpacity onPress={()=> goBack()}>
-            <Text></Text>
-          <Ionicons name="chevron-back-outline" size={30} color="blue" />
+          <Ionicons style={{paddingTop:10,}} name="chevron-back-outline" size={35} color="blue" />
           </TouchableOpacity>
-          <Text style={styles.headerText}>Insights Time</Text>
+          <Text></Text>
+          <Text style={styles.headerText}>I'm cleanig on </Text>
           <Text> </Text>
-      </View>
+      </View> 
+  
 )
 
 const styles=StyleSheet.create({
   headerText:{
-    color:'red'
-  }
+    color:'red',
+    marginHorizontal:0,
+     alignItems:'center',
+     fontWeight:'bold',
+     fontSize:30,
+     marginTop:9,
+     marginHorizontal:5
+
+  },
+
 })
 export default AddCleanUp
 
