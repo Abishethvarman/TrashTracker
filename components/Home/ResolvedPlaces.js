@@ -52,7 +52,7 @@ const ResolvedPlaces = () => {
             <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
 
             {rplaces && rplaces.map((rplace) => (
-            <TouchableOpacity key={rplace.id} onPress={() => {navigation.navigate('ResolveList', { rplace}
+            <TouchableOpacity key={rplace.id} onPress={() => {navigation.navigate('ResolveList', {rplace}
             )}}>
             <View style={{marginLeft:20, marginBottom:10}} key={rplace.id}>
                 <ImageBackground style={Styles.suggestImg} 
