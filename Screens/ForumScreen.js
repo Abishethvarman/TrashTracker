@@ -539,7 +539,7 @@ const styles=StyleSheet.create({
         color:'white',
         fontWeight:'700',
         marginRight:20,
-        fontSize:20
+        fontSize:25
 
     },
     penPlus:{

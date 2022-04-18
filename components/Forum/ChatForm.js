@@ -1,4 +1,4 @@
-import { View, Text, TextInput, Button, Alert, Pressable } from 'react-native'
+import { View, Text, TextInput, Button, Alert, Pressable, StyleSheet } from 'react-native'
 import React from 'react'
 import { Formik } from 'formik'
 import * as Yup from 'yup'
@@ -76,13 +76,40 @@ const ChatForm = () => {
                 >
                 </TextInput>
           </View>
-                <Pressable color='pink' onPress={handleSubmit} disabled={!isValid} >
-                  <Text>That's it!!</Text>
+
+                <Pressable style={Styles.Button} onPress={handleSubmit} disabled={!isValid} onBlur >
+                  <Text style={Styles.buttonText}>That's it!!</Text>
                 </Pressable>
     </View>
   )}
   </Formik>
   )
 }
+
+const Styles=StyleSheet.create({
+  Button:{
+  
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 10,
+    paddingHorizontal: 30,
+    borderRadius: 50,
+    elevation: 10,
+    margin:10,
+    backgroundColor:'#50C878',
+    width:'95%',
+    height:60,
+    bottom:10,
+    position:'absolute'
+    
+  },
+  buttonText: {
+    fontSize: 25,
+    lineHeight: 28,
+    fontWeight: 'bold',
+    letterSpacing: 0.25,
+    color: '#800000',
+  },
+})
 
 export default ChatForm
