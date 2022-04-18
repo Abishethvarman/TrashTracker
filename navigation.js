@@ -35,6 +35,7 @@ export const SignedInStack = () => (
             <Stack.Screen name='HomeScreen' component={TabNavigator}/>
             <Stack.Screen name='MapScreen' component={MapScreen}/>
             <Stack.Screen name='ForumScreen' component={ForumScreen}/>
+            <Stack.Screen name='AddChatScreen' component={AddChatScreen}/>
             <Stack.Screen name='ProfileScreen' component={ProfileScreen}/>
             <Stack.Screen name='EditProfileScreen' component={EditProfileScreen}/>
             <Stack.Screen name='TrashSpotScreen' component={TrashSpotScreen}/>

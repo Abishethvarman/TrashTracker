@@ -1,4 +1,4 @@
-import { View, Text, TextInput, Button, Alert } from 'react-native'
+import { View, Text, TextInput, Button, Alert, Pressable } from 'react-native'
 import React from 'react'
 import { Formik } from 'formik'
 import * as Yup from 'yup'
@@ -60,10 +60,11 @@ const ChatForm = () => {
             onValueChange
         })=>(
 
-    <View style={{flex:1, marginLeft:12}}>
+    <View style={{flex:1, marginLeft:12,}}>
+        <View style={{borderWidth:2, marginHorizontal:5, height:150, borderColor:'#00ffff'}}>
                 <TextInput 
                     style={{color:'white', fontSize:20}}
-                    placeholder="Write a caption..." 
+                    placeholder="Cast your thought here" 
                     placeholderTextColor='gray'
                     autoCorrect={true}
                     maxLength={200}
@@ -71,10 +72,13 @@ const ChatForm = () => {
                     onChangeText={handleChange('caption')}
                     onBlur={handleBlur('caption')}
                     value={values.caption}
+                    
                 >
                 </TextInput>
-
-                <Button title="kumaru" color='pink' onPress={handleSubmit} disabled={!isValid} />
+          </View>
+                <Pressable color='pink' onPress={handleSubmit} disabled={!isValid} >
+                  <Text>That's it!!</Text>
+                </Pressable>
     </View>
   )}
   </Formik>

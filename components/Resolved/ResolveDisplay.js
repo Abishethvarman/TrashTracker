@@ -10,11 +10,11 @@ import Search from '../Home/Search';
 
 const ResolveDisplay = ({navigation}) => {
     
-      const [resolves,setResolves] = useState()
+      const [rplaces,setRplaces] = useState()
     
       useEffect(() => {
           try {
-              const wef =query((collection(db, 'spots')), orderBy("createAt",'desc'))
+              const wef =query((collection(db, 'resolves')), orderBy("createAt",'desc'))
               // collection(db, 'spots')
               
               onSnapshot(wef,(snapshots)=>{
@@ -26,7 +26,7 @@ const ResolveDisplay = ({navigation}) => {
                   
     
                   })
-                setResolves(spotARR)
+                setRplaces(spotARR)
                   
     
               })
@@ -35,7 +35,7 @@ const ResolveDisplay = ({navigation}) => {
           } catch (error) {
     
               let spotARR = [];
-              setSpots(spotARR)
+              setRplaces(spotARR)
     
           }
     
@@ -58,15 +58,15 @@ const ResolveDisplay = ({navigation}) => {
     
             <ScrollView verical={true} showsHorizontalScrollIndicator={false}>
     
-           {resolves && resolves.map((resolve) => ( 
-            <TouchableOpacity key={resolve.id} onPress={()=>navigation.navigate('ResolveList',{resolve})}>
+           {rplaces && rplaces.map((rplace) => ( 
+            <TouchableOpacity key={rplace.id} onPress={()=>navigation.navigate('ResolveList',{rplace})}>
             <View  style={{marginBottom:7, marginHorizontal:15}}>
                 <ImageBackground style={Styles.suggestImg} 
-                    source={{uri:resolve.titleImage}}
+                    source={{uri:rplace.titleImage}}
                         imageStyle={{ borderRadius: 20 }} >
                             <View style={{flexDirection:'row-reverse'}}>
                             <View style={Styles.seviorityDetail}>
-                                <Text style={Styles.sevierText}>{resolve.seviority}</Text>
+                                <Text style={Styles.sevierText}>{rplace.seviority}</Text>
                             </View>
                             </View>
                         <View style={Styles.suggestTextWrapper}>
@@ -75,7 +75,7 @@ const ResolveDisplay = ({navigation}) => {
     
                             <View style={[Styles.suggestplace, Styles.suggestBottom]}>
                                 <Entypo name="location-pin" size={24} color="#19B4BF" />
-                                <Text style={Styles.suggestplaceText}>{resolve.place}</Text>
+                                <Text style={Styles.suggestplaceText}>{rplace.place}</Text>
                             </View>
     
                         </View>
@@ -99,7 +99,7 @@ const ResolveDisplay = ({navigation}) => {
               <Entypo name="chevron-left" size={30} color="black" />
               </TouchableOpacity>
               <Text>    </Text>
-              <Text style={[Styles.header,{fontWeight:"bold"}]}> Resolved</Text> 
+              <Text style={[Styles.header,{fontWeight:"bold"}]}> Resolved Spots</Text> 
                 <Text style={Styles.header}> spots</Text>
               <Text> </Text>
           </View>
