@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, TouchableOpacity, Image, Button, Alert } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity, Image, Button, Alert, Platform } from 'react-native'
 import React, { useState } from 'react'
 import { useNavigation, useRoute } from '@react-navigation/native'
 import { Ionicons } from '@expo/vector-icons';
@@ -32,6 +32,7 @@ const AddCleanUp = () => {
 
   const onChange =(event,selectDate) => {
     const currentDate = selectDate || date;
+    setShown(Platform.OS==='ios');
     setDate(currentDate);
     let tempDate = new Date(currentDate);
     let fDate = tempDate.getDate()+'/'+(tempDate.getMonth()+1)+'/'+tempDate.getFullYear();
@@ -43,9 +44,9 @@ const AddCleanUp = () => {
     setShown(true);
     setMode(currentMode);
   }
-  const showDatepicker = () => {
-    showMode('date');
-  };
+  // const showDatepicker = () => {
+  //   showMode('date');
+  // };
 
   const AddSubmit = async () => {
    console.log('19 vathu add ')
@@ -106,7 +107,7 @@ const DeleteSpot =()=>{
                 <Text style={styles.text1}>Spot tracked on : {moment(spot.createAt.toDate()).format('MMMM Do YYYY, h:mm a')}</Text>
                 <Text style={styles.text1}> </Text>
                 <Ionicons name="time" size={18} color="black" style={{marginVertical:5}}/>
-                <Text style={styles.text1}> {moment(spot.createAt.toDate()).startOf('day').fromNow()}</Text>
+                <Text style={styles.text1}>{moment(spot.createAt.toDate()).startOf('time').fromNow()}</Text>
                 </View>
                 <Text >{spot.usermail}</Text>
                 <Text style={styles.seviority}>Seviority of the spot : {spot.seviority}</Text>
@@ -127,11 +128,11 @@ const DeleteSpot =()=>{
     }
     
     <View style={{flexDirection:'row', justifyContent:'space-evenly'}}>      
-                <Button title='Select the date' onPress={()=>showMode('date')}/>
-                <Button title='Pick your time' onPress={()=>showMode('time')}/>
+                <Button color='gray' title='Select the date' onPress={()=>showMode('date')}/>
+                <Button color='grey' title='Pick your time' onPress={()=>showMode('time')}/>
                 
                 {shown && (
-                <DateTimePicker testID='dateTimePicker' value={date} mode={mode} is24Hour={true}  onChange={onChange}
+                <DateTimePicker testID='dateTimePicker' value={date} mode={mode} is24Hour={true} display="default" onChange={onChange}
                 />)}
                 </View>
                 <Text>{text}</Text>
