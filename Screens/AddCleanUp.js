@@ -7,6 +7,7 @@ import { db } from '../firebase';
 import { Formik } from 'formik';
 import * as Yup from 'yup'
 import DateTimePicker from '@react-native-community/datetimepicker';
+import moment from 'moment';
 
  
 
@@ -96,14 +97,19 @@ const DeleteSpot =()=>{
     
     <View>
       <Header navigation={navigation}/>
-      <Text>AddCleanUp</Text>
+      
       
       {spot &&  <View style={styles.headerWrapper}>
-                <Text>{spot.place} thani detail screen</Text>
-                <Image source={{uri:spot.titleImage}} style={{height:100, width:100}}/>
-                  
+                <Text style={styles.PlaceText}>{spot.place}</Text>
+                <Image source={{uri:spot.titleImage}} style={styles.titleImage}/>
+                <View style={{flexDirection:'row', marginHorizontal:5}}>
+                <Text style={styles.text1}>Spot tracked on : {moment(spot.createAt.toDate()).format('MMMM Do YYYY, h:mm a')}</Text>
+                <Text style={styles.text1}> </Text>
+                <Ionicons name="time" size={18} color="black" style={{marginVertical:5}}/>
+                <Text style={styles.text1}> {moment(spot.createAt.toDate()).startOf('day').fromNow()}</Text>
+                </View>
                 <Text >{spot.usermail}</Text>
-                <Text>{spot.seviority}</Text>
+                <Text style={styles.seviority}>Seviority of the spot : {spot.seviority}</Text>
                 <Text>Food_Wrappers {spot.Food_Wrappers}</Text>
                 <Text>Polythene_bags {spot.Polythene_bags}</Text>
                 <Text>PET_Bottles {spot.PET_Bottles}</Text>
@@ -116,23 +122,23 @@ const DeleteSpot =()=>{
                 onCancel={() => { setOpen(false)}}
                 /> */}
                 
-                <Button title= 'Im cleaning it' style={{color:'green'}} onPress={()=>{
-                  AddSubmit();
-                  DeleteSpot();
-                }}/>
-                
                 </View>
             </View>
     }
     
-    <View>
-                <Button title='Selct the date' onPress={()=>showMode('date')}/>
-                <Button title='Selct the time' onPress={()=>showMode('time')}/>
-                <Text>{text}</Text>
+    <View style={{flexDirection:'row', justifyContent:'space-evenly'}}>      
+                <Button title='Select the date' onPress={()=>showMode('date')}/>
+                <Button title='Pick your time' onPress={()=>showMode('time')}/>
+                
                 {shown && (
                 <DateTimePicker testID='dateTimePicker' value={date} mode={mode} is24Hour={true}  onChange={onChange}
                 />)}
                 </View>
+                <Text>{text}</Text>
+         <Button title= 'Im cleaning it' style={{color:'green'}} onPress={()=>{
+                  AddSubmit();
+                  DeleteSpot();
+                }}/>
     </View>
     
   )
@@ -145,7 +151,7 @@ const Header = ({navigation: { goBack }})=>(
           <Ionicons style={{paddingTop:10,}} name="chevron-back-outline" size={35} color="blue" />
           </TouchableOpacity>
           <Text></Text>
-          <Text style={styles.headerText}>I'm cleanig on </Text>
+          <Text style={styles.headerText}>I'm cleaning on </Text>
           <Text> </Text>
       </View> 
   
@@ -162,6 +168,51 @@ const styles=StyleSheet.create({
      marginHorizontal:5
 
   },
+  PlaceText:{
+    fontSize:30,
+    marginVertical:2
+  },
+  headerWrapper:{
+    alignItems:'center',
+  },
+  titleImage:{
+    height:250, 
+    width:'90%', 
+    marginHorizontal:20,
+    borderRadius:20,
+    borderColor:'green',
+    borderWidth: 2
+   },
+   seviority:{
+    borderWidth:1,
+    padding:8,
+    borderColor:"red",
+    marginHorizontal:20,
+    fontSize:20,
+    justifyContent:'center',
+    color:'red',
+    backgroundColor:'silver',
+    borderRadius:10
+},
+text1:{
+  fontSize:15,
+  fontWeight:'500',
+  marginLeft:5,
+  marginVertical:5
+},
+text2:{
+    fontStyle:'italic',
+    fontWeight:'bold',
+    fontSize:24,
+    color:'blue',
+    alignItems:'center'
+},
+text3:{
+    fontWeight:'bold',
+    fontSize:20,
+    color:'white',
+    marginLeft:5
+},
 
 })
 export default AddCleanUp

@@ -140,12 +140,6 @@ const TrashList = ({ navigation}) => {
     EnterButton:{
         bottom:0
     },
-    text1:{
-        fontSize:15,
-        fontWeight:'500',
-        marginLeft:5,
-        marginVertical:5
-    },
     mapText:{
         fontSize:15,
         color:'green',
@@ -161,6 +155,12 @@ const TrashList = ({ navigation}) => {
         color:'red',
         backgroundColor:'silver',
         borderRadius:10
+    },
+    text1:{
+        fontSize:15,
+        fontWeight:'500',
+        marginLeft:5,
+        marginVertical:5
     },
     text2:{
         fontStyle:'italic',

@@ -248,7 +248,7 @@ const FormikSpotUploader = () => {
                 <Image source={{ uri: image }} style={{ height: '100%', width: '100%', resizeMode: 'contain', borderRadius: 20 }}></Image>
             </TouchableOpacity>
             <Formik
-                initialValues={{ caption: '', placespot: '', seviority: '' }}
+                initialValues={{ caption: '', placespot: '', seviority: 'Normal' }}
                 onSubmit={values => {
                     AddSubmit(values.caption, values.placespot, values.seviority);
                 }}
