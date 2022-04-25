@@ -27,7 +27,7 @@ const AddCleanUp = () => {
   const [date, setDate] = useState(new Date())
   const [mode,setMode] =useState('date')
   const [shown,setShown] =useState(false)
-  const [text,setText] = useState('empty')
+  const [text,setText] = useState()
   const [open, setOpen] = useState(false)
 
   const onChange =(event,selectDate) => {
@@ -139,12 +139,9 @@ const DeleteSpot =()=>{
                   AddSubmit();
                   DeleteSpot();
                 }}>
-                <Text>Im cleaning it {text}</Text>
+                <Text style={styles.buttonText}>Im cleaning it {text}</Text>
                 </Pressable>
-         <Button title= 'Im cleaning it ' style={{color:'green'}} onPress={()=>{
-                  AddSubmit();
-                  DeleteSpot();
-                }}/>
+        
     </View>
     
   )
@@ -231,6 +228,11 @@ endButton:{
   width:'95%',
   height:50
 },
+buttonText:{
+  fontSize:16,
+  fontWeight:'bold',
+  color:'#112A46'
+}
 
 })
 export default AddCleanUp
