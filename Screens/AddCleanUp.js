@@ -66,7 +66,8 @@ const AddCleanUp = () => {
         // //username: users.username,
         // usermail: auth.currentUser.email,
         latitude: spot.latitude,
-        longitude:spot.longitude
+        longitude:spot.longitude,
+        CleanUpdate:date
         // username:auth.currentUser.username
         
          

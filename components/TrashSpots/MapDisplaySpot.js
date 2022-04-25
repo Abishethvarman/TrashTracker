@@ -5,12 +5,12 @@ import { Ionicons } from '@expo/vector-icons';
 import { Marker,BottomSheetModal } from "react-native-maps";
 import { useEffect, useState } from 'react';
 import { collection, onSnapshot, orderBy, query } from 'firebase/firestore';
-import { db } from '../firebase';
+import { db } from '../../firebase';
 import { TouchableRipple } from 'react-native-paper';
 import { useRoute } from '@react-navigation/native';
 
 
-const MapDisplay = ({navigation})=> {
+const MapDisplaySpot = ({navigation})=> {
 
   const route = useRoute();
     const {spot} = route.params;
@@ -105,7 +105,7 @@ mapMarker:{
 }
 });
 
-export default MapDisplay
+export default MapDisplaySpot
 
 
 
