@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, TouchableOpacity, Image, Button, Alert, Platform } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity, Image, Button, Alert, Platform, Pressable } from 'react-native'
 import React, { useState } from 'react'
 import { useNavigation, useRoute } from '@react-navigation/native'
 import { Ionicons } from '@expo/vector-icons';
@@ -36,8 +36,8 @@ const AddCleanUp = () => {
     setDate(currentDate);
     let tempDate = new Date(currentDate);
     let fDate = tempDate.getDate()+'/'+(tempDate.getMonth()+1)+'/'+tempDate.getFullYear();
-    let fTime = 'Hours: ' + tempDate.getHours()+ 'Minutes' +tempDate.getMinutes();
-    setText(fDate+'\n'+fTime)
+    let fTime =  tempDate.getHours()+ ' : ' +tempDate.getMinutes();
+    setText("on coming "+fDate+' at '+fTime)
   }
 
   const showMode =(currentMode)=>{
@@ -132,11 +132,16 @@ const DeleteSpot =()=>{
                 <Button color='grey' title='Pick your time' onPress={()=>showMode('time')}/>
                 
                 {shown && (
-                <DateTimePicker testID='dateTimePicker' value={date} mode={mode} is24Hour={true} display="default" onChange={onChange}
+                <DateTimePicker testID='dateTimePicker' value={date} mode={mode} is24Hour={false} display="default" onChange={onChange}
                 />)}
                 </View>
-                <Text>{text}</Text>
-         <Button title= 'Im cleaning it' style={{color:'green'}} onPress={()=>{
+                <Pressable style={styles.endButton} onPress={()=>{
+                  AddSubmit();
+                  DeleteSpot();
+                }}>
+                <Text>Im cleaning it {text}</Text>
+                </Pressable>
+         <Button title= 'Im cleaning it ' style={{color:'green'}} onPress={()=>{
                   AddSubmit();
                   DeleteSpot();
                 }}/>
@@ -213,6 +218,18 @@ text3:{
     fontSize:20,
     color:'white',
     marginLeft:5
+},
+endButton:{
+  alignItems: 'center',
+  justifyContent: 'center',
+  paddingVertical: 10,
+  paddingHorizontal: 30,
+  borderRadius: 50,
+  elevation: 5,
+  margin:10,
+  backgroundColor:'#0288D1',
+  width:'95%',
+  height:50
 },
 
 })
