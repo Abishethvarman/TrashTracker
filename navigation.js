@@ -3,8 +3,10 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import React from 'react'
 import { View, Text } from 'react-native'
 import EventList from './components/Event/EventList'
-import MapDisplay from './components/MapDisplay'
+
 import ResolveList from './components/Resolved/ResolveList'
+import MapDisplaySpot from './components/TrashSpots/MapDisplaySpot'
+
 import TrashDisplay from './components/TrashSpots/TrashDisplay'
 import AddChatScreen from './Screens/AddChatScreen'
 import AddCleanUp from './Screens/AddCleanUp'
@@ -47,7 +49,7 @@ export const SignedInStack = () => (
             <Stack.Screen name='ResolvedScreen' component={ResolvedScreen}/>
             <Stack.Screen name='ResolveList' component={ResolveList}/>
             <Stack.Screen name='NotificationScreen' component={NotificationScreen}/>
-            <Stack.Screen name='MapDisplay' component={MapDisplay}/>
+            <Stack.Screen name='MapDisplay' component={MapDisplaySpot}/>
 
             
         </Stack.Navigator>
