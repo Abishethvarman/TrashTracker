@@ -1,4 +1,4 @@
-import { View, Text, StatusBar,StyleSheet, TouchableOpacity,Image,ScrollView, Button, MaskedViewComponent } from 'react-native';
+import { View, Text, StatusBar,StyleSheet, TouchableOpacity,Image,ScrollView, Button, MaskedViewComponent, Pressable } from 'react-native';
 import React,{useEffect,useState} from 'react';
 import { Ionicons, AntDesign } from '@expo/vector-icons'; 
 import { collection, onSnapshot,query ,where, doc} from '@firebase/firestore'
@@ -37,16 +37,16 @@ const EventList = ({ navigation}) => {
                 <Text>PET_Bottles {spot.PET_Bottles}</Text>
                 <Text>Plastic_Debris {spot.Plastic_Debris}</Text>
                 <Text>Large_Plastic_Rigid {spot.Large_Plastic_Rigid}</Text> */}
-                <View style={{bottom:0, marginBottom:5, position:'relative'}}>
-                <Button title='Im cleaning it on ' color='blue' onPress={()=>navigation.navigate('AddResolve',{event})}/>
-                </View>
+                
+                
+                
             </View>
         }
                 
-            <View >
-  
-                
-            </View> 
+            
+            <Pressable style={Styles.endButton} onPress={()=>navigation.push("AddResolveScreen",{event})}>
+                <Text style={Styles.buttonText}>Im cleaning it</Text>
+                </Pressable> 
          </View>  
         
     );
@@ -112,5 +112,24 @@ mapText:{
     color:'green',
     // fontFamily:'roboto'
 },
+endButton:{
+    alignItems:"center",
+    paddingVertical: 5,
+    paddingHorizontal: 30,
+    borderRadius: 50,
+    elevation: 5,
+    margin:10,
+    backgroundColor:'#0288D1',
+    width:'95%',
+    height:50,
+    position: 'absolute', 
+    bottom: 10,
+
+  },
+  buttonText:{
+    fontSize:25,
+    fontWeight:'bold',
+    color:'#112A46'
+  }
   })
   export default EventList;
