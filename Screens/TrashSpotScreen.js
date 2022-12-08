@@ -15,7 +15,7 @@ const TrashSpotScreen = ({navigation}) => {
 
 const styles=StyleSheet.create({
   container:{
-      backgroundColor:'#50C878',
+      backgroundColor:'#069fa4',
       flex:1
   }
 })

@@ -44,7 +44,7 @@ render() {
 
 const styles=StyleSheet.create({
     container:{
-        backgroundColor:'#4CBB17',
+        backgroundColor:'#05787c',
         flex:1
     },
     headerContainer:{

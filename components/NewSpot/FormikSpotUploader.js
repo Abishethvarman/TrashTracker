@@ -227,7 +227,8 @@ const FormikSpotUploader = () => {
             //username: users.username,
             usermail: auth.currentUser.email,
             latitude: latitude,
-            longitude: longitude
+            longitude: longitude,
+            resolveImage : "NOL"
             // username:auth.currentUser.username
 
 

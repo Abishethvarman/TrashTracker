@@ -5,7 +5,7 @@ import {View,StyleSheet,TouchableOpacity, Text} from 'react-native'
 const ProfileHeader = ({navigation})=>(
     <View style={styles.headerContainer}>
             <TouchableOpacity onPress={()=> navigation.push("HomeScreen")}>
-            <Ionicons name="chevron-back-outline" size={45} color="purple" />
+            <Ionicons name="chevron-back-outline" size={45} color="white" />
             </TouchableOpacity>
             <Text style={styles.headerText}>I'm at TrashTracker</Text>
             <Text> </Text>
@@ -21,7 +21,7 @@ const styles= StyleSheet.create({
     
     },
     headerText:{
-        color:'black',
+        color:'white',
         fontWeight:'700',
         marginRight:20,
         fontSize:30

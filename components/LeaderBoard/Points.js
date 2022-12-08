@@ -46,14 +46,14 @@ console.log(points)
     <View>
         <View style={styles.infoBoxWrapper}>
         <View style={[styles.infoBox, {
-          borderRightColor: 'red',
+          borderRightColor: 'white',
           borderRightWidth: 1
         }]}>
-          <Title>Tracker</Title>
+          <Title style={{color:'white'}}>Tracker</Title>
           {/* <Caption>Wallet</Caption> */}
         </View>
         <View style={styles.infoBox}>
-          <Title style={{alignItems:'center'}}>Points</Title>
+          <Title style={{alignItems:'center', color:'white'}}>Points</Title>
           {/* <Caption>Orders</Caption> */}
         </View>
       </View>
@@ -67,11 +67,11 @@ console.log(points)
           borderRightColor: '#dddddd',
           borderRightWidth: 1
         }]}>
-          <Title>{point.username}</Title>
+          <Title style={{color:'white'}}>{point.username}</Title>
           {/* <Caption>Wallet</Caption> */}
         </View>
         <View style={styles.infoBox}>
-          <Title>{point.points}</Title>
+          <Title style={{color:'white'}}>{point.points}</Title>
           {/* <Caption>Orders</Caption> */}
         </View>
       </View>
@@ -86,9 +86,9 @@ console.log(points)
 
 const styles =StyleSheet.create({
     infoBoxWrapper: {
-        borderBottomColor: 'red',
-        borderBottomWidth: 1,
-        borderTopColor: 'red',
+        borderBottomColor: 'white',
+        borderBottomWidth: 2,
+        borderTopColor: 'white',
         borderTopWidth: 1,
         flexDirection: 'row',
         height: 100,

@@ -7,6 +7,8 @@ import { useEffect, useState } from 'react';
 import { collection, onSnapshot, orderBy, query } from 'firebase/firestore';
 import { db } from '../firebase';
 import { TouchableRipple } from 'react-native-paper';
+import { ImageBackground } from 'react-native-web';
+import moment from 'moment';
 
 
 const MapScreen = ({navigation})=> {
@@ -43,6 +45,73 @@ const MapScreen = ({navigation})=> {
 
   }, [])
 
+  //////////////////////////////////////////////
+  const [event,setEvent] = useState()
+
+  useEffect(() => {
+      try {
+          const getEventSpot =query((collection(db, 'events')),orderBy("createAt", "desc"))
+          // collection(db, 'spots')
+          
+          onSnapshot(getEventSpot,(snapshots)=>{
+              let eventARR = [];
+              snapshots.docs.map((doc)=>{
+
+                  eventARR.push({...doc.data(),id:doc.id})
+                  // console.log(doc.id);
+              
+
+              })
+            setEvent(eventARR)
+              
+
+          })
+
+           
+      } catch (error) {
+
+          let eventARR = [];
+          setEvent(eventARR)
+
+      }
+
+
+  }, [])
+
+    //////////////////////////////////////////////
+    const [resolve,setResolve] = useState()
+
+    useEffect(() => {
+        try {
+            const getResolveSpot =query((collection(db, 'resolves')),orderBy("createAt", "desc"))
+            // collection(db, 'spots')
+            
+            onSnapshot(getResolveSpot,(snapshots)=>{
+                let resolveARR = [];
+                snapshots.docs.map((doc)=>{
+  
+                    resolveARR.push({...doc.data(),id:doc.id})
+                    // console.log(doc.id);
+                
+  
+                })
+              setResolve(resolveARR)
+                
+  
+            })
+  
+             
+        } catch (error) {
+  
+            let resolveARR = [];
+            setEvent(resolveARR)
+  
+        }
+  
+  
+    }, [])
+
+
 
   return (
    <SafeAreaView>
@@ -63,15 +132,55 @@ const MapScreen = ({navigation})=> {
             <Marker 
             key={spots.id}
             
-    
     coordinate={{
       latitude: spots.latitude ,
       longitude: spots.longitude
     }}
-    pinColor="green"
-    /> 
+    title={"Spot: "+spots.place}
+    description={"Message of the uploader: " +spots.caption+" @"+moment(spots.createAt.toDate()).format('MMMM Do YYYY, h:mm a')+"."}
+    pinColor="red"
+    >
+ 
+    </Marker> 
     )) } 
     
+
+     {/*marker to a nearby location */}
+     {event && event.map((events) => (
+            <Marker 
+            key={events.id}
+            
+    
+    coordinate={{
+      latitude: events.latitude ,
+      longitude: events.longitude
+    }}
+    title={"Need to be clean: "+events.place}
+    description={"Cleaning happening on "+moment(events.CleanUpdate.toDate()).format('MMMM Do YYYY, h:mm a')}
+    pinColor="green"
+    >
+
+    </Marker> 
+    )) } 
+    
+
+       {/*marker to a nearby location */}
+       {resolve && resolve.map((resolves) => (
+            <Marker 
+            key={resolves.id}
+            
+    
+    coordinate={{
+      latitude: resolves.latitude ,
+      longitude: resolves.longitude
+    }}
+    title={"Cleaned: "+resolves.place}
+    description={moment(resolves.createAt.toDate()).format('MMMM Do YYYY, h:mm a')}
+    pinColor="blue"
+    >
+
+    </Marker> 
+    )) } 
   {/* latitude: 7.914827145542,
     longitude: 81.6551462687416,
 
@@ -88,10 +197,10 @@ const MapScreen = ({navigation})=> {
 const Header = ({navigation})=>(
   <View style={styles.headerContainer}>
           <TouchableOpacity onPress={()=> navigation.push('HomeScreen')}>
-          <Ionicons name="chevron-back-outline" size={30} color="red" />
+          <Ionicons name="chevron-back-outline" size={30} color="#045c5d" />
           </TouchableOpacity>
           
-          <Text style={styles.headerText}>Trash in map</Text>
+          <Text style={styles.headerText}>Map In Action</Text>
           <Text></Text>
           
       </View>
@@ -100,7 +209,7 @@ const Header = ({navigation})=>(
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#cdecef',
     justifyContent: 'center',
     flexDirection:'column',
     marginHorizontal:10,
@@ -120,7 +229,7 @@ const styles = StyleSheet.create({
 
 },
 headerText:{
-    color:'black',
+    color:'#045c5d',
     fontWeight:'700',
     marginRight:20,
     fontSize:20

@@ -30,7 +30,7 @@ const EventList = ({ navigation}) => {
                 <Text style={Styles.mapText}>View on map</Text>
                 </TouchableOpacity>
                 <Text style={Styles.seviority}>Seviority of the spot : {event.seviority}</Text>
-                <Text>Message of the spot uploader: {event.caption}</Text>
+                <Text style={{color:'white'}}>Message of the spot uploader: {event.caption}</Text>
                 
                 {/* <Text>Food_Wrappers {spot.Food_Wrappers}</Text>
                 <Text>Polythene_bags {spot.Polythene_bags}</Text>
@@ -39,7 +39,7 @@ const EventList = ({ navigation}) => {
                 <Text>Large_Plastic_Rigid {spot.Large_Plastic_Rigid}</Text> */}
                 
                 
-                
+        
             </View>
         }
                 
@@ -55,10 +55,10 @@ const EventList = ({ navigation}) => {
   
     <View style={{marginTop:20, flexDirection:'row',}}>
             <TouchableOpacity onPress={()=> goBack()}>
-            <Ionicons style={{paddingTop:10,}} name="chevron-back-outline" size={35} color="blue" />
+            <Ionicons style={{paddingTop:10,}} name="chevron-back-outline" size={35} color="white" />
             </TouchableOpacity>
             <Text></Text>
-            <Text style={Styles.headerText}>Cleaning happening on</Text>
+            <Text style={Styles.headerText}>Cleaning happening </Text>
             <Text> </Text>
         </View> 
     
@@ -67,14 +67,14 @@ const EventList = ({ navigation}) => {
   const Styles=StyleSheet.create({
  container:{
          
-     
+     backgroundColor:'#05787c',
      flex:1
  },
  headerWrapper:{
     alignItems:'center',
   },
  headerText:{
-    color:'red',
+    color:'white',
     marginHorizontal:0,
      alignItems:'center',
      fontWeight:'bold',
@@ -88,28 +88,29 @@ const EventList = ({ navigation}) => {
     width:'90%', 
     marginHorizontal:20,
     borderRadius:20,
-    borderColor:'green',
+    borderColor:'white',
     borderWidth: 2
    },
    Text1:{
        fontSize:20,
-       fontWeight:'bold'
+       fontWeight:'bold',
+       color:'white'
    },
    seviority:{
     borderWidth:1,
     padding:8,
-    borderColor:"red",
+    borderColor:"#045c5d",
     marginHorizontal:20,
     fontSize:20,
     justifyContent:'center',
-    color:'red',
+    color:'#045c5d',
     backgroundColor:'silver',
     borderRadius:10,
     width:'85%'
 },
 mapText:{
     fontSize:15,
-    color:'green',
+    color:'white',
     // fontFamily:'roboto'
 },
 endButton:{
@@ -119,7 +120,7 @@ endButton:{
     borderRadius: 50,
     elevation: 5,
     margin:10,
-    backgroundColor:'#0288D1',
+    backgroundColor:'#cdecef',
     width:'95%',
     height:50,
     position: 'absolute', 

@@ -137,23 +137,23 @@ const ProfileDetails = ({navigation}) => {
               marginTop: 15,
               marginBottom: 5,
             }]}>{user.username}</Title>}
-            <Caption style={styles.caption}>abishek123</Caption>
+            <Caption style={styles.caption}>Keep our country clean</Caption>
           </View>
         </View>
       </View>
 
       <View style={styles.userInfoSection}>
         <View style={styles.row}>
-          <Icon name="map-marker-radius" color="#777777" size={20} />
-          <Text style={{ color: "#777777", marginLeft: 20, fontSize: 20 }}>Batticaloa</Text>
+          <Icon name="map-marker-radius" color="white" size={20} />
+          <Text style={{ color: "white", marginLeft: 20, fontSize: 20 }}>Batticaloa</Text>
         </View>
         {/* <View style={styles.row}>
       <Icon name="phone" color="#777777" size={20}/>
       <Text style={{color:"#777777", marginLeft: 20}}>+91-900000009</Text>
     </View> */}
         <View style={styles.row}>
-          <Icon name="email" color="#777777" size={20} />
-         {user &&  <Text style={{ color: "#777777", marginLeft: 20, fontSize: 20 }}>{user.email}</Text> }
+          <Icon name="email" color="white" size={20} />
+         {user &&  <Text style={{ color: "white", marginLeft: 20, fontSize: 20 }}>{user.email}</Text> }
         </View>
       </View>
 
@@ -162,11 +162,11 @@ const ProfileDetails = ({navigation}) => {
           borderRightColor: '#dddddd',
           borderRightWidth: 1
         }]}>
-          <Title>Points</Title>
+          <Title style={{color:'white'}}>Points</Title>
           {/* <Caption>Wallet</Caption> */}
         </View>
         <View style={styles.infoBox}>
-          <Title>100</Title>
+          <Title style={{color:'white'}} >100</Title>
           {/* <Caption>Orders</Caption> */}
         </View>
       </View>
@@ -220,12 +220,15 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 30,
     fontWeight: 'bold',
+    textAlign:"center",
+    color:"white"
   },
   caption: {
     fontSize: 20,
     lineHeight: 20,
     fontWeight: '500',
-    marginTop: 5
+    marginTop: 5,
+    color:"white"
   },
   row: {
     flexDirection: 'row',
@@ -253,7 +256,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 30,
   },
   menuItemText: {
-    color: '#777777',
+    color: 'white',
     marginLeft: 20,
     fontWeight: '600',
     fontSize: 20,

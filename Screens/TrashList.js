@@ -49,7 +49,7 @@ const TrashList = ({ navigation}) => {
             <Ionicons style={{paddingTop:10}} name="chevron-back" size={35} color="#4c4c4b" />
             </TouchableOpacity>
                 {spot &&  <View style={Styles.headerWrapper}>
-                <Text style={{fontSize:28, marginHorizontal:0, alignItems:'center',fontWeight:'bold'}}>@{spot.place} </Text>
+                <Text style={{fontSize:28, marginHorizontal:0, alignItems:'center',fontWeight:'bold', color:'white'}}>@{spot.place} </Text>
                 
                 </View>}
             </View>
@@ -63,7 +63,7 @@ const TrashList = ({ navigation}) => {
                 <Text style={Styles.text1}> {moment(spot.createAt.toDate()).startOf('day').fromNow()}</Text>
                 </View>
                 <TouchableOpacity onPress={()=>navigation.navigate('MapDisplaySpot',{spot})} style={{marginHorizontal:5,flexDirection:'row',justifyContent:'center'}}>
-                <Ionicons name="earth" size={15} color="#C5C8CB" />
+                <Ionicons name="earth" size={15} color="white" />
                 <Text style={Styles.mapText}>View on map</Text>
                 </TouchableOpacity>
                 <View style={{justifyContent:'center'}}>
@@ -122,7 +122,7 @@ const TrashList = ({ navigation}) => {
   };
   const Styles=StyleSheet.create({
  container:{
-      backgroundColor:'#20b2aa',
+      backgroundColor:'#05787c',
       flex:1   
      
  },
@@ -142,17 +142,17 @@ const TrashList = ({ navigation}) => {
     },
     mapText:{
         fontSize:15,
-        color:'green',
+        color:'white',
         // fontFamily:'roboto'
     },
     seviority:{
         borderWidth:1,
         padding:10,
-        borderColor:"red",
+        borderColor:"#05787c",
         marginHorizontal:20,
         fontSize:24,
         justifyContent:'center',
-        color:'red',
+        color:'#05787c',
         backgroundColor:'silver',
         borderRadius:10
     },
@@ -160,13 +160,14 @@ const TrashList = ({ navigation}) => {
         fontSize:15,
         fontWeight:'500',
         marginLeft:5,
-        marginVertical:5
+        marginVertical:5,
+        color:'white'
     },
     text2:{
         fontStyle:'italic',
         fontWeight:'bold',
         fontSize:24,
-        color:'blue',
+        color:'black',
         alignItems:'center'
     },
     text3:{
@@ -183,14 +184,14 @@ const TrashList = ({ navigation}) => {
         borderRadius: 50,
         elevation: 5,
         margin:10,
-        backgroundColor:'#0288D1',
+        backgroundColor:'white',
         width:'95%',
         height:50
     },
     text4:{
         fontWeight:'bold',
         fontSize:24,
-        color:'white',
+        color:'#05787c',
         alignItems:'center'
     }
   })

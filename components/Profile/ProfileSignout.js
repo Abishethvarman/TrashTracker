@@ -30,16 +30,16 @@ const styles=StyleSheet.create({
         borderRadius: 50,
         elevation: 10,
         margin:10,
-        backgroundColor:'pink',
+        backgroundColor:'white',
         width:'95%',
-        height:75
+        height:50
       },
       buttonText: {
         fontSize: 25,
         lineHeight: 28,
         fontWeight: 'bold',
         letterSpacing: 0.25,
-        color: 'green',
+        color: '#05787c',
       },
 })
 

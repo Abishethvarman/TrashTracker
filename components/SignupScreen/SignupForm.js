@@ -23,7 +23,7 @@ const SignupForm = ({navigation}) => {
             email: email,
             isOnline: true,
             profile_pic:profileImage,
-            points: 10
+            points: 300
         })   
         .then((re) => {
                 console.log(re);

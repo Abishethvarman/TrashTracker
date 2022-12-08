@@ -94,7 +94,7 @@ const TrashDisplay = ({navigation}) => {
 const Header = ({navigation})=>(
   <View style={styles.headerContainer}>
           <TouchableOpacity navigation= {navigation} onPress={()=> navigation.push('HomeScreen')}>
-          <Entypo name="chevron-left" size={30} color="black" />
+          <Entypo name="chevron-left" size={30} color="white" />
           </TouchableOpacity>
           <Text>    </Text>
           <Text style={[Styles.header,{fontWeight:"bold"}]}> Trash</Text> 
@@ -118,7 +118,7 @@ const Styles = StyleSheet.create({
   },
   header: {
       fontSize: 30,
-      color:"#4c4c4b",
+      color:"white",
       marginRight:10,
       
   },

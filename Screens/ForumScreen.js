@@ -525,7 +525,7 @@ const styles = StyleSheet.create({
 
 const styles=StyleSheet.create({
     container:{
-        backgroundColor:'#50C878',
+        backgroundColor:'#05787c',
         flex:1
     },
     headerContainer:{

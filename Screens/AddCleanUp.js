@@ -67,7 +67,8 @@ const AddCleanUp = () => {
         // usermail: auth.currentUser.email,
         latitude: spot.latitude,
         longitude:spot.longitude,
-        CleanUpdate:date
+        CleanUpdate:date,
+        resolveImage:"NOL"
         // username:auth.currentUser.username
         
          
@@ -97,7 +98,7 @@ const DeleteSpot =()=>{
   
   return (
     
-    <View>
+    <View style={{backgroundColor:'#05787c', flex:1}}>
       <Header navigation={navigation}/>
       
       
@@ -110,13 +111,13 @@ const DeleteSpot =()=>{
                 <Ionicons name="time" size={18} color="black" style={{marginVertical:5}}/>
                 <Text style={styles.text1}>{moment(spot.createAt.toDate()).startOf('time').fromNow()}</Text>
                 </View>
-                <Text >{spot.usermail}</Text>
+                <Text style={styles.text4}>{spot.usermail}</Text>
                 <Text style={styles.seviority}>Seviority of the spot : {spot.seviority}</Text>
-                <Text>Food_Wrappers {spot.Food_Wrappers}</Text>
-                <Text>Polythene_bags {spot.Polythene_bags}</Text>
-                <Text>PET_Bottles {spot.PET_Bottles}</Text>
-                <Text>Plastic_Debris {spot.Plastic_Debris}</Text>
-                <Text>Large_Plastic_Rigid {spot.Large_Plastic_Rigid}</Text>
+                <Text style={styles.text4}>Food_Wrappers {spot.Food_Wrappers}</Text>
+                <Text style={styles.text4}>Polythene_bags {spot.Polythene_bags}</Text>
+                <Text style={styles.text4}>PET_Bottles {spot.PET_Bottles}</Text>
+                <Text style={styles.text4}>Plastic_Debris {spot.Plastic_Debris}</Text>
+                <Text style={styles.text4}>Large_Plastic_Rigid {spot.Large_Plastic_Rigid}</Text>
                 <View style={{bottom:0, marginBottom:5}}>
                 {/* <Button title="Open" onPress={() => setOpen(true)} /> */}
                 {/* <DatePicker modal open={open} date={date} 
@@ -129,8 +130,8 @@ const DeleteSpot =()=>{
     }
     
     <View style={{flexDirection:'row', justifyContent:'space-evenly'}}>      
-                <Button color='gray' title='Select the date' onPress={()=>showMode('date')}/>
-                <Button color='grey' title='Pick your time' onPress={()=>showMode('time')}/>
+                <Button color='#045c5d'  title='Select the date' onPress={()=>showMode('date')}/>
+                <Button color='#045c5d' title='Pick your time' onPress={()=>showMode('time')}/>
                 
                 {shown && (
                 <DateTimePicker testID='dateTimePicker' value={date} mode={mode} is24Hour={false} display="default" onChange={onChange}
@@ -162,8 +163,10 @@ const Header = ({navigation: { goBack }})=>(
 )
 
 const styles=StyleSheet.create({
+
+  
   headerText:{
-    color:'red',
+    color:'white',
     marginHorizontal:0,
      alignItems:'center',
      fontWeight:'bold',
@@ -174,7 +177,8 @@ const styles=StyleSheet.create({
   },
   PlaceText:{
     fontSize:30,
-    marginVertical:2
+    marginVertical:2,
+    color:'white'
   },
   headerWrapper:{
     alignItems:'center',
@@ -184,17 +188,17 @@ const styles=StyleSheet.create({
     width:'90%', 
     marginHorizontal:20,
     borderRadius:20,
-    borderColor:'green',
+    borderColor:'#05787c',
     borderWidth: 2
    },
    seviority:{
     borderWidth:1,
     padding:8,
-    borderColor:"red",
+    borderColor:"#05787c",
     marginHorizontal:20,
     fontSize:20,
     justifyContent:'center',
-    color:'red',
+    color:'#05787c',
     backgroundColor:'silver',
     borderRadius:10
 },
@@ -202,7 +206,8 @@ text1:{
   fontSize:15,
   fontWeight:'500',
   marginLeft:5,
-  marginVertical:5
+  marginVertical:5,
+  color:"white"
 },
 text2:{
     fontStyle:'italic',
@@ -217,6 +222,10 @@ text3:{
     color:'white',
     marginLeft:5
 },
+text4:{
+  color:"white",
+  margin:0
+},
 endButton:{
   alignItems: 'center',
   justifyContent: 'center',
@@ -225,14 +234,14 @@ endButton:{
   borderRadius: 50,
   elevation: 5,
   margin:10,
-  backgroundColor:'#0288D1',
+  backgroundColor:'#cdecef',
   width:'95%',
   height:50
 },
 buttonText:{
   fontSize:16,
   fontWeight:'bold',
-  color:'#112A46'
+  color:'#05787c'
 }
 
 })

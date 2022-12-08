@@ -18,7 +18,7 @@ const ProfileScreen = ({navigation}) => {
  const styles=StyleSheet.create({
   container:{
     flex:1,
-    backgroundColor:'yellow'
+    backgroundColor:'#05787c'
   }
  })
 

@@ -99,7 +99,7 @@ const Header = ({navigation})=>(
 const Styles = StyleSheet.create({
   container: {
       marginTop: 20,
-      backgroundColor:"#65BB00",
+      backgroundColor:"#05787c",
       // paddingHorizontal:20
     
   },
@@ -118,7 +118,7 @@ const Styles = StyleSheet.create({
 },
   header: {
       fontSize: 30,
-      color:"#4c4c4b",
+      color:"white",
       marginRight:10,
   },
   suggestImg: {

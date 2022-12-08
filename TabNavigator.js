@@ -16,11 +16,11 @@ const TabNavigator=()=>{
     <Tab.Navigator screenOptions={{
         tabBarShowLabel: true,
         headerShown:false,
-        tabBarStyle:{backgroundColor:'#5B8C2A'},
-        tabBarInactiveTintColor:"#A9A9A9",
+        tabBarStyle:{backgroundColor:'#05787c'},
+        tabBarInactiveTintColor:"#FFFF",
         tabBarInactiveBackgroundColor:'',
         tabBarActiveTintColor:"white",
-        tabBarActiveBackgroundColor:'#5B8C29',
+        tabBarActiveBackgroundColor:'#05787c',
         tabBarHideOnKeyboard:true
 
     }}>

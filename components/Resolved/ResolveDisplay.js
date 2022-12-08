@@ -108,7 +108,7 @@ const ResolveDisplay = ({navigation}) => {
     const Styles = StyleSheet.create({
       container: {
           marginTop: 20,
-        //   backgroundColor:'pink'
+          backgroundColor:'#6EFB8D'
           // paddingHorizontal:20
         
       },
